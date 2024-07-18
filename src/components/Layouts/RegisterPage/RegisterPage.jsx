@@ -2,30 +2,33 @@ import React from 'react'
 import './RegisterPage.css'
 // import axios from 'axios'
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux"
-import { signupUser } from "../../../Redux/Reducer/GetDataSlice"
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from 'react-router-dom';
+import { userRegister } from "../../../Redux/Reducer/UserSlice";
 import { toast } from "react-toastify";
 
 function RegisterPage() {
-  const dispatch = useDispatch();
   const { register, handleSubmit, formState: { errors } } = useForm();
+  const error = useSelector(state => state.user.error);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  // const [ name, setName ] = useState()
-  // const [ email, setEmail ] = useState()
-  // const [ password, setPassword ] = useState()
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault()
-  //   axios.post
-  // }
-  const onSubmit = async(data) => {
-    const formData = new FormData();
-    formData.append('name', data.name);
-    formData.append('email', data.email);
-    formData.append('password', data.password);
+  const onSubmit = async (data) => {
+    
     try {
-      await dispatch(signupUser(formData));
-      toast.success("Contact created successfully!");
+     const response =  await dispatch(userRegister({
+        username: data.username,
+        email: data.email,
+        password: data.password,
+      }));
+      console.log("response",response);
+      // toast.success("Contact created successfully!");
+      if (!response.error) {
+        navigate('/otp_verify');
+        toast.success("Otp has been sent to your email");
+    } else {
+        navigate('/user/register');
+    }
     } catch (error) {
       console.error("Error creating contact")
       toast.error("error creating contact");
@@ -64,18 +67,19 @@ function RegisterPage() {
                       <h4 className='label-name'>Name</h4>
                     </label>
                     <input
-                      type="text"
-                      id="name"
+                      type="username"
+                      id="username"
                       className="inputBox name"
                       placeholder=""
                       autoComplete='off'
-                      // onChange={e => setName(e.target.value)}
-                      {...register("name", {
-                        required: "Name is required",
-                      })}
-                    //   {...register("firstName", {
-                    //     required: "First Name is required",
-                    //   })}
+                      {...register("username", {
+                        pattern: {
+                            value: /^[A-Za-z]+$/,
+                            message: "Invalid username format",
+                        },
+                        required: "username is required",
+                    })}
+                    
                     />
                     <p className="error">{errors.name?.message}</p>
                   </div>
@@ -91,8 +95,13 @@ function RegisterPage() {
                   className="inputBox"
                   placeholder=""
                   autoComplete='off'
-                  // onChange={e => setEmail(e.target.value)}
-                  {...register("email", { required: "Email is required" })}
+                  {...register("email", {
+                    pattern: {
+                        value: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
+                        message: "Invalid email format",
+                    },
+                    required: "Email is required",
+                })}
                 />
                 </div>
                 <p className="error">{errors.email?.message}</p>
@@ -102,22 +111,24 @@ function RegisterPage() {
                   <h4 className='label-name'>Password</h4>
                 </label>
                 <input
-                  type="tel"
+                  type="text"
                   id="password"
                   className="inputBox"
                   placeholder=""
                   autoComplete='off'
-                  // onChange={e => setPassword(e.target.value)}
                   {...register("password", {
-                    required: "Password is required",
-                  })}
+                    required: {
+                        value: true,
+                        message: "Password is required",
+                    }
+                })}
                 />
                 </div>
                 <p className="error">{errors.password?.message}</p>
+                {error && <p className="error">{error}</p>}
               </div>
               <div className="formSubmit">
                 <button type='submit' className="btn signup-btn btn-primary">Signup
-                  {/* {contactId ? "Save Changes" : "Submit"} */}
                 </button>
               </div>
               <div className='condition-choose'>
