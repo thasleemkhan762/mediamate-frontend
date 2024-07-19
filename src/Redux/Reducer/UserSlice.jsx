@@ -2,11 +2,11 @@ import axios from "axios";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 // signup user
-export const userRegister = createAsyncThunk("userRegister", async (data, {rejectWithValue}) => {
+export const userRegister = createAsyncThunk("userRegister", async (userData, {rejectWithValue}) => {
   try {
     const response = await axios.post(
       "http://localhost:5001/api/users/register",
-      data
+      userData
     );
     return response.data;
   } catch (error) {
@@ -21,11 +21,11 @@ export const userRegister = createAsyncThunk("userRegister", async (data, {rejec
 });
 
 // otp verify
-export const verifyOtp = createAsyncThunk("verifyOtp", async (data, {rejectWithValue}) => {
+export const verifyOtp = createAsyncThunk('verifyOtp', async (otpData, {rejectWithValue}) => {
   try {
     const response = await axios.post(
       "http://localhost:5001/api/users/otp_verify",
-      data
+      otpData
     );
     return response.data;
   } catch (error) {

@@ -24,7 +24,7 @@ function RegisterPage() {
       console.log("response",response);
       // toast.success("Contact created successfully!");
       if (!response.error) {
-        navigate('/otp_verify');
+        navigate('/otp_verify', { state:{ email: data.email } });
         toast.success("Otp has been sent to your email");
     } else {
         navigate('/user/register');
@@ -63,7 +63,7 @@ function RegisterPage() {
                 </div>
                 <div className="name_box">
                   <div className='input-box'>
-                    <label className='input-label' htmlFor="firstName">
+                    <label className='input-label' htmlFor="username">
                       <h4 className='label-name'>Name</h4>
                     </label>
                     <input

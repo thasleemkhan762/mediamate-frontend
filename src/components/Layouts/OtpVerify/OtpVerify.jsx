@@ -1,23 +1,31 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './OtpVerify.css'
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { verifyOtp } from '../../../Redux/Reducer/UserSlice';
 
 
 function OtpVerify() {
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const { register, handleSubmit, setValue, formState: { errors } } = useForm();
   const error = useSelector(state => state.user.error)
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
+  const email = location.state?.email;
 
 
+
+  useEffect(() => {
+    if (email) {
+      setValue("email", email);
+    }
+  }, [email, setValue]);
 
   const onSubmit = async (data) =>{
     try {
       const response = await dispatch(verifyOtp({
-        username:data.username,
+          email: data.email,
           otp: data.otp,
       }));
 
@@ -51,7 +59,7 @@ function OtpVerify() {
         <div className="row">
           <div className="col-lg-6 reg-content">
           <div className='col-md-5 form-width'>
-          <form id="formSection" noValidate>
+          <form id="formSection" noValidate onClick={handleSubmit(onSubmit)}>
               <div className="FormContent verify-content">
                 <div>
                   <h2 className='head'>Otp <br /> Verification</h2>
@@ -63,6 +71,7 @@ function OtpVerify() {
                 <label htmlFor="email">
                   <h4 className='label-name'>Enter Otp</h4>
                 </label>
+                <input type="hidden" {...register("email", { required: true })} />
                 <input
                   type="otp"
                   id="otp"
@@ -84,7 +93,7 @@ function OtpVerify() {
               </div>
               <div className="formSubmit verify-btn-box">
                 <a href="/set_password">
-                  <button onClick={handleSubmit(onSubmit)} className='btn btn-primary verify-btn'>Verify Otp</button>
+                  <button type='submit' className='btn btn-primary verify-btn'>Verify Otp</button>
                 </a>
               </div>
               

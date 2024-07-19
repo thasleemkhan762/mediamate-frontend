@@ -17,12 +17,12 @@ function LandingPage() {
                 <h2 className="brand_name_2">MATE</h2>
               </div>
               <div className="header_btns">
-                <a href="/login">
+                <a href="/user/login">
                   <button className="btn btn-outline-primary mr-2 login">
                     Login
                   </button>
                 </a>
-                <a href="/register">
+                <a href="/user/register">
                   <button className="btn btn-primary register">Register</button>
                 </a>
               </div>
