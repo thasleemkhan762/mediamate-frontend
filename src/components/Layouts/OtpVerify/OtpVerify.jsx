@@ -30,7 +30,7 @@ function OtpVerify() {
       }));
 
       if (!response.error) {
-          navigate('/homepage');
+          navigate('/user/login');
       } else {
           navigate('/otp_verify');
       }

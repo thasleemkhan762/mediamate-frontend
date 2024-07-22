@@ -1,5 +1,6 @@
 import axios from "axios";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import Cookies from "js-cookie";
 
 // signup user
 export const userRegister = createAsyncThunk("userRegister", async (userData, {rejectWithValue}) => {
@@ -39,6 +40,23 @@ export const verifyOtp = createAsyncThunk('verifyOtp', async (otpData, {rejectWi
   }
 });
 
+// login user
+export const userLogin = createAsyncThunk('userLogin', async (data, { rejectWithValue }) => {
+  try {
+      const response = await axios.post(`http://localhost:5001/api/users/login`, data, { withCredentials: true });
+      Cookies.set('userId', response.data.userId);
+      return response.data;
+  } catch (error) {
+      if (error.response) {
+          const errorMessage = error.response.data.error || "An unexpected error occurred";
+          return rejectWithValue(errorMessage);
+      }
+      else {
+          return rejectWithValue("Network error.");
+      }
+  }
+});
+
 const getData = createSlice({
   name: "data",
   initialState: {
@@ -73,6 +91,19 @@ const getData = createSlice({
 .addCase(verifyOtp.rejected, (state, action) => {
     state.loading = false;
     state.error = action.payload || "Some error occurred";
+})
+ // User Login
+ .addCase(userLogin.pending, (state) => {
+  state.loading = true;
+  state.error = '';
+})
+.addCase(userLogin.fulfilled, (state, action) => {
+  state.loading = false;
+  state.userId = action.payload;
+})
+.addCase(userLogin.rejected, (state, action) => {
+  state.loading = false;
+  state.error = action.payload || "Some error occurred";
 })
   },
 });
