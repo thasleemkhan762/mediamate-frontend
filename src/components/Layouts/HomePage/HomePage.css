@@ -1,0 +1,90 @@
+
+.count-msg{
+    width: 24px;
+    height: 24px;
+    text-align: center;
+    border: 2px solid blue;
+    border-radius: 50%;
+}
+
+.brand_name{
+    font-weight: bold;
+    margin-bottom: 0;
+}
+
+.chat-preview-text{
+    font-size: 12px;
+    font-weight: 300;
+    margin-bottom: 0;
+}
+
+.profile_chat_premium_box {
+    display: flex;
+    gap: 5px;
+}
+
+.row.home-contents {
+    padding: 0 10px;
+    margin-right: 0;
+}
+
+.home-pics{
+    position: relative;
+    padding: 0;
+}
+
+.home-cover-pic{
+    width: 100%;
+    height: 120px;
+    border-radius: 10px 10px 0 0;
+}
+
+.home-pro-pic{
+    position: absolute;
+    left: 32%;
+    top: 63%;
+    width: 110px;
+}
+
+.home-name-pro {
+    margin-top: 70px;
+    text-align: center;
+}
+
+.menu-list{
+    display: flex;
+    align-items: center;
+}
+
+.home-pic-div {
+    padding: 0;
+}
+
+.pro-content{
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
+    padding: 0;
+    margin: 20px;
+    width: 320px;
+    border-radius: 10px;
+}
+
+.home-menu-div {
+    padding: 0 30px;
+    padding-bottom: 10px;
+}
+
+.chat-div {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
+    padding: 10px 20px 20px 20px;
+    /* margin: 20px; */
+    width: 320px;
+    border-radius: 10px;
+}
+
+.user-detail {
+    display: flex;
+}
+
+.home-chat-pic{
+    width: 60%;
+}
