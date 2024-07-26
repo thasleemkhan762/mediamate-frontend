@@ -1,0 +1,79 @@
+.create-post-form{
+    background: #F3F3F3;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.avatar{
+    text-align: center;
+    /* height: 185px; */
+    display: flex;
+    justify-items: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* .defaultImage {
+    background-image: url('create-post-default.jpg');
+    background-size: cover;
+    background-position: center;
+    width: 71%;
+    height: 55%;
+} */
+
+.defaultImage img {
+    width: 43.35%;
+}
+
+.imageInput {
+    display: flex;
+    justify-content: center;
+}
+
+/* img.ImagePreview {
+    width: 100px;
+    height: 55% !important;
+} */
+img.ImagePreview {
+    width: 60%;
+    /* height: 70% !important; */
+}
+
+.FormContent-create {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.create-description-div{
+    display: grid;
+}
+
+.textarea {
+    border: 1px solid #dfdfdf;
+    background: #F3F3F3;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+
+.textarea:focus{
+    outline: var(--primary-color);
+    border: 1px solid #4318FF;
+    box-shadow: unset;
+    padding: 5px 10px;
+}
+
+button.btn.btn-outline {
+    border: 1px solid var(--primary-color);
+}
+
+.create-post-preview{
+    display: flex;
+    justify-content: flex-end !important;
+    gap: 10px;
+}
+
+.addImage{
+    padding: 5px 20px;
+    margin-top: 10px;
+}

@@ -1,16 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "./HomePage.css"
 import one from "../../../dummyImages/one.png"
 import cover from "./home-pro-pic.png";
 import profilePic from "./pro-pic.png";
 import postProPic from "./post-pro-pic.png";
 import postImage from "./post-image.png";
+import CreatePostForm from '../CreatePostForm/CreatePostForm';
 
 
 function HomePage() {
+  const [modalOpen, setModalOpen] = useState(false);
   return (
     <>
-      <div className="fluid-container">
+      <div className="fluid-container home-layout-div">
         <div>
           <header className="header-home">
             <nav className="navbar-home navbar-expand-lg navbar-dark">
@@ -135,7 +137,7 @@ function HomePage() {
           {/* create posts and posts */}
           <div className="col-md-6">
             <div className="row">
-              <div className="col-sm-12 home-create-post-div">
+              <div className="col-sm-12 home-create-post-div" onClick={() => setModalOpen(true)}>
                 <div className="col-sm-2">
                   <div className="home-pics">
                     <img
@@ -521,6 +523,8 @@ function HomePage() {
             </div>
           </div>
         </div>
+        {/* create post form */}
+        {modalOpen && ( <CreatePostForm /> )}
       </div>
     </>
   );
