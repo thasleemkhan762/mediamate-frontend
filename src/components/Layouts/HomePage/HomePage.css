@@ -431,14 +431,19 @@ p.home-post-date-text {
 
 .create-post-form-div{
     position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    background: #000000d6;
+    width: 50%;
+    height: 78%;
+    top: 78px;
+    left: 378px;
+    z-index: 1;
 }
 
-.create-post-form{
+/* .create-post-form{
     width: 50%;
     margin-top: 80px;
     margin-left: 380px;
+} */
+.home-layout-div {
+    padding-left: 0;
+    padding-right: 0;
 }

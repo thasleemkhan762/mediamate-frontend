@@ -1,0 +1,50 @@
+.profile-pic {
+    position: absolute;
+    top: 120px;
+    left: 50px;
+}
+
+.profile-image-cover-div {
+    position: relative;
+}
+
+.profile-cover img {
+    width: 100%;
+
+}
+
+.profile-edit-cover-btn {
+    position: absolute;
+    top: 140px;
+    right: 35px;
+}
+
+.user-profile-row{
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
+    margin-top: 10px;
+    border-radius: 10px;
+}
+
+.profile-details {
+    display: flex;
+    justify-content: flex-end;
+    gap: 100px;
+    padding: 20px 12px;
+    align-items: center;
+    
+}
+
+.profile-pic img {
+    width: 60%;
+}
+
+.cutomize-btns {
+  display: flex;
+  gap: 10px;
+  margin-right: 22px;
+}
+
+.pro-custom-btn{
+    background: #DDF4FF;
+    color: black;
+}

@@ -3,6 +3,7 @@ import "./LandingPage.css";
 import fullimage from './fullimage.png'
 
 
+
 function LandingPage() {
   return (
     <>
@@ -60,6 +61,7 @@ function LandingPage() {
             </div>
           </div>
         </div>
+        
         <div className="background"></div>
         <div className="overlay"></div>
       </div>
