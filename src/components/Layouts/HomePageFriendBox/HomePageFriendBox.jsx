@@ -111,7 +111,7 @@ function HomePageFriendBox() {
                 </div>
                 <div className="row">
                   <div className="friends-btn">
-                    <button className="btn btn-primary">See more</button>
+                    <a href="/user/friends"><button className="btn btn-primary">See more</button></a>
                   </div>
                 </div>
               </div>

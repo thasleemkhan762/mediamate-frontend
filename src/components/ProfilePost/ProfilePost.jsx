@@ -1,35 +1,50 @@
 import React from 'react'
-import "./Posts.css"
+import "./ProfilePost.css";
 import postProPic from "./post-pro-pic.png";
 import postImage from "./post-image.png";
 
-function Posts() {
+function ProfilePost() {
   return (
     <>
       <div className="row">
-              <div className="col-sm-12 home-post-div">
-                <div className="col-sm-1">
+              <div className="col-sm-12 pro-post-div">
+                <div className="">
                   {/* pro pic image */}
-                  <div className="home-post-pro-pic">
+                  <div className='pro-post-head'>
+                  <div className="pro-post-pro-pic">
                     <img src={postProPic} alt="proPic" />
                   </div>
-                </div>
-                <div className="col-sm-10">
+                <div className="">
                   {/* posted date */}
-                  <div className="home-post-date">
-                    <p className='home-post-username'>Veronica</p>
+                  <div className="pro-post-date">
+                  <p className='home-post-username'>Veronica</p>
                     <p className="home-post-date-text">posted 1 hour ago</p>
+                    <div className="pro-post-options">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="20"
+                      height="20"
+                      fill="grey"
+                      className="bi bi-three-dots"
+                      viewBox="0 0 16 16"
+                    >
+                      <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3" />
+                    </svg>
+                  </div>
                   </div>
                   {/* post description */}
-                  <div className="home-post-description">
-                    <div className="home-post-description-div">
-                      <p className="home-post-description-text">
+                  <div className="pro-post-description">
+                    <div className="pro-post-description-div">
+                      <p className="pro-post-description-text">
                         Lorem ipsum dolor sit amet consectetur. Aliquam vel
                         proin vitae lacus. Tristique.Uurna diam pulvinar
                         egestas. Mollis pellentesque aliquam orci fames.
                       </p>
                     </div>
                   </div>
+                  
+                  </div>
+                </div>
                   {/* posted media */}
                   <div className="home-post-media">
                     <img src={postImage} alt="postImage" />
@@ -65,19 +80,8 @@ function Posts() {
                     </div>
                   </div>
                 </div>
-                <div className="col-sm-1">
-                  <div className="home-post-options">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      fill="grey"
-                      className="bi bi-three-dots"
-                      viewBox="0 0 16 16"
-                    >
-                      <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3" />
-                    </svg>
-                  </div>
+                <div className="">
+                  
                 </div>
               </div>
             </div>
@@ -85,4 +89,4 @@ function Posts() {
   )
 }
 
-export default Posts
+export default ProfilePost

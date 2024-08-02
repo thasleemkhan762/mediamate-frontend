@@ -8,6 +8,9 @@ import PasswordRecovery from '../Layouts/PasswordRecovery/PasswordRecovery'
 import OtpVerify from '../Layouts/OtpVerify/OtpVerify'
 import SetPasswordPage from '../Layouts/SetPasswordPage/SetPasswordPage'
 import UserProfile from '../Layouts/UserProfile/UserProfile'
+import UserFriends from '../Layouts/UserFriends/UserFriends'
+import SavedPosts from '../Layouts/SavedPosts/SavedPosts'
+import SearchResultPage from '../Layouts/SearchResultPage/SearchResultPage'
 
 function MainRouter() {
   return (
@@ -20,6 +23,9 @@ function MainRouter() {
         <Route path='/otp_verify' element={<OtpVerify />} />
         <Route path='/set_password' element={<SetPasswordPage />} />
         <Route path='/user/profile' element={<UserProfile />} />
+        <Route path='/user/friends' element={<UserFriends />} />
+        <Route path='/user/saved_posts' element={<SavedPosts />} />
+        <Route path='/user/search_result' element={<SearchResultPage />} />
     </Routes>
   )
 }

@@ -30,19 +30,19 @@ function MainSidebar() {
                     <ul className="nav flex-column">
                       <li className="nav-item menu-list">
                         <i className="bi bi-person-fill"></i>
-                        <a className="nav-link active" href="/profile">
+                        <a className="nav-link active" href="/user/profile">
                           Profile
                         </a>
                       </li>
                       <li className="nav-item menu-list">
                         <i className="bi bi-people-fill"></i>
-                        <a className="nav-link" href="/friends">
+                        <a className="nav-link" href="/user/friends">
                           Friends
                         </a>
                       </li>
                       <li className="nav-item menu-list">
                         <i className="bi bi-stickies-fill"></i>
-                        <a className="nav-link" href="saved_posts">
+                        <a className="nav-link" href="/user/saved_posts">
                           Saved posts
                         </a>
                       </li>

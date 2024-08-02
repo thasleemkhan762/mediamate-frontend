@@ -72,7 +72,7 @@ function LoginPage() {
                   <div>
                     <h4 className="sub-text">
                       Don't you have an account ?{" "}
-                      <a className="login-redirect" href="/register">
+                      <a className="login-redirect" href="/user/register">
                         Register
                       </a>{" "}
                     </h4>

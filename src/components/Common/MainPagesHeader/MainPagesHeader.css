@@ -1,0 +1,28 @@
+.header-link{
+    text-decoration: none;
+}
+
+.brandname_box a {
+    display: flex;
+}
+.brandname_box {
+    flex: 1;
+
+}
+
+.header-home nav {
+    display: flex;
+    justify-content:flex-start
+}
+
+.header-contents{
+    display: flex;
+    align-items: center;
+    margin-right: 15px;
+    gap: 40px;
+}
+
+.form-inline input {
+    padding: 2px 20px;
+    width: 350px;
+}

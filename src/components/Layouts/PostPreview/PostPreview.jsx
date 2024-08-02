@@ -1,13 +1,15 @@
 import React from 'react'
-import "./Posts.css"
+import "./PostPreview.css"
 import postProPic from "./post-pro-pic.png";
 import postImage from "./post-image.png";
 
-function Posts() {
+function PostPreview({ closePreviewModal }) {
+ 
+
   return (
     <>
-      <div className="row">
-              <div className="col-sm-12 home-post-div">
+      <div className="row preview-row">
+              <div className="col-sm-12 preview-post-div">
                 <div className="col-sm-1">
                   {/* pro pic image */}
                   <div className="home-post-pro-pic">
@@ -80,9 +82,13 @@ function Posts() {
                   </div>
                 </div>
               </div>
+              {/* <div className="preview-overlay"></div> */}
+              <div className="preview-close-btn">
+              <button onClick={closePreviewModal} className='btn btn-primary'>close preview</button>
+              </div>
             </div>
     </>
   )
 }
 
-export default Posts
+export default PostPreview

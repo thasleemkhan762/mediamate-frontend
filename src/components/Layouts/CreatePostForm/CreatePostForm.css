@@ -34,8 +34,8 @@
     width: 100px;
     height: 55% !important;
 } */
-img.ImagePreview {
-    width: 60%;
+img.create-ImagePreview {
+    width: 43.35%;
     /* height: 70% !important; */
 }
 
@@ -101,4 +101,6 @@ button.btn.btn-outline {
 .form-header-text {
     margin-bottom: 0;
     flex: 1;
+    display: flex;
+    justify-content: center;
 }

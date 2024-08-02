@@ -1,0 +1,10 @@
+.home-post-date{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding-top: 17px;
+}
+
+.home-post-username{
+    margin-bottom: 0;
+}

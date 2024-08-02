@@ -54,7 +54,7 @@ function RegisterPage() {
           <div className="col-lg-6 reg-content">
           <div className='col-md-5 form-width'>
           <form id="formSection" noValidate onSubmit={handleSubmit(onSubmit)}>
-              <div className="FormContent">
+              <div className="reg-FormContent">
                 <div>
                   <h2 className='head'>Get Started</h2>
                 </div>
@@ -81,7 +81,7 @@ function RegisterPage() {
                     })}
                     
                     />
-                    <p className="error">{errors.name?.message}</p>
+                    <p className="error">{errors.username?.message}</p>
                   </div>
                  
                 </div>
@@ -128,7 +128,7 @@ function RegisterPage() {
                 {error && <p className="error">{error}</p>}
               </div>
               <div className="formSubmit">
-                <button type='submit' className="btn signup-btn btn-primary">Signup
+                <button type='submit' className="btn reg-signup-btn btn-primary">Signup
                 </button>
               </div>
               <div className='condition-choose'>

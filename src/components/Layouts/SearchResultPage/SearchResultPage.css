@@ -1,0 +1,101 @@
+.friend-suggestion-body.col-md-12 {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
+}
+
+.content-btn button{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 15px;
+    font-size: 12px;
+}
+
+.friend-suggestion-contents {
+    display: grid;
+    justify-items: center;
+    gap: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    border: 1px solid #cacaca;
+    border-radius: 5px;
+}
+
+.content-name h6{
+    margin-bottom: 0;
+    font-size: 17px;
+    font-weight: 400;
+}
+
+.friend-sgst-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px 10px 10px;
+}
+
+.friend-sgst-head p{
+    margin-bottom: 0;
+}
+
+.friend-sgst-div {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
+    padding: 20px 10px;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+.fr-btns svg {
+    margin-left: 5px;
+}
+
+.friend-body{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.friend-contents {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    border: 1px solid #cacaca;
+    border-radius: 5px;
+    gap: 15px;
+}
+
+.fr-name h6{
+    margin-bottom: 0;
+}
+
+.fr-name{
+    flex: 1;
+}
+
+.friend-div{
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
+    margin-top: 15px;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.fr-btns{
+    display: flex;
+    gap: 10px;
+}
+
+.fr-btns button{
+    padding: 5px 25px;
+}
+
+.search-head h6{
+    display: flex;
+}
+.search-head p{
+    margin-left: 10px;
+    color: var(--primary-color);
+    text-decoration: underline;
+}

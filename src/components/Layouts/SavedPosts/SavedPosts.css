@@ -1,0 +1,35 @@
+:root{
+    --background:#DDF4FF;
+    --primary-color:#0054F9;
+    --primary-text-color:#252B42;
+    --secondary-text-color:#737373;
+    --button-color:#96BB7C;
+    --block-color:#e74040;
+  }
+
+  body{
+    font-family: poppins;
+    background: #F3F3F3;
+  }
+
+.saved-post-options button:hover {
+    color: #FFF !important;
+    background-color: var(--primary-color) !important;
+    border-color: #c5c5c5;
+}
+
+.saved-post-options button{
+    border: 1px solid #cccccc;
+    padding: 5px 25px;
+}
+
+.saved-post-options {
+    display: flex;
+    justify-content: flex-start;
+    gap: 50px;
+    padding: 20px 0px 10px 0;
+}
+
+.saved-post-options button:nth-of-type(1){
+    border: 1px solid #0054f9;
+}
