@@ -39,7 +39,7 @@ export const createPost = createAsyncThunk('createPost', async (data) => {
 // });
 
 const postSlice = createSlice({
-    name: 'data',
+    name: 'post',
     initialState: {
       data: [],
       error: "",
