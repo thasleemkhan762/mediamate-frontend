@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 // Create post
-export const createPost = createAsyncThunk('post/createPost', async (data, { rejectWithValue }) => {
+export const createPost = createAsyncThunk('createPost', async (data, { rejectWithValue }) => {
   try {
     const response = await axios.post(`http://localhost:5001/api/users`, data);
     return response.data;
@@ -13,13 +13,17 @@ export const createPost = createAsyncThunk('post/createPost', async (data, { rej
 });
 
 const postSlice = createSlice({
-  name: 'post',
+  name: "post",
   initialState: {
     data: [],
     error: "",
     loading: false,
   },
-  reducers: {},
+  reducers: {
+    setUserId(state, action) {
+      state.userId = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(createPost.pending, (state) => {
