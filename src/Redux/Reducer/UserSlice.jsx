@@ -61,6 +61,7 @@ const getData = createSlice({
   name: "data",
   initialState: {
     data: [],
+    userId: null,
     error:'',
     loading: false,
   },
@@ -99,7 +100,7 @@ const getData = createSlice({
 })
 .addCase(userLogin.fulfilled, (state, action) => {
   state.loading = false;
-  state.userId = action.payload;
+  state.userId = action.payload.userId; 
 })
 .addCase(userLogin.rejected, (state, action) => {
   state.loading = false;
@@ -108,4 +109,5 @@ const getData = createSlice({
   },
 });
 
+export const { setUserId } = getData.actions;
 export default getData.reducer;

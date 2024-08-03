@@ -19,11 +19,7 @@ const postSlice = createSlice({
     error: "",
     loading: false,
   },
-  reducers: {
-    setUserId(state, action) {
-      state.userId = action.payload;
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(createPost.pending, (state) => {

@@ -3,7 +3,7 @@ import { useForm, Controller } from "react-hook-form";
 import "./CreatePostForm.css";
 import defaultImg from "./create-post-default.jpg";
 import PostPreview from '../PostPreview/PostPreview';
-import { useDispatch, useSelector} from 'react-redux';
+import { useDispatch} from 'react-redux';
 import { createPost } from '../../../Redux/Reducer/PostSlice';
 import { toast } from 'react-toastify';
 
@@ -14,7 +14,7 @@ const [previewModalOpen, setPreviewModalOpen] = useState(false);
 const [imagePreview, setImagePreview] = useState(null);
 const watchedImage = watch("image");
 const dispatch = useDispatch()
-const userId = useSelector((state) => state.post.userId);
+
 
   useEffect(() => {
     if (watchedImage) {
@@ -33,8 +33,7 @@ const userId = useSelector((state) => state.post.userId);
   const onsubmit = async (data) =>{
     console.log("Form data:", data); // Log form data before creating FormData
     const formData = new FormData();
-    formData.append('userId', userId); // Add userId to formData
-    formData.append('image', data.image[0]);
+          formData.append('image', data.image[0]);
     formData.append('description', data.description);
 
     console.log("FormData content before dispatch:");
@@ -110,7 +109,7 @@ const userId = useSelector((state) => state.post.userId);
                       htmlFor="image"
                       className="addImage btn btn-outline-primary"
                     >
-                      "Add"
+                      Add
                     </label>
                     {/* <p className="error">{errors.image?.message}</p> */}
                   </div>
@@ -143,7 +142,7 @@ const userId = useSelector((state) => state.post.userId);
               Preview Post
             </div>
             <button className="btn add btn-primary" type="submit">
-              "Submit"
+              Submit
             </button>
           </div>
         </form>

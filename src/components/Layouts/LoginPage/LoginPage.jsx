@@ -28,6 +28,7 @@ function LoginPage() {
         password: data.password,
       }));
       if (!response.error) {
+
         navigate('/homepage');
       }
       else{

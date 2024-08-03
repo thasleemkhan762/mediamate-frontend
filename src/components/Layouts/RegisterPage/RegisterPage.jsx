@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 
 function RegisterPage() {
   const { register, handleSubmit, formState: { errors } } = useForm();
-  const error = useSelector(state => state.user.error);
+  const error = useSelector(state => state.data.error);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -59,7 +59,7 @@ function RegisterPage() {
                   <h2 className='head'>Get Started</h2>
                 </div>
                 <div>
-                  <h4 className='sub-text'>Already have an account ? <a className='login-redirect' href="/login">Login</a> </h4>
+                  <h4 className='sub-text'>Already have an account ? <a className='login-redirect' href="/user/login">Login</a> </h4>
                 </div>
                 <div className="name_box">
                   <div className='input-box'>
