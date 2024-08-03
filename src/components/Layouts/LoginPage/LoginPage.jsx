@@ -17,7 +17,7 @@ async function auth() {
 
 function LoginPage() {
   const { register, handleSubmit, formState: { errors } } = useForm();
-  const error = useSelector(state => state.user.error);
+  const error = useSelector(state => state.error);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
