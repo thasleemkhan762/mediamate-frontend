@@ -43,6 +43,8 @@ export const verifyOtp = createAsyncThunk('verifyOtp', async (otpData, {rejectWi
 // login user
 export const userLogin = createAsyncThunk('userLogin', async (data, { rejectWithValue }) => {
   try {
+    console.log(data);
+    
       const response = await axios.post(`http://localhost:5001/api/users/login`, data, { withCredentials: true });
       Cookies.set('userId', response.data.userId);
       return response.data;
@@ -60,8 +62,8 @@ export const userLogin = createAsyncThunk('userLogin', async (data, { rejectWith
 const getData = createSlice({
   name: "data",
   initialState: {
-    data: [],
-    userId: null,
+    // data: [],
+    email: null,
     error:'',
     loading: false,
   },
@@ -99,15 +101,24 @@ const getData = createSlice({
   state.error = '';
 })
 .addCase(userLogin.fulfilled, (state, action) => {
+  console.log(action.payload);
+  console.log(action.payload.data.email);
+  console.log(state.email);
+  
   state.loading = false;
   state.userId = action.payload.userId; 
+  if (action.payload.data.email) {
+    state.email = action.payload.data.email;
+  } else {
+    console.log('Email not found in server response');
+  }
+  console.log(state.email);
 })
 .addCase(userLogin.rejected, (state, action) => {
   state.loading = false;
   state.error = action.payload || "Some error occurred";
-})
-  },
+  console.log('User login rejected:', action.payload);
+})  },
 });
 
-export const { setUserId } = getData.actions;
 export default getData.reducer;

@@ -3,7 +3,7 @@ import { useForm, Controller } from "react-hook-form";
 import "./CreatePostForm.css";
 import defaultImg from "./create-post-default.jpg";
 import PostPreview from '../PostPreview/PostPreview';
-import { useDispatch} from 'react-redux';
+import { useDispatch, useSelector} from 'react-redux';
 import { createPost } from '../../../Redux/Reducer/PostSlice';
 import { toast } from 'react-toastify';
 
@@ -29,12 +29,17 @@ const dispatch = useDispatch()
       setImagePreview(null);
     }
   }, [watchedImage]);
+  const userEmail = useSelector((state) => state.data.email);
+  console.log("useremail:", userEmail);
+
 
   const onsubmit = async (data) =>{
     console.log("Form data:", data); // Log form data before creating FormData
     const formData = new FormData();
-          formData.append('image', data.image[0]);
-    formData.append('description', data.description);
+    
+    formData.append('image', data.image[0]);
+    formData.append("description", data.description);
+    formData.append('email', userEmail);
 
     console.log("FormData content before dispatch:");
     formData.forEach((value, key) => {

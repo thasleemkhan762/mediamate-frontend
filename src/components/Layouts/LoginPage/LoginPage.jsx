@@ -22,7 +22,10 @@ function LoginPage() {
   const navigate = useNavigate();
 
   const onSubmit = async (data) => {
+    console.log("email and opassword:", data);
+    
     try {
+      console.log("email and:", data.email);
       const response = await dispatch(userLogin({
         email: data.email,
         password: data.password,
