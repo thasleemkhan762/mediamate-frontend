@@ -4,7 +4,7 @@ import "./CreatePostForm.css";
 import defaultImg from "./create-post-default.jpg";
 import PostPreview from '../PostPreview/PostPreview';
 import { useDispatch} from 'react-redux';
-import createPost from '../../../Redux/Reducer/PostSlice';
+import {createPost} from '../../../Redux/Reducer/PostSlice';
 import { toast } from 'react-toastify';
 
 
@@ -31,7 +31,6 @@ function CreatePostForm({ closeModal }) {
   }, [watchedImage]);
 
   const onsubmit = async (data) =>{
-    // e.preventDefault();
     console.log("Form data:", data); // Log form data before creating FormData
     const formData = new FormData();
     formData.append('image', data.image[0]);
@@ -44,7 +43,7 @@ function CreatePostForm({ closeModal }) {
 
     try {
       console.log("formdata is :",formData);
-      await dispatch(createPost(formData));
+      await dispatch(createPost(formData)).unwrap();
       toast.success("post added successfully");
       closeModal();
     } catch (error) {
