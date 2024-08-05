@@ -62,7 +62,7 @@ export const userLogin = createAsyncThunk('userLogin', async (data, { rejectWith
 const getData = createSlice({
   name: "data",
   initialState: {
-    // data: [],
+    data: [],
     email: null,
     error:'',
     loading: false,

@@ -22,6 +22,10 @@
     gap: 40px;
 }
 
+.header-contents a{
+    display: flex;
+}
+
 .form-inline input {
     padding: 2px 20px;
     width: 350px;

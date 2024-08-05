@@ -11,6 +11,7 @@ import UserProfile from '../Layouts/UserProfile/UserProfile'
 import UserFriends from '../Layouts/UserFriends/UserFriends'
 import SavedPosts from '../Layouts/SavedPosts/SavedPosts'
 import SearchResultPage from '../Layouts/SearchResultPage/SearchResultPage'
+import AccountSettings from '../Layouts/SettingsPages/AccountSettings/AccountSettings'
 
 function MainRouter() {
   return (
@@ -26,6 +27,7 @@ function MainRouter() {
         <Route path='/user/friends' element={<UserFriends />} />
         <Route path='/user/saved_posts' element={<SavedPosts />} />
         <Route path='/user/search_result' element={<SearchResultPage />} />
+        <Route path='/user/account_settings' element={<AccountSettings />} />
     </Routes>
   )
 }
