@@ -52,10 +52,10 @@ function SupportSettings() {
                               render={({ field: { onChange } }) => (
                                 <div className="imageInput">
                                   <div className="avatar">
-                                    <label
+                                    {/* <label
                                       className="avatar-label"
                                       htmlFor="image"
-                                    ></label>
+                                    ></label> */}
                                     <input
                                       type="file"
                                       id="image"
