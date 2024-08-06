@@ -1,12 +1,12 @@
-import React, { useState } from 'react'
+import React, {  } from 'react'
 import MainPagesHeader from '../../../Common/MainPagesHeader/MainPagesHeader'
-import defaultImg from "./create-post-default.jpg";
+// import defaultImg from "./create-post-default.jpg";
 import SettingsSidebar from '../../../Common/SettingsSidebar/SettingsSidebar'
 import { Controller, useForm } from 'react-hook-form';
 
 function SupportSettings() {
-    const { register, handleSubmit, watch, control, formState: { errors }} = useForm();
-    const [imagePreview, setImagePreview] = useState(null);
+    const { register, control,/* handleSubmit, watch,  formState: { errors }*/} = useForm();
+    // const [imagePreview, setImagePreview] = useState(null);
   return (
     <>
       <div className="container-fluid home-layout-div">
@@ -68,7 +68,7 @@ function SupportSettings() {
                                       })}
                                       hidden
                                     />
-                                    {imagePreview ? (
+                                    {/* {imagePreview ? (
                                       <img
                                         src={imagePreview}
                                         alt="Preview"
@@ -80,7 +80,7 @@ function SupportSettings() {
                                           <img src={defaultImg} alt="hhh" />
                                         </div>
                                       )
-                                    )}
+                                    )} */}
                                     <div className="support-attach-file-btn">
                                     <label
                                       htmlFor="image"
