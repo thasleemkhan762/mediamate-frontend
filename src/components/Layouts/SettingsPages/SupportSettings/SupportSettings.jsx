@@ -34,9 +34,9 @@ function SupportSettings() {
                           rows={5}
                           className="inputBox-textarea"
                           placeholder="Enter query..."
-                          {...register("query", {
-                            required: "Query is required",
-                          })}
+                        //   {...register("query", {
+                        //     required: "Query is required",
+                        //   })}
                         />
                       </div>
                     </div>

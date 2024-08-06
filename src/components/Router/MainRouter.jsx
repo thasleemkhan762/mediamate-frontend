@@ -14,6 +14,7 @@ import SearchResultPage from '../Layouts/SearchResultPage/SearchResultPage'
 import AccountSettings from '../Layouts/SettingsPages/AccountSettings/AccountSettings'
 import NotificationSettings from '../Layouts/SettingsPages/NotificationSettings/NotificationSettings'
 import PrivacySettings from '../Layouts/SettingsPages/PrivacySettings/PrivacySettings'
+import SupportSettings from '../Layouts/SettingsPages/SupportSettings/SupportSettings'
 
 function MainRouter() {
   return (
@@ -32,6 +33,7 @@ function MainRouter() {
         <Route path='/user/settings' element={<AccountSettings />} />
         <Route path='/user/notification_settings' element={<NotificationSettings />} />
         <Route path='/user/privacy_settings' element={<PrivacySettings />} />
+        <Route path='/user/support_settings' element={<SupportSettings />} />
     </Routes>
   )
 }
