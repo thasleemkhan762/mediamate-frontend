@@ -15,6 +15,7 @@ import AccountSettings from '../Layouts/SettingsPages/AccountSettings/AccountSet
 import NotificationSettings from '../Layouts/SettingsPages/NotificationSettings/NotificationSettings'
 import PrivacySettings from '../Layouts/SettingsPages/PrivacySettings/PrivacySettings'
 import SupportSettings from '../Layouts/SettingsPages/SupportSettings/SupportSettings'
+import UserChat from '../Layouts/UserChat/UserChat'
 
 function MainRouter() {
   return (
@@ -34,6 +35,7 @@ function MainRouter() {
         <Route path='/user/notification_settings' element={<NotificationSettings />} />
         <Route path='/user/privacy_settings' element={<PrivacySettings />} />
         <Route path='/user/support_settings' element={<SupportSettings />} />
+        <Route path='/user/chat' element={<UserChat />} />
     </Routes>
   )
 }
