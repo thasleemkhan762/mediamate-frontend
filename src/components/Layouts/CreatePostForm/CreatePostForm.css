@@ -104,3 +104,10 @@ button.btn.btn-outline {
     display: flex;
     justify-content: center;
 }
+
+textarea#description {
+    border-radius: 5px;
+    border: 1px solid #d0d0d0;
+    background: #f3f3f3;
+    padding: 5px 10px;
+}

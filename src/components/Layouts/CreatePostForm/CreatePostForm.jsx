@@ -145,8 +145,9 @@ const dispatch = useDispatch()
                 </label>
                 <textarea
                   id="description"
-                  className="inputBox"
-                  placeholder="Enter Description"
+                  rows={5}
+                  className="inputBox-textarea"
+                  placeholder="Enter Description..."
                   {...register("description", {
                     required: "description is required",
                   })}
