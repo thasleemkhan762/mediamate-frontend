@@ -29,7 +29,7 @@ function SettingsSidebar() {
                   </a>
                 </li>
                 <li>
-                  <a href="/user/privacy-settings">
+                  <a href="/user/privacy_settings">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="16"
@@ -45,7 +45,7 @@ function SettingsSidebar() {
                   </a>
                 </li>
                 <li>
-                  <a href="/user/support-settings">
+                  <a href="/user/support_settings">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="16"
