@@ -2,6 +2,7 @@ import React from 'react'
 import one from "../../../dummyImages/one.png";
 import profilePic from "./pro-pic.png";
 import cover from "./home-pro-pic.png";
+import "./MainSideBar.css"
 
 function MainSidebar() {
   return (

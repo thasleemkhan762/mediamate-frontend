@@ -10,9 +10,11 @@ import FriendSuggestion from "../FriendSuggestion/FriendSuggestion";
 import HomeSupport from "../HomeSupport/HomeSupport";
 import ProfilePost from "../../ProfilePost/ProfilePost";
 import EditProfile from "../../Popups/EditProfile/EditProfile";
+import ProfileCustomPopup from "../../Common/ProfileCustomPopup/ProfileCustomPopup";
 
 function UserProfile() {
   const [modalOpen, setModalOpen] = useState(false);
+  const [customModalOpen, setCustomModalOpen] = useState(false);
   return (
     <>
       <div className="container-fluid home-layout-div">
@@ -44,7 +46,7 @@ function UserProfile() {
                   <p className="pro-email">Crissmath7676@gmail.com</p>
                 </div>
                 <div className="customize-btns">
-                  <button className="btn btn-outline-secondary ">
+                  <button onClick={()=> setCustomModalOpen(true)} className="btn btn-outline-secondary ">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="16"
@@ -154,6 +156,7 @@ function UserProfile() {
           </div>
         </div>
         {modalOpen && (<EditProfile closeModal={()=> setModalOpen(false)} />)}
+        {customModalOpen && (<ProfileCustomPopup closeModal={()=> setCustomModalOpen(false)} />)}
       </div>
     </>
   );
