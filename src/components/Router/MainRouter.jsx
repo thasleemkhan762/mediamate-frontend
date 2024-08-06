@@ -13,6 +13,7 @@ import SavedPosts from '../Layouts/SavedPosts/SavedPosts'
 import SearchResultPage from '../Layouts/SearchResultPage/SearchResultPage'
 import AccountSettings from '../Layouts/SettingsPages/AccountSettings/AccountSettings'
 import NotificationSettings from '../Layouts/SettingsPages/NotificationSettings/NotificationSettings'
+import PrivacySettings from '../Layouts/SettingsPages/PrivacySettings/PrivacySettings'
 
 function MainRouter() {
   return (
@@ -30,6 +31,7 @@ function MainRouter() {
         <Route path='/user/search_result' element={<SearchResultPage />} />
         <Route path='/user/settings' element={<AccountSettings />} />
         <Route path='/user/notification_settings' element={<NotificationSettings />} />
+        <Route path='/user/privacy_settings' element={<PrivacySettings />} />
     </Routes>
   )
 }
