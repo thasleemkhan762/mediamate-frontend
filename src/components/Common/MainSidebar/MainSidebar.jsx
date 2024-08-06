@@ -105,7 +105,7 @@ function MainSidebar() {
               <div className="col-sm-12 home-chat-box">
                 <div className="profile_chat_premium_box">
                   <p className="home-pre-text">Try Premium...</p>
-                  <a className="home-pre-click" href="/premium">
+                  <a className="home-pre-click" href="/user/premium">
                     click here
                   </a>
                 </div>
