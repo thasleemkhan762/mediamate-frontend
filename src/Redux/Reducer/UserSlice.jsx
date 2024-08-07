@@ -63,6 +63,7 @@ const getData = createSlice({
   name: "data",
   initialState: {
     data: [],
+    userId: null,
     email: null,
     error:'',
     loading: false,
