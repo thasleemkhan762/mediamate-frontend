@@ -13,7 +13,7 @@ function CreatePostForm({ closeModal }) {
 const [previewModalOpen, setPreviewModalOpen] = useState(false);
 const [imagePreview, setImagePreview] = useState(null);
 const watchedImage = watch("image");
-const dispatch = useDispatch()
+const dispatch = useDispatch();
 
 
   useEffect(() => {
@@ -31,6 +31,8 @@ const dispatch = useDispatch()
   }, [watchedImage]);
   const userEmail = useSelector((state) => state.data.email);
   console.log("useremail:", userEmail);
+  const userId = useSelector((state) => state.data.userId);
+  console.log("userId:", userId);
 
 
   const onsubmit = async (data) =>{
@@ -40,6 +42,7 @@ const dispatch = useDispatch()
     formData.append('image', data.image[0]);
     formData.append("description", data.description);
     formData.append('email', userEmail);
+    formData.append('userId', userId);
 
     console.log("FormData content before dispatch:");
     formData.forEach((value, key) => {

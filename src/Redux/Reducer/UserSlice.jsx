@@ -102,12 +102,13 @@ const getData = createSlice({
   state.error = '';
 })
 .addCase(userLogin.fulfilled, (state, action) => {
-  console.log(action.payload);
-  console.log(action.payload.data.email);
+  // console.log(action.payload);
+  // console.log(action.payload.data.email);
   console.log(state.email);
   
   state.loading = false;
   state.userId = action.payload.userId; 
+  console.log(state.userId)
   if (action.payload.data.email) {
     state.email = action.payload.data.email;
   } else {
