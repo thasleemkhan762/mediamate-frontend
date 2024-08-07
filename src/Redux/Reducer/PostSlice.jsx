@@ -15,7 +15,7 @@ export const createPost = createAsyncThunk('createPost', async (data, { rejectWi
 const postSlice = createSlice({
   name: "post",
   initialState: {
-    data: [],
+    post: [],
     error: "",
     loading: false,
   },
@@ -27,8 +27,8 @@ const postSlice = createSlice({
       })
       .addCase(createPost.fulfilled, (state, action) => {
         state.loading = false;
-        state.data.push(action.payload);
-        console.log(state.data);
+        state.post.push(action.payload);
+        console.log(state.post);
         
       })
       .addCase(createPost.rejected, (state, action) => {

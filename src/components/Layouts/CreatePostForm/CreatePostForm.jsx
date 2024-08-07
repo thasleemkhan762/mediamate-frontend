@@ -33,6 +33,7 @@ const dispatch = useDispatch();
   console.log("useremail:", userEmail);
   const userId = useSelector((state) => state.data.userId);
   console.log("userId:", userId);
+  const data = useSelector((state) => state.data.userId);
 
 
   const onsubmit = async (data) =>{
@@ -44,10 +45,7 @@ const dispatch = useDispatch();
     formData.append('email', userEmail);
     formData.append('userId', userId);
 
-    console.log("FormData content before dispatch:");
-    formData.forEach((value, key) => {
-      console.log(key, value);
-    });
+
 
     try {
       console.log("formdata is :",formData);
@@ -59,6 +57,9 @@ const dispatch = useDispatch();
       toast.error("Error creating contact. Please try again.");
     }
   }
+  const post = useSelector((state)=> state.post);
+  console.log(post);
+  
 
   return (
     <>
