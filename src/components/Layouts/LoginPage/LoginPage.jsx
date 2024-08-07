@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import Cookies from "js-cookie";
 import { userLogin } from '../../../Redux/Reducer/UserSlice'
+import { setUser } from '../../../Redux/Reducer/UserSlice'
 
 
 async function auth() {
@@ -35,7 +36,7 @@ function LoginPage() {
         console.log(response.payload.userToken);
         const userId = response.payload.userId;
         const userToken = response.payload.userToken;
-        
+        dispatch(setUser({ userId, userToken }));        
         navigate('/homepage');
       }
       else{

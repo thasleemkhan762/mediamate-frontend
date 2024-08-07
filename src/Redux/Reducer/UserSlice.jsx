@@ -137,4 +137,5 @@ const getData = createSlice({
   },
 });
 
+export const { setUser } = getData.actions;
 export default getData.reducer;
