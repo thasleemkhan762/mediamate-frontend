@@ -59,68 +59,82 @@ export const userLogin = createAsyncThunk('userLogin', async (data, { rejectWith
   }
 });
 
+const userId = localStorage.getItem('userId') || null;
+const userToken = localStorage.getItem('userToken') || null;
+
 const getData = createSlice({
   name: "data",
   initialState: {
     data: [],
-    userId: null,
+    userId: userId,
+    userToken: userToken,
     email: null,
-    error:'',
+    error: "",
     loading: false,
   },
-  reducers: {},
-  extraReducers: (builder)=>{
+  reducers: {
+    setUser(state, action) {
+      state.userId = action.payload.userId;
+      state.userToken = action.payload.userToken;
+
+      // Save user data to localStorage
+      localStorage.setItem('userId', action.payload.userId);
+      localStorage.setItem('userToken', action.payload.userToken);
+  },
+  },
+  extraReducers: (builder) => {
     builder
-    .addCase(userRegister.pending, (state) => {
-      state.loading = true;
-      state.error = '';
-  })
-  .addCase(userRegister.fulfilled, (state, action) => {
-      state.loading = false;
-      state.data = action.payload;
-  })
-  .addCase(userRegister.rejected, (state, action) => {
-      state.loading = false;
-      state.error = action.payload || "Some error occurred";
-  })
-  //verify
-  .addCase(verifyOtp.pending, (state) => {
-    state.loading = true;
-    state.error = '';
-})
-.addCase(verifyOtp.fulfilled, (state, action) => {
-    state.loading = false;
-    state.data = action.payload;
-})
-.addCase(verifyOtp.rejected, (state, action) => {
-    state.loading = false;
-    state.error = action.payload || "Some error occurred";
-})
- // User Login
- .addCase(userLogin.pending, (state) => {
-  state.loading = true;
-  state.error = '';
-})
-.addCase(userLogin.fulfilled, (state, action) => {
-  // console.log(action.payload);
-  // console.log(action.payload.data.email);
-  console.log(state.email);
-  
-  state.loading = false;
-  state.userId = action.payload.userId; 
-  console.log(state.userId)
-  if (action.payload.data.email) {
-    state.email = action.payload.data.email;
-  } else {
-    console.log('Email not found in server response');
-  }
-  console.log(state.email);
-})
-.addCase(userLogin.rejected, (state, action) => {
-  state.loading = false;
-  state.error = action.payload || "Some error occurred";
-  console.log('User login rejected:', action.payload);
-})  },
+      .addCase(userRegister.pending, (state) => {
+        state.loading = true;
+        state.error = "";
+      })
+      .addCase(userRegister.fulfilled, (state, action) => {
+        state.loading = false;
+        state.data = action.payload;
+      })
+      .addCase(userRegister.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload || "Some error occurred";
+      })
+      //verify
+      .addCase(verifyOtp.pending, (state) => {
+        state.loading = true;
+        state.error = "";
+      })
+      .addCase(verifyOtp.fulfilled, (state, action) => {
+        state.loading = false;
+        state.data = action.payload;
+      })
+      .addCase(verifyOtp.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload || "Some error occurred";
+      })
+      // User Login
+      .addCase(userLogin.pending, (state) => {
+        state.loading = true;
+        state.error = "";
+      })
+      .addCase(userLogin.fulfilled, (state, action) => {
+        // console.log(action.payload);
+        // console.log(action.payload.data.email);
+        console.log(state.email);
+
+        state.loading = false;
+        state.userId = action.payload.userId;
+        console.log(state.userId);
+        if (action.payload.data.email) {
+          state.email = action.payload.data.email;
+        } else {
+          console.log("Email not found in server response");
+        }
+        console.log(state.email);
+      })
+      .addCase(userLogin.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload || "Some error occurred";
+        console.log("User login rejected:", action.payload);
+      });
+  },
 });
 
 export default getData.reducer;
