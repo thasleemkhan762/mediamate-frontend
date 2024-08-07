@@ -31,7 +31,11 @@ function LoginPage() {
         password: data.password,
       }));
       if (!response.error) {
-
+        console.log(response.payload.userId);
+        console.log(response.payload.userToken);
+        const userId = response.payload.userId;
+        const userToken = response.payload.userToken;
+        
         navigate('/homepage');
       }
       else{
