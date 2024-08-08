@@ -16,7 +16,7 @@ export const createPost = createAsyncThunk('createPost', async (data, { rejectWi
 export const getAllPosts = createAsyncThunk('getAllPosts', async (_, { rejectWithValue }) => {
   try {
     const response = await axios.get(`http://localhost:5001/api/users`);
-    console.log(response.data);
+    // console.log(response.data);
     
     return response.data;
   } catch (error) {
@@ -40,7 +40,7 @@ const postSlice = createSlice({
       .addCase(createPost.fulfilled, (state, action) => {
         state.loading = false;
         state.post.push(action.payload);
-        console.log(state.post);
+        console.log(action.payload);
         
       })
       .addCase(createPost.rejected, (state, action) => {

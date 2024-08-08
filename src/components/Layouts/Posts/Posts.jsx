@@ -8,7 +8,7 @@ import { getAllPosts } from '../../../Redux/Reducer/PostSlice';
 function Posts() {
   const dispatch = useDispatch();
   const { post, loading, error } = useSelector(state => state.post);
-  console.log({post});
+  // console.log({post});
   
 
   useEffect(() => {
