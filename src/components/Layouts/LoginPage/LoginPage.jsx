@@ -32,11 +32,12 @@ function LoginPage() {
         password: data.password,
       }));
       if (!response.error) {
-        console.log(response.payload.userId);
+        console.log(response.payload);
         console.log(response.payload.userToken);
         const userId = response.payload.userId;
         const userToken = response.payload.userToken;
-        dispatch(setUser({ userId, userToken }));        
+        const username = response.payload.username;
+        dispatch(setUser({ userId, username, userToken }));        
         navigate('/homepage');
       }
       else{

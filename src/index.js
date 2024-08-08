@@ -4,9 +4,14 @@ import './index.css';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import TimeAgo from "javascript-time-ago"
+import en from 'javascript-time-ago/locale/en.json'
+import ru from 'javascript-time-ago/locale/ru.json'
 import store from './Redux/Store/Store';
 import reportWebVitals from './reportWebVitals';
 
+TimeAgo.addDefaultLocale(en)
+TimeAgo.addLocale(ru)
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>

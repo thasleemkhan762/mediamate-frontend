@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import "./Posts.css"
 import postProPic from "./post-pro-pic.png";
 // import postImage from "./post-image.png";
+import ReactTimeAgo from 'react-time-ago';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllPosts } from '../../../Redux/Reducer/PostSlice';
 function Posts() {
@@ -30,8 +31,8 @@ function Posts() {
            <div className="col-sm-10">
              {/* posted date */}
              <div className="home-post-date">
-               <p className='home-post-username'>Veronica</p>
-               <p className="home-post-date-text">posted 1 hour ago</p>
+               <p className='home-post-username'>{post.username}</p>
+               <span className='date'><ReactTimeAgo date={new Date(post.createdAt)}  locale="en-US" /></span>
              </div>
              {/* post description */}
              <div className="home-post-description">

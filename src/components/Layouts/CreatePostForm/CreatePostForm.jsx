@@ -30,7 +30,7 @@ const dispatch = useDispatch();
     }
   }, [watchedImage]);
   const username = useSelector((state) => state.data.username);
-  console.log("useremail:", userEmail);
+  console.log("useremail:", username);
   const userEmail = useSelector((state) => state.data.email);
   console.log("useremail:", userEmail);
   const userId = useSelector((state) => state.data.userId);

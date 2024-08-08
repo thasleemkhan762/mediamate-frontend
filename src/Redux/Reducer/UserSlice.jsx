@@ -69,7 +69,7 @@ const getData = createSlice({
     data: [],
     userId: userId,
     userToken: userToken,
-    username:username,
+    username: username,
     email: null,
     error: "",
     loading: false,
@@ -79,6 +79,8 @@ const getData = createSlice({
       state.userId = action.payload.userId;
       state.userToken = action.payload.userToken;
       state.username = action.payload.username;
+      console.log(action.payload);
+      
 
       // Save user data to localStorage
       localStorage.setItem('userId', action.payload.userId);
