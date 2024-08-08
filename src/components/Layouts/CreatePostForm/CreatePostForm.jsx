@@ -29,6 +29,8 @@ const dispatch = useDispatch();
       setImagePreview(null);
     }
   }, [watchedImage]);
+  const username = useSelector((state) => state.data.username);
+  console.log("useremail:", userEmail);
   const userEmail = useSelector((state) => state.data.email);
   console.log("useremail:", userEmail);
   const userId = useSelector((state) => state.data.userId);
@@ -44,6 +46,7 @@ const dispatch = useDispatch();
     formData.append("description", data.description);
     formData.append('email', userEmail);
     formData.append('userId', userId);
+    formData.append('username', username);
 
 
 
