@@ -5,11 +5,12 @@ import postProPic from "./post-pro-pic.png";
 import ReactTimeAgo from 'react-time-ago';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllPosts } from '../../../Redux/Reducer/PostSlice';
+
+
 function Posts() {
   const dispatch = useDispatch();
   const { post, loading, error } = useSelector(state => state.post);
   // console.log({post});
-  
 
   useEffect(() => {
     dispatch(getAllPosts());

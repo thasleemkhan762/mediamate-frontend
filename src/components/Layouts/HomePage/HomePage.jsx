@@ -29,7 +29,9 @@ function HomePage() {
 
             <CreatePost openModal={() => setModalOpen(true)} />
             <HomeExploreButtons />
+            <div className="post-main">
             <Posts />
+            </div>
 
           </div>
           <div className="col-md-3">

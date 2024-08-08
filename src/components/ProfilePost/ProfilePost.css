@@ -17,7 +17,12 @@
     border-radius: 10px;
     flex-direction: column;
     margin-left: 20px;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
+    width: 99%;
+}
+
+span.date {
+    flex: 1;
 }
 
 .pro-post-head{
@@ -48,7 +53,7 @@
 
 .pro-post-description {
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     width: 480px;
 }
 .pro-post-description-div {

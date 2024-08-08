@@ -39,8 +39,9 @@ const postSlice = createSlice({
       })
       .addCase(createPost.fulfilled, (state, action) => {
         state.loading = false;
-        state.post.push(action.payload);
-        console.log(action.payload);
+        // state.post.push(action.payload);
+        state.post = [action.payload, ...state.post];
+        console.log(state.post);
         
       })
       .addCase(createPost.rejected, (state, action) => {
@@ -53,7 +54,7 @@ const postSlice = createSlice({
       .addCase(getAllPosts.fulfilled, (state, action) => {
         state.loading = false;
         state.post = action.payload.posts;
-        console.log(action.payload.posts);
+        // console.log(action.payload.posts);
         
       })
       .addCase(getAllPosts.rejected, (state, action) => {
