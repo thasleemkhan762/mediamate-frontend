@@ -61,6 +61,7 @@ export const userLogin = createAsyncThunk('userLogin', async (data, { rejectWith
 
 const userId = localStorage.getItem('userId') || null;
 const userToken = localStorage.getItem('userToken') || null;
+const username = localStorage.getItem('username') || null;
 
 const getData = createSlice({
   name: "data",
@@ -68,6 +69,7 @@ const getData = createSlice({
     data: [],
     userId: userId,
     userToken: userToken,
+    username:username,
     email: null,
     error: "",
     loading: false,
@@ -76,10 +78,12 @@ const getData = createSlice({
     setUser(state, action) {
       state.userId = action.payload.userId;
       state.userToken = action.payload.userToken;
+      state.username = action.payload.username;
 
       // Save user data to localStorage
       localStorage.setItem('userId', action.payload.userId);
       localStorage.setItem('userToken', action.payload.userToken);
+      localStorage.setItem('username', action.payload.username);
   },
   },
   extraReducers: (builder) => {
@@ -115,15 +119,15 @@ const getData = createSlice({
         state.error = "";
       })
       .addCase(userLogin.fulfilled, (state, action) => {
-        // console.log(action.payload);
-        // console.log(action.payload.data.email);
         console.log(state.email);
 
         state.loading = false;
         state.userId = action.payload.userId;
+        
         console.log(state.userId);
         if (action.payload.data.email) {
           state.email = action.payload.data.email;
+          state.username = action.payload.username;
         } else {
           console.log("Email not found in server response");
         }
