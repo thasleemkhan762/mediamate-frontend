@@ -14,8 +14,9 @@ function MainPagesHeader() {
               </a>
             </div>
             <div className="header-contents">
-              <form className="form-inline mx-auto">
+              <form id='search-box-header' className="form-inline mx-auto">
                 <input
+                id='search'
                   className="form-control mr-sm-2"
                   type="search"
                   placeholder="Search"

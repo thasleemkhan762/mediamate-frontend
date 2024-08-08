@@ -12,6 +12,16 @@ export const createPost = createAsyncThunk('createPost', async (data, { rejectWi
   }
 });
 
+// Get all posts
+export const getAllPosts = createAsyncThunk('getAllPosts', async (_, { rejectWithValue }) => {
+  try {
+    const response = await axios.get(`http://localhost:5001/api/users`);
+    return response.data;
+  } catch (error) {
+    return rejectWithValue(error.response.data);
+  }
+});
+
 const postSlice = createSlice({
   name: "post",
   initialState: {
@@ -32,6 +42,17 @@ const postSlice = createSlice({
         
       })
       .addCase(createPost.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload || "Some error occurred";
+      })
+      .addCase(getAllPosts.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getAllPosts.fulfilled, (state, action) => {
+        state.loading = false;
+        state.post = action.payload;
+      })
+      .addCase(getAllPosts.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload || "Some error occurred";
       });
