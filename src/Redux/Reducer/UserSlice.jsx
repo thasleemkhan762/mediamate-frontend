@@ -59,6 +59,16 @@ export const userLogin = createAsyncThunk('userLogin', async (data, { rejectWith
   }
 });
 
+// id fetch
+export const getUserData = createAsyncThunk("getUserData", async (id) => {
+  try {
+    const response = await axios.get(`http://localhost:5001/api/users/${id}`);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+});
+
 const userId = localStorage.getItem('userId') || null;
 const userToken = localStorage.getItem('userToken') || null;
 const username = localStorage.getItem('username') || null;
@@ -67,6 +77,7 @@ const getData = createSlice({
   name: "data",
   initialState: {
     data: [],
+    userData:[],
     userId: userId,
     userToken: userToken,
     username: username,
@@ -139,7 +150,23 @@ const getData = createSlice({
         state.loading = false;
         state.error = action.payload || "Some error occurred";
         console.log("User login rejected:", action.payload);
-      });
+      })
+      //getUserData
+      .addCase(getUserData.pending, (state) => {
+        state.loading = true;
+        state.error = "";
+      })
+      .addCase(getUserData.fulfilled, (state) => {
+        state.userData = action.payload.data;
+        console.log(state.userData);
+        
+        state.loading = false;
+        state.error = "";
+      })
+      .addCase(getUserData.rejected, (state) => {
+        state.loading = false;
+        state.error = "user data not found";
+      })
   },
 });
 
