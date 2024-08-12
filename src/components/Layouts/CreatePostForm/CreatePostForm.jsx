@@ -11,54 +11,60 @@ function CreatePostForm({ closeModal }) {
   const { register, handleSubmit, watch, control, formState: { errors },
 } = useForm();
 const [previewModalOpen, setPreviewModalOpen] = useState(false);
-const [imagePreview, setImagePreview] = useState(null);
-const watchedImage = watch("image");
+const [filePreview, setFilePreview] = useState(null);
+const watchedFile = watch("file");
 const dispatch = useDispatch();
 
 
-  useEffect(() => {
-    if (watchedImage) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setImagePreview(reader.result);
-      };
-      if (watchedImage[0] instanceof File) {
-        reader.readAsDataURL(watchedImage[0]);
-      }
-    } else {
-      setImagePreview(null);
+useEffect(() => {
+  if (watchedFile) {
+    const file = watchedFile[0];
+    const reader = new FileReader();
+    
+    reader.onloadend = () => {
+      setFilePreview(reader.result);
+    };
+    
+    if (file instanceof File) {
+      reader.readAsDataURL(file);
     }
-  }, [watchedImage]);
+  } else {
+    setFilePreview(null);
+  }
+}, [watchedFile]);
+
   const username = useSelector((state) => state.data.username);
-  console.log("username:", username);
+  // console.log("username:", username);
   const userId = useSelector((state) => state.data.userId);
   console.log("userId:", userId);
-  const data = useSelector((state) => state.data.userId);
+  // const data = useSelector((state) => state.data.userId);
 
 
   const onsubmit = async (data) =>{
     console.log("Form data:", data); // Log form data before creating FormData
     const formData = new FormData();
     
-    formData.append('image', data.image[0]);
+    const file = data.file[0];
+    formData.append('file', file);
     formData.append("description", data.description);
     formData.append('userId', userId);
     formData.append('username', username);
 
+    const fileType = file.type.startsWith('image/') ? 'image' : 'video';
+    formData.append('fileType', fileType);
 
 
     try {
-      console.log("formdata is :",formData);
       await dispatch(createPost(formData)).unwrap();
       toast.success("post added successfully");
       closeModal();
     } catch (error) {
-      console.error("Error creating contact:", error);
-      toast.error("Error creating contact. Please try again.");
+      console.error("Error creating post:", error);
+      toast.error("Error creating post. Please try again.");
     }
   }
   const post = useSelector((state)=> state.post);
-  console.log(post);
+  // console.log(post);
   
 
   return (
@@ -83,7 +89,7 @@ const dispatch = useDispatch();
           </div>
           <div className="FormContent-create">
             <Controller
-              name="image"
+              name="file"
               control={control}
               render={({ field: { onChange } }) => (
                 <div className="imageInput">
@@ -91,31 +97,39 @@ const dispatch = useDispatch();
                     <label className="avatar-label" htmlFor="image"></label>
                     <input
                       type="file"
-                      id="image"
+                      id="file"
+                      accept="image/*,video/*"
                       onChange={(e) => {
                         const file = e.target.files[0];
                         onChange(file);
                       }}
-                      {...register("image", {
-                        required: "Image is required",
+                      {...register("file", {
+                        required: "file is required",
                       })}
                       hidden
                     />
-                    {imagePreview ? (
-                      <img
-                        src={imagePreview}
-                        alt="Preview"
-                        className="create-ImagePreview"
-                      />
+                    {filePreview ? (
+                      filePreview.startsWith('data:image/') ? (
+                        <img
+                          src={filePreview}
+                          alt="Preview"
+                          className="create-FilePreview"
+                        />
+                      ) : (
+                        <video controls className="create-FilePreview">
+                          <source src={filePreview} type="video/mp4" />
+                          Your browser does not support the video tag.
+                        </video>
+                      )
                     ) : (
-                      !imagePreview && (
-                        <div className="defaultImage">
-                          <img src={defaultImg} alt="hhh" />
+                      !filePreview && (
+                        <div className="defaultFile">
+                          <img src={defaultImg} alt="Default" />
                         </div>
                       )
                     )}
                     <label
-                      htmlFor="image"
+                      htmlFor="file"
                       className="addImage btn btn-outline-primary"
                     >
                       Add

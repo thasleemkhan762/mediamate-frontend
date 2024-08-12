@@ -4,11 +4,14 @@ import axios from "axios";
 // Create post
 export const createPost = createAsyncThunk('createPost', async (data, { rejectWithValue }) => {
   try {
-    const response = await axios.post(`http://localhost:5001/api/users`, data);
+    const response = await axios.post(`http://localhost:5001/api/users`, data, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
     return response.data;
   } catch (error) {
-    // Return a rejected action with the error message
-    return rejectWithValue(error.response.data);
+    return rejectWithValue(error.response?.data || "Failed to create post");
   }
 });
 

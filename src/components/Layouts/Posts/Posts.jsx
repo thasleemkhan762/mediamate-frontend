@@ -45,8 +45,17 @@ function Posts() {
              </div>
              {/* posted media */}
              <div className="home-post-media">
-               <img src={`http://localhost:5001/${post.image}`} alt="postImage" />
-             </div>
+                {post.fileType === 'image' ? (
+                  <img src={`http://localhost:5001/${post.file}`} alt="Post Media" />
+                ) : post.fileType === 'video' ? (
+                  <video controls>
+                    <source src={`http://localhost:5001/${post.file}`} type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                ) : (
+                  <p>No media available</p>
+                )}
+              </div>
              <div className="home-post-interactions">
                {/* comment */}
                <div className="home-post-interactions-comment">

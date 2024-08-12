@@ -21,7 +21,10 @@
     height: 55%;
 } */
 
-.defaultImage img {
+.defaultFile img {
+    width: 43.35%;
+}
+.defaultFile vedio {
     width: 43.35%;
 }
 
@@ -67,10 +70,11 @@ button.btn.btn-outline {
     border: 1px solid var(--primary-color);
 }
 
-.create-post-preview{
+.create-FilePreview{
     display: flex;
     justify-content: flex-end !important;
     gap: 10px;
+    width: 43.35%;
 }
 
 .addImage{
