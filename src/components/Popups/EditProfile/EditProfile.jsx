@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form';
 import "./EditProfile.css"
-// import ImagePreview from "./profile-pic.png"
 import { useDispatch, useSelector } from 'react-redux';
 import { updateUser } from '../../../Redux/Reducer/UserSlice';
 import { toast } from "react-toastify";
@@ -27,10 +26,12 @@ function EditProfile({ closeModal }) {
       try {
         const userData = actionResult;
         if (userData) {
+          const formattedDob = userData.dateOfBirth ? new Date(userData.dateOfBirth).toISOString().split('T')[0] : "";
+
           setValue("username", userData.username || "");
           setValue("email", userData.email || "");
           setValue("gender", userData.gender || "");
-          setValue("dob", userData.dob || "");
+          setValue("dateOfBirth", formattedDob || "");
           setValue("place", userData.place || "");
           setValue("phone", userData.phone || "");
           setImagePreview(`http://localhost:5001/${userData.image}`);
@@ -40,35 +41,40 @@ function EditProfile({ closeModal }) {
       }
     };
     fetchUserData();
-  }, [ dispatch, setValue, actionResult ]);
+  }, [ setValue, actionResult ]);
 
   useEffect(() => {
-    if (watchedImage) {
+    if (watchedImage && watchedImage[0] instanceof File) {
       const reader = new FileReader();
       reader.onloadend = () => {
         setImagePreview(reader.result);
       };
-      if (watchedImage[0] instanceof File) {
-        reader.readAsDataURL(watchedImage[0]);
-      }
-    } else {
-      setImagePreview(null);
+      reader.readAsDataURL(watchedImage[0]);
+    } else if (actionResult && !watchedImage) {
+      // Fallback to the initially set image preview if no new image is selected
+      setImagePreview(`http://localhost:5001/${actionResult.image}`);
     }
-  }, [watchedImage]);
+  }, [watchedImage, actionResult]);
 
   const onSubmit = async (data) => {
-    const userData = {
-      username: data.username,
-      email: data.email,
-      gender: data.gender,
-      dob: data.dob,
-      place: data.place,
-      phone: data.phone,
-      image: data.image[0] ? URL.createObjectURL(data.image[0]) : undefined,
-    };
+    
+    const formData = new FormData();
+  
+  // Append the form data
+  formData.append('username', data.username);
+  formData.append('email', data.email);
+  formData.append('gender', data.gender);
+  formData.append('dateOfBirth', data.dateOfBirth);
+  formData.append('place', data.place);
+  formData.append('phone', data.phone);
+  
+  // Append the image file
+  if (data.image[0]) {
+    formData.append('file', data.image[0]); // 'file' should match the multer field name
+  }
     try {
       
-      await dispatch(updateUser({ id: actionResult._id, data: userData }));
+      await dispatch(updateUser({ id: actionResult._id, data: formData }));
 
       closeModal();
       toast.success("User updated successfully!");
@@ -128,6 +134,7 @@ function EditProfile({ closeModal }) {
                             className="imagePreview"
                           />
                         )}
+                        {/* <img className='imagePreview' src={`http://localhost:5001/${actionResult.image}`} alt="imagePreview" /> */}
                         <label
                           htmlFor="image"
                           className="btn btn-outline-secondary edit-addImage"
@@ -206,11 +213,11 @@ function EditProfile({ closeModal }) {
                   type="date"
                   id="dob"
                   className="edit-inputBox"
-                  {...register("dob", {
+                  {...register("dateOfBirth", {
                     required: "Date of Birth is required",
                   })}
                 />
-                <p className="error">{errors.dob?.message}</p>
+                <p className="error">{errors.dateOfBirth?.message}</p>
                 <label htmlFor="place">
                   <h4>Place:</h4>
                 </label>

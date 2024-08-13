@@ -41,7 +41,7 @@ body{
 
 .edit-heading {
     display: flex;
-    padding-bottom: 15px;
+    /* padding-bottom: 15px; */
 }
 
 .edit-FormContent {
@@ -100,9 +100,9 @@ body{
     border: 1px solid;
 }
 
-.edit-avatar {
+/* .edit-avatar {
     height: 100px;
-}
+} */
 
 .imageInput {
     display: flex;
