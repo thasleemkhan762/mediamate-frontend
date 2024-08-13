@@ -69,6 +69,16 @@ export const getUserData = createAsyncThunk("getUserData", async (id) => {
   }
 });
 
+// edit user
+export const updateUser = createAsyncThunk("updateUser", async ({ id, data }) => {
+  try {
+    const response = await axios.put(`http://localhost:5001/api/users/${id}`, data);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+});
+
 const userId = localStorage.getItem('userId') || null;
 const userToken = localStorage.getItem('userToken') || null;
 const username = localStorage.getItem('username') || null;
@@ -167,6 +177,22 @@ const getData = createSlice({
         state.loading = false;
         state.error = "user data not found";
       })
+      //UserData update
+      .addCase(updateUser.pending, (state) => {
+        state.loading = true;
+        state.error = "";
+      })
+      .addCase(updateUser.fulfilled, (state,action) => {
+        state.userData = action.payload.data;
+        console.log(state.userData);
+        
+        state.loading = false;
+        state.error = "";
+      })
+      .addCase(updateUser.rejected, (state) => {
+        state.loading = false;
+        state.error = "Some error occured";
+      });
   },
 });
 
