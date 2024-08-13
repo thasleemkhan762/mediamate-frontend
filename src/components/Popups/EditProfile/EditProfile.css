@@ -128,3 +128,9 @@ input#firstName:focus-visible {
     outline: 1px solid red;
     border: none;
 }
+
+.username-input{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}

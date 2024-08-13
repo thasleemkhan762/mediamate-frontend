@@ -1,10 +1,80 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form';
 import "./EditProfile.css"
-import ImagePreview from "./profile-pic.png"
+// import ImagePreview from "./profile-pic.png"
+import { useDispatch, useSelector } from 'react-redux';
+import { updateUser } from '../../../Redux/Reducer/UserSlice';
+import { toast } from "react-toastify";
 
 function EditProfile({ closeModal }) {
-    const { register, control, formState: { errors }, } = useForm();
+  const dispatch = useDispatch();
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    watch,
+    control,
+    formState: { errors },
+  } = useForm();
+
+  const [imagePreview, setImagePreview] = useState(null);
+  const watchedImage = watch("image");
+
+  const actionResult = useSelector((state) => state.data.userData);
+  console.log(actionResult);
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const userData = actionResult;
+        if (userData) {
+          setValue("userName", userData.username || "");
+          setValue("email", userData.email || "");
+          setValue("gender", userData.gender || "");
+          setValue("dob", userData.dob || "");
+          setValue("place", userData.place || "");
+          setValue("phone", userData.phone || "");
+          setImagePreview(`http://localhost:5001/${userData.image}`);
+        }
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    };
+    fetchUserData();
+  }, [ dispatch, setValue ]);
+
+  useEffect(() => {
+    if (watchedImage) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagePreview(reader.result);
+      };
+      if (watchedImage[0] instanceof File) {
+        reader.readAsDataURL(watchedImage[0]);
+      }
+    } else {
+      setImagePreview(null);
+    }
+  }, [watchedImage]);
+
+  const onSubmit = async (data) => {
+    try {
+      const formData = new FormData();
+      formData.append("image", data.image[0]);
+      formData.append("userName", data.firstName);
+      formData.append("email", data.email);
+      formData.append("gender", data.email);
+      formData.append("dob", data.email);
+      formData.append("place", data.email);
+      formData.append("phone", data.phone);
+      await dispatch(updateUser({ id: actionResult._id, data: formData }));
+
+      closeModal();
+      toast.success("User updated successfully!");
+    } catch (error) {
+      console.error("Error updating User:", error);
+      toast.error("Error updating User. Please try again.");
+    }
+  };
   return (
     <>
       <div className="edit-AddForm">
@@ -26,7 +96,7 @@ function EditProfile({ closeModal }) {
             </svg>
           </div>
           <div className="formContainer">
-            <form id="formSection" noValidate>
+            <form id="formSection" onSubmit={handleSubmit(onSubmit)} noValidate>
               <div className="edit-FormContent">
                 <Controller
                   name="image"
@@ -49,13 +119,13 @@ function EditProfile({ closeModal }) {
                           })}
                           hidden
                         />
-                        {
+                        {imagePreview && (
                           <img
-                            src={ImagePreview}
-                            alt="Preview"
-                            className="ImagePreview"
+                            src={imagePreview}
+                            alt="imagePreview"
+                            className="imagePreview"
                           />
-                        }
+                        )}
                         <label
                           htmlFor="image"
                           className="btn btn-outline-secondary edit-addImage"
@@ -68,22 +138,22 @@ function EditProfile({ closeModal }) {
                   )}
                 />
                 <div className="edit-name_box">
-                  <div>
+                  <div className='username-input'>
                     <label htmlFor="firstName">
-                      <h4>First Name:</h4>
+                      <h4>User Name:</h4>
                     </label>
                     <input
                       type="text"
-                      id="firstName"
+                      id="userName"
                       className="edit-inputBox name"
                       placeholder="Enter First Name"
-                      {...register("firstName", {
+                      {...register("userName", {
                         required: "First Name is required",
                       })}
                     />
                     <p className="error">{errors.firstName?.message}</p>
                   </div>
-                  <div>
+                  {/* <div>
                     <label htmlFor="lastName">
                       <h4>Last Name:</h4>
                     </label>
@@ -97,7 +167,7 @@ function EditProfile({ closeModal }) {
                       })}
                     />
                     <p className="error">{errors.lastName?.message}</p>
-                  </div>
+                  </div> */}
                 </div>
                 <label htmlFor="email">
                   <h4>Email:</h4>
@@ -140,14 +210,14 @@ function EditProfile({ closeModal }) {
                 />
                 <p className="error">{errors.dob?.message}</p>
                 <label htmlFor="address">
-                  <h4>Address:</h4>
+                  <h4>Place:</h4>
                 </label>
                 <input
                   type="text"
-                  id="address"
+                  id="place"
                   className="edit-inputBox "
-                  placeholder="Enter address"
-                  {...register("address", {
+                  placeholder="Enter place"
+                  {...register("place", {
                     required: "address is required",
                   })}
                 />
