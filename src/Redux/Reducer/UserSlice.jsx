@@ -72,6 +72,9 @@ export const getUserData = createAsyncThunk("getUserData", async (id) => {
 // edit user
 export const updateUser = createAsyncThunk("updateUser", async ({ id, data }) => {
   try {
+    console.log(id);
+    console.log(data);
+    
     const response = await axios.put(`http://localhost:5001/api/users/${id}`, data);
     return response.data;
   } catch (error) {
@@ -183,8 +186,9 @@ const getData = createSlice({
         state.error = "";
       })
       .addCase(updateUser.fulfilled, (state,action) => {
-        state.userData = action.payload.data;
+        state.userData = action.payload;
         console.log(state.userData);
+        console.log(action.payload);
         
         state.loading = false;
         state.error = "";

@@ -21,13 +21,13 @@ function EditProfile({ closeModal }) {
   const watchedImage = watch("image");
 
   const actionResult = useSelector((state) => state.data.userData);
-  console.log(actionResult);
+  // console.log(actionResult);
   useEffect(() => {
     const fetchUserData = async () => {
       try {
         const userData = actionResult;
         if (userData) {
-          setValue("userName", userData.username || "");
+          setValue("username", userData.username || "");
           setValue("email", userData.email || "");
           setValue("gender", userData.gender || "");
           setValue("dob", userData.dob || "");
@@ -40,7 +40,7 @@ function EditProfile({ closeModal }) {
       }
     };
     fetchUserData();
-  }, [ dispatch, setValue ]);
+  }, [ dispatch, setValue, actionResult ]);
 
   useEffect(() => {
     if (watchedImage) {
@@ -57,16 +57,18 @@ function EditProfile({ closeModal }) {
   }, [watchedImage]);
 
   const onSubmit = async (data) => {
+    const userData = {
+      username: data.username,
+      email: data.email,
+      gender: data.gender,
+      dob: data.dob,
+      place: data.place,
+      phone: data.phone,
+      image: data.image[0] ? URL.createObjectURL(data.image[0]) : undefined,
+    };
     try {
-      const formData = new FormData();
-      formData.append("image", data.image[0]);
-      formData.append("userName", data.firstName);
-      formData.append("email", data.email);
-      formData.append("gender", data.email);
-      formData.append("dob", data.email);
-      formData.append("place", data.email);
-      formData.append("phone", data.phone);
-      await dispatch(updateUser({ id: actionResult._id, data: formData }));
+      
+      await dispatch(updateUser({ id: actionResult._id, data: userData }));
 
       closeModal();
       toast.success("User updated successfully!");
@@ -139,7 +141,7 @@ function EditProfile({ closeModal }) {
                 />
                 <div className="edit-name_box">
                   <div className='username-input'>
-                    <label htmlFor="firstName">
+                    <label htmlFor="userName">
                       <h4>User Name:</h4>
                     </label>
                     <input
@@ -147,11 +149,11 @@ function EditProfile({ closeModal }) {
                       id="userName"
                       className="edit-inputBox name"
                       placeholder="Enter First Name"
-                      {...register("userName", {
-                        required: "First Name is required",
+                      {...register("username", {
+                        required: "User Name is required",
                       })}
                     />
-                    <p className="error">{errors.firstName?.message}</p>
+                    <p className="error">{errors.username?.message}</p>
                   </div>
                   {/* <div>
                     <label htmlFor="lastName">
@@ -209,7 +211,7 @@ function EditProfile({ closeModal }) {
                   })}
                 />
                 <p className="error">{errors.dob?.message}</p>
-                <label htmlFor="address">
+                <label htmlFor="place">
                   <h4>Place:</h4>
                 </label>
                 <input
@@ -221,7 +223,7 @@ function EditProfile({ closeModal }) {
                     required: "address is required",
                   })}
                 />
-                <p className="error">{errors.address?.message}</p>
+                <p className="error">{errors.place?.message}</p>
                 <label htmlFor="phone">
                   <h4>Phone Number:</h4>
                 </label>

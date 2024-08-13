@@ -27,7 +27,8 @@ function UserProfile() {
   }, [dispatch,userId]);
 
   const  { userData }  = useSelector((state) => state.data);
-  // console.log(userData);
+  console.log(userData);
+  console.log(useSelector((state) => state.data));
   
   return (
     <>
