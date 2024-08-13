@@ -23,17 +23,17 @@ function LoginPage() {
   const navigate = useNavigate();
 
   const onSubmit = async (data) => {
-    console.log("email and opassword:", data);
+    // console.log("email and opassword:", data);
     
     try {
-      console.log("email and:", data.email);
+      // console.log("email and:", data.email);
       const response = await dispatch(userLogin({
         email: data.email,
         password: data.password,
       }));
       if (!response.error) {
-        console.log(response.payload);
-        console.log(response.payload.userToken);
+        // console.log(response.payload);
+        // console.log(response.payload.userToken);
         const userId = response.payload.userId;
         const userToken = response.payload.userToken;
         const username = response.payload.username;

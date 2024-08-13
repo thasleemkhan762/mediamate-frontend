@@ -43,7 +43,7 @@ export const verifyOtp = createAsyncThunk('verifyOtp', async (otpData, {rejectWi
 // login user
 export const userLogin = createAsyncThunk('userLogin', async (data, { rejectWithValue }) => {
   try {
-    console.log(data);
+    // console.log(data);
     
       const response = await axios.post(`http://localhost:5001/api/users/login`, data, { withCredentials: true });
       Cookies.set('userId', response.data.userId);
@@ -90,7 +90,7 @@ const getData = createSlice({
       state.userId = action.payload.userId;
       state.userToken = action.payload.userToken;
       state.username = action.payload.username;
-      console.log(action.payload);
+      // console.log(action.payload);
       
 
       // Save user data to localStorage
@@ -132,19 +132,19 @@ const getData = createSlice({
         state.error = "";
       })
       .addCase(userLogin.fulfilled, (state, action) => {
-        console.log(state.email);
+        // console.log(state.email);
 
         state.loading = false;
         state.userId = action.payload.userId;
         
-        console.log(state.userId);
+        // console.log(state.userId);
         if (action.payload.data.email) {
           state.email = action.payload.data.email;
           state.username = action.payload.username;
         } else {
           console.log("Email not found in server response");
         }
-        console.log(state.email);
+        // console.log(state.email);
       })
       .addCase(userLogin.rejected, (state, action) => {
         state.loading = false;
@@ -156,9 +156,9 @@ const getData = createSlice({
         state.loading = true;
         state.error = "";
       })
-      .addCase(getUserData.fulfilled, (state) => {
+      .addCase(getUserData.fulfilled, (state,action) => {
         state.userData = action.payload.data;
-        console.log(state.userData);
+        // console.log(state.userData);
         
         state.loading = false;
         state.error = "";

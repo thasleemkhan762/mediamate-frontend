@@ -8,7 +8,7 @@ import { verifyOtp } from '../../../Redux/Reducer/UserSlice';
 
 function OtpVerify() {
   const { register, handleSubmit, setValue, formState: { errors } } = useForm();
-  const error = useSelector(state => state.user.error)
+  const error = useSelector(state => state.data.error);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();

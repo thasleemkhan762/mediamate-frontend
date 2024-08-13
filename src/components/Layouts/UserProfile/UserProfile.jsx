@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import MainPagesHeader from "../../Common/MainPagesHeader/MainPagesHeader";
 import MainSidebar from "../../Common/MainSidebar/MainSidebar";
 import Cover from "./cover.png";
@@ -11,10 +11,24 @@ import HomeSupport from "../HomeSupport/HomeSupport";
 import ProfilePost from "../../ProfilePost/ProfilePost";
 import EditProfile from "../../Popups/EditProfile/EditProfile";
 import ProfileCustomPopup from "../../Common/ProfileCustomPopup/ProfileCustomPopup";
+import { getUserData } from "../../../Redux/Reducer/UserSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 function UserProfile() {
   const [modalOpen, setModalOpen] = useState(false);
   const [customModalOpen, setCustomModalOpen] = useState(false);
+  const dispatch = useDispatch();
+  const userId = useSelector((state) => state.data.userId );
+  // console.log(userId);
+  
+
+  useEffect(() => {
+    dispatch(getUserData(userId));
+  }, [dispatch,userId]);
+
+  const  { userData }  = useSelector((state) => state.data);
+  // console.log(userData);
+  
   return (
     <>
       <div className="container-fluid home-layout-div">
@@ -42,8 +56,8 @@ function UserProfile() {
               </div>
               <div className="profile-details">
                 <div className="username-email">
-                  <h4 className="pro-username">Criss Math</h4>
-                  <p className="pro-email">Crissmath7676@gmail.com</p>
+                  <h4 className="pro-username">{userData.username}</h4>
+                  <p className="pro-email">{userData.email}</p>
                 </div>
                 <div className="customize-btns">
                   <button onClick={()=> setCustomModalOpen(true)} className="btn btn-outline-secondary ">
@@ -122,7 +136,7 @@ function UserProfile() {
                         >
                           <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414zM0 4.697v7.104l5.803-3.558zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586zm3.436-.586L16 11.801V4.697z" />
                         </svg>
-                        charles5182@gmail.com
+                        {userData.email}
                       </li>
                       <li>
                         <svg
