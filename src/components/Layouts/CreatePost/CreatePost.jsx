@@ -1,7 +1,10 @@
 import React from 'react'
-import profilePic from "./pro-pic.png";
+import { useSelector } from 'react-redux';
+
 
 function CreatePost(  { openModal } ) {
+  const userData = useSelector((state) => state.data.userData);
+  
   return (
     <>
       <div className="row">
@@ -9,7 +12,7 @@ function CreatePost(  { openModal } ) {
                 <div className="col-sm-2">
                   <div className="home-pics">
                     <img
-                      src={profilePic}
+                      src={`http://localhost:5001/${userData.image}`}
                       className="home-create-pic"
                       alt="pic"
                     />
