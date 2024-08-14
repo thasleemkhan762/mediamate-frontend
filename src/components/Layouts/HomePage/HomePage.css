@@ -314,6 +314,11 @@ p.home-post-date-text {
     margin: 24px 0 0 25px
 }
 
+.home-post-pro-pic img {
+    width: 100%;
+    border-radius: 50%;
+}
+
 .home-post-description-div{
     width: 552px;
 }

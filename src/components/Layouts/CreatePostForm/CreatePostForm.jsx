@@ -36,7 +36,7 @@ useEffect(() => {
   const username = useSelector((state) => state.data.username);
   // console.log("username:", username);
   const userId = useSelector((state) => state.data.userId);
-  console.log("userId:", userId);
+  // console.log("userId:", userId);
   // const data = useSelector((state) => state.data.userId);
 
 

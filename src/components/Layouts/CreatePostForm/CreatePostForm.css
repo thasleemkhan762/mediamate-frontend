@@ -3,6 +3,10 @@
     border-radius: 10px;
     padding: 20px;
 }
+.formSubmit.create-post-preview {
+    justify-content: end;
+    gap: 5px;
+}
 
 .avatar{
     text-align: center;

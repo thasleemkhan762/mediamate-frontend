@@ -9,6 +9,7 @@ import { getAllPosts } from '../../Redux/Reducer/PostSlice';
 function ProfilePost() {
   const dispatch = useDispatch();
   const { post, loading, error } = useSelector(state => state.post);
+  const {userData} = useSelector((state) => state.data)
   // console.log({post});
 
   useEffect(() => {
@@ -26,7 +27,7 @@ function ProfilePost() {
             {/* pro pic image */}
             <div className='pro-post-head'>
             <div className="pro-post-pro-pic">
-              <img src={postProPic} alt="proPic" />
+              <img src={`http://localhost:5001/${userData.image}`} alt="proPic" />
             </div>
           <div className="">
             {/* posted date */}

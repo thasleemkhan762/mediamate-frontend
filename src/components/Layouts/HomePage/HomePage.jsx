@@ -29,7 +29,7 @@ function HomePage() {
 
             <CreatePost openModal={() => setModalOpen(true)} />
             <HomeExploreButtons />
-            <div className="post-main">
+            <div className="post-main row">
             <Posts />
             </div>
 

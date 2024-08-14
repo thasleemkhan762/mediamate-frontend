@@ -10,6 +10,7 @@ import { getAllPosts } from '../../../Redux/Reducer/PostSlice';
 function Posts() {
   const dispatch = useDispatch();
   const { post, loading, error } = useSelector(state => state.post);
+  const {userData} = useSelector((state) => state.data)
   // console.log({post});
 
   useEffect(() => {
@@ -26,7 +27,7 @@ function Posts() {
            <div className="col-sm-1">
              {/* pro pic image */}
              <div className="home-post-pro-pic">
-               <img src={postProPic} alt="proPic" />
+               <img src={`http://localhost:5001/${userData.image}`} alt="proPic" />
              </div>
            </div>
            <div className="col-sm-10">

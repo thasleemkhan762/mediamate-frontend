@@ -39,7 +39,12 @@ span.date {
 }
 
 .pro-post-pro-pic {
-    margin: 24px 0 0 15px;
+    margin: 10px 0 0 10px;
+}
+
+.pro-post-pro-pic img {
+    width: 80%;
+    border-radius:50%;
 }
 
 .pro-post-description-text {
