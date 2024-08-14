@@ -54,7 +54,8 @@
 }
 
 .profile-pic img {
-    width: 60%;
+    width: 20%;
+    border-radius: 50%;
 }
 
 .customize-btns {
