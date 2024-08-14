@@ -1,4 +1,5 @@
 import React from 'react'
+import profilePic from "./pro-pic.png";
 import { useSelector } from 'react-redux';
 
 
