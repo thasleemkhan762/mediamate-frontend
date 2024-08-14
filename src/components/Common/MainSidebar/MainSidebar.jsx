@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getUserData } from '../../../Redux/Reducer/UserSlice';
 
 function MainSidebar() {
+  const  username  = useSelector((state) => state.data.username);
+  // console.log(username);
   const dispatch = useDispatch();
   const userId = useSelector((state) => state.data.userId );
   // console.log(userId);
@@ -14,8 +16,16 @@ function MainSidebar() {
   useEffect(() => {
     dispatch(getUserData(userId));
   }, [dispatch,userId]);
-  const  { userData }  = useSelector((state) => state.data);
+  const  userData  = useSelector((state) => state.data.userData);
+  // console.log(userData);
   
+ 
+  
+  // const  profileImage  = useSelector((state) => state.data.profileImage);
+  // console.log(profileImage);
+  
+  
+
 
 
   return (
@@ -26,12 +36,12 @@ function MainSidebar() {
           <div className="home-pic-div">
             <div className="home-pics">
               <img src={cover} className="home-cover-pic" alt="coverpic" />
-              <img src={`http://localhost:5001/${userData.image}`} className="home-pro-pic" alt="pic" />
+              <img src={/*profileImage ||*/ `http://localhost:5001/${userData.image}`} className="home-pro-pic" alt="pic" />
             </div>
           </div>
           <div className="home-menu-div">
             <div className="home-name-pro">
-              <h5>{userData.username}</h5>
+              <h5>{username}</h5>
               <p className="chat-preview-text">Lorem Ipsum Dolor</p>
             </div>
             <hr />

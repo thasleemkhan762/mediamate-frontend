@@ -85,6 +85,7 @@ export const updateUser = createAsyncThunk("updateUser", async ({ id, data }) =>
 const userId = localStorage.getItem('userId') || null;
 const userToken = localStorage.getItem('userToken') || null;
 const username = localStorage.getItem('username') || null;
+// const profileImage = localStorage.getItem('profileImage') || null;
 
 const getData = createSlice({
   name: "data",
@@ -94,6 +95,7 @@ const getData = createSlice({
     userId: userId,
     userToken: userToken,
     username: username,
+    // profileImage: profileImage,
     email: null,
     error: "",
     loading: false,
@@ -111,6 +113,13 @@ const getData = createSlice({
       localStorage.setItem('userToken', action.payload.userToken);
       localStorage.setItem('username', action.payload.username);
   },
+  // setUserImage: (state, action) => {
+  //   state.profileImage = action.payload;
+  //   console.log(action.payload);
+    
+  //   //save image in localstorage
+  //   localStorage.setItem('profileImage', action.payload);
+  // },
   },
   extraReducers: (builder) => {
     builder
@@ -200,5 +209,5 @@ const getData = createSlice({
   },
 });
 
-export const { setUser } = getData.actions;
+export const { setUser, setUserImage } = getData.actions;
 export default getData.reducer;

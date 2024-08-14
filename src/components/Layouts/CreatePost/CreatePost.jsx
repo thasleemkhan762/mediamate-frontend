@@ -4,6 +4,8 @@ import { useSelector } from 'react-redux';
 
 function CreatePost(  { openModal } ) {
   const userData = useSelector((state) => state.data.userData);
+  // blob image mode
+  // const  profileImage  = useSelector((state) => state.data.profileImage);
   
   return (
     <>
@@ -12,11 +14,11 @@ function CreatePost(  { openModal } ) {
                 <div className="col-sm-2">
                   <div className="home-pics">
                     <img
-                      src={`http://localhost:5001/${userData.image}`}
+                      src={/*profileImage || */ `http://localhost:5001/${userData.image}`}
                       className="home-create-pic"
                       alt="pic"
                     />
-                  </div>
+                  </div> 
                 </div>
                 <div className="col-sm-8">
                   <div className="home-create-placeholder">

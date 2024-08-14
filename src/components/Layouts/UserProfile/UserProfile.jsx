@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import MainPagesHeader from "../../Common/MainPagesHeader/MainPagesHeader";
 import MainSidebar from "../../Common/MainSidebar/MainSidebar";
 import Cover from "./cover.png";
-import pic from "./profile-pic.png";
 import "./UserProfile.css";
 import '../HomePage/HomePage.css';
 import HomePageFriendBox from "../HomePageFriendBox/HomePageFriendBox";
@@ -27,6 +26,7 @@ function UserProfile() {
   }, [dispatch,userId]);
 
   const  { userData }  = useSelector((state) => state.data);
+  // const  profileImage  = useSelector((state) => state.data.profileImage);
   // console.log(userData);
   // console.log(useSelector((state) => state.data));
   
@@ -47,7 +47,7 @@ function UserProfile() {
                   <img src={Cover} alt="p" />
                 </div>
                 <div className="profile-pic">
-                  <img src={`http://localhost:5001/${userData.image}`} alt="c" />
+                  <img src={/*profileImage || */ `http://localhost:5001/${userData.image}`} alt="c" />
                 </div>
                 <div className="profile-edit-cover-btn">
                   <button className="btn btn-outline-secondary pro-custom-btn">

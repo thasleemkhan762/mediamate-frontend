@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form';
 import "./EditProfile.css"
 import { useDispatch, useSelector } from 'react-redux';
-import { updateUser } from '../../../Redux/Reducer/UserSlice';
+import { updateUser, /*setUserImage*/ } from '../../../Redux/Reducer/UserSlice';
 import { toast } from "react-toastify";
 
 function EditProfile({ closeModal }) {
@@ -71,6 +71,8 @@ function EditProfile({ closeModal }) {
   // Append the image file
   if (data.image[0]) {
     formData.append('file', data.image[0]); // 'file' should match the multer field name
+    // const blobImage = URL.createObjectURL(data.image[0]);
+    // dispatch(setUserImage(blobImage));
   }
     try {
       
