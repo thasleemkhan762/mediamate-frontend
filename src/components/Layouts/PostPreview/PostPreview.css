@@ -20,7 +20,7 @@
 .preview-close-btn {
     display: flex;
     justify-content: flex-end;
-    padding: 20px 0px 20px 0px;
+    padding: 20px 0px 0px 0px;
 }
 
 .preview-post-div {
@@ -30,4 +30,8 @@
     margin-top: 20px;
     margin-bottom: 10px;
     border-radius: 10px;
+}
+
+.row.preview-row {
+    height: 68%;
 }

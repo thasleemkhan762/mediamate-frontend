@@ -12,6 +12,7 @@ function CreatePostForm({ closeModal }) {
 } = useForm();
 const [previewModalOpen, setPreviewModalOpen] = useState(false);
 const [filePreview, setFilePreview] = useState(null);
+const [previewData, setPreviewData] = useState(null);
 const watchedFile = watch("file");
 const dispatch = useDispatch();
 
@@ -66,6 +67,15 @@ useEffect(() => {
   const post = useSelector((state)=> state.post);
   // console.log(post);
   
+  const handlePreview = () => {
+    const previewData = {
+      file: filePreview,
+      description: watch("description"),
+      username,
+    };
+    setPreviewData(previewData);
+    setPreviewModalOpen(true);
+  }
 
   return (
     <>
@@ -109,7 +119,7 @@ useEffect(() => {
                       hidden
                     />
                     {filePreview ? (
-                      filePreview.startsWith('data:image/') ? (
+                      filePreview.startsWith("data:image/") ? (
                         <img
                           src={filePreview}
                           alt="Preview"
@@ -134,7 +144,7 @@ useEffect(() => {
                     >
                       Add
                     </label>
-                    {/* <p className="error">{errors.image?.message}</p> */}
+                    <p className="error">{errors.file?.message}</p>
                   </div>
                 </div>
               )}
@@ -175,19 +185,25 @@ useEffect(() => {
             </div>
           </div>
           <div className="formSubmit create-post-preview">
-            <div
-              onClick={() => setPreviewModalOpen(true)}
-              className="btn btn-outline-secondary"
-            >
-              Preview Post
-            </div>
+          <button
+  onClick={handlePreview}
+  className={`btn btn-outline-secondary ${!filePreview ? 'disabled-btn' : ''}`}
+  disabled={!filePreview} // Disable the button if no file preview is available
+>
+  Preview Post
+</button>
+
+
             <button className="btn add btn-primary" type="submit">
               Submit
             </button>
           </div>
         </form>
         {previewModalOpen && (
-          <PostPreview closePreviewModal={() => setPreviewModalOpen(false)} />
+          <PostPreview
+            closePreviewModal={() => setPreviewModalOpen(false)}
+            previewData={previewData}
+          />
         )}
         {/* overlay div */}
         <div className="overlay-dark" onClick={closeModal}></div>

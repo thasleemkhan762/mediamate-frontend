@@ -17,6 +17,14 @@
     align-items: center;
 }
 
+.disabled-btn {
+    cursor: not-allowed; /* Force the "not-allowed" cursor */
+    opacity: 0.5; /* Dim the button to indicate it's disabled */
+    pointer-events: auto; /* Allow pointer events to show the cursor */
+  }
+  
+  
+
 /* .defaultImage {
     background-image: url('create-post-default.jpg');
     background-size: cover;
