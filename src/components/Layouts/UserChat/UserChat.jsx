@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import socket from '../../../socket';
-import { addMessage } from '../../../Redux/Reducer/ChatSlice';
+import { setSelectedUser  } from '../../../Redux/Reducer/ChatSlice';
 import MainPagesHeader from '../../Common/MainPagesHeader/MainPagesHeader';
 import Pic from "./chat-dp.png"
 
@@ -14,7 +14,7 @@ function UserChat() {
   useEffect(() => {
     // Listen for chat messages from the server
     socket.on('chat message', (msg) => {
-      dispatch(addMessage(msg));
+      // dispatch(setSelectedUser (msg));
     });
 
     // Clean up the socket connection on component unmount
