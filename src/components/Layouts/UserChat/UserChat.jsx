@@ -1,8 +1,37 @@
-import React from 'react'
-import MainPagesHeader from '../../Common/MainPagesHeader/MainPagesHeader'
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useForm } from 'react-hook-form';
+import socket from '../../../socket';
+import { addMessage } from '../../../Redux/Reducer/ChatSlice';
+import MainPagesHeader from '../../Common/MainPagesHeader/MainPagesHeader';
 import Pic from "./chat-dp.png"
 
 function UserChat() {
+  const { register, handleSubmit, reset } = useForm();
+  const dispatch = useDispatch();
+  const messages = useSelector((state) => state.chat.messages);
+
+  useEffect(() => {
+    // Listen for chat messages from the server
+    socket.on('chat message', (msg) => {
+      dispatch(addMessage(msg));
+    });
+
+    // Clean up the socket connection on component unmount
+    return () => {
+      socket.off('chat message');
+    };
+  }, [dispatch]);
+
+  const onSubmit = (data) => {
+    const { message } = data;
+    if (message) {
+      // Emit the chat message to the server
+      socket.emit('chat message', message);
+      reset(); // Reset the form input after submission
+    }
+  };
+
   return (
     <>
       <div className="container-fluid home-layout-div">
@@ -95,7 +124,13 @@ function UserChat() {
                 </div>
               </div>
               <div className="chat-body">
-                <div className="chat-previws"></div>
+                <div className="chat-previws">
+                  <ul>
+                    {messages.map((msg, index) => (
+                      <li key={index}>{msg}</li>
+                    ))}
+                  </ul>
+                </div>
                 <div className="chat-inputs">
                   <div className="chat-attach-icon">
                     <svg
@@ -110,8 +145,12 @@ function UserChat() {
                     </svg>
                   </div>
                   <div className="chat-input">
-                    <form action="">
-                      <input type="text" />
+                    <form onSubmit={handleSubmit(onSubmit)}>
+                      <input
+                        {...register("message")}
+                        autoComplete="off"
+                        placeholder="Type your message here"
+                      />
                       <button type="submit">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
