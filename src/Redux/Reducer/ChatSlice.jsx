@@ -8,7 +8,7 @@ export const fetchUsers = createAsyncThunk('chat/fetchUsers', async () => {
 });
 
 // fetching chat history
-export const fetchChatHistory = createAsyncThunk('chat/fetchChatHistory', async (userId) => {
+export const fetchMessages  = createAsyncThunk('chat/fetchMessages ', async (userId) => {
     const response = await axios.get(`http://localhost:5001/api/users/chat/${userId}`);
     return response.data[0]?.messages || [];
 });
@@ -23,15 +23,18 @@ const chatSlice = createSlice({
   name: 'chat',
   initialState: {
     users: [],
-        selectedUser: null,
-        messages: [],
-        status: 'idle',
-        error: null
+    selectedUser: null,
+    messages: [],
+    status: 'idle',
+    error: null
   },
   reducers: {
-    setSelectedUser(state, action) {
+    selectUser: (state, action) => {
         state.selectedUser = action.payload;
-    }
+    },
+    addMessage: (state, action) => {
+        state.messages.push(action.payload);
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -46,13 +49,13 @@ const chatSlice = createSlice({
         state.error = action.error.message;
     })
     //fetch chat history
-    .addCase(fetchChatHistory.pending, (state) => {
+    .addCase(fetchMessages.pending, (state) => {
         state.status = "loading";
     })
-    .addCase(fetchChatHistory.fulfilled, (state, action) => {
+    .addCase(fetchMessages.fulfilled, (state, action) => {
         state.messages = action.payload;
     })
-    .addCase(fetchChatHistory.rejected, (state, action) => {
+    .addCase(fetchMessages.rejected, (state, action) => {
         state.error = action.error.message;
     })
     // sending message
