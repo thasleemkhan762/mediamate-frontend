@@ -35,3 +35,12 @@
 .row.preview-row {
     height: 68%;
 }
+
+.preview-extra-div {
+    position: fixed;
+    top: 100px;
+    background: #f3f3f3;
+    height: 71%;
+    width: 50%;
+    border-radius: 10px;
+}

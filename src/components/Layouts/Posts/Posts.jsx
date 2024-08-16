@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import "./Posts.css"
-import postProPic from "./post-pro-pic.png";
+// import postProPic from "./post-pro-pic.png";
 // import postImage from "./post-image.png";
 import ReactTimeAgo from 'react-time-ago';
 import { useDispatch, useSelector } from 'react-redux';

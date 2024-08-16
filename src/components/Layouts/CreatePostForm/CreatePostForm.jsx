@@ -67,7 +67,8 @@ useEffect(() => {
   const post = useSelector((state)=> state.post);
   // console.log(post);
   
-  const handlePreview = () => {
+  const handlePreview = (e) => {
+      e.preventDefault();
     const previewData = {
       file: filePreview,
       description: watch("description"),
@@ -185,14 +186,15 @@ useEffect(() => {
             </div>
           </div>
           <div className="formSubmit create-post-preview">
-          <button
-  onClick={handlePreview}
-  className={`btn btn-outline-secondary ${!filePreview ? 'disabled-btn' : ''}`}
-  disabled={!filePreview} // Disable the button if no file preview is available
->
-  Preview Post
-</button>
-
+            <button
+              onClick={handlePreview}
+              className={`btn btn-outline-secondary ${
+                !filePreview ? "disabled-btn" : ""
+              }`}
+              disabled={!filePreview} // Disable the button if no file preview is available
+            >
+              Preview Post
+            </button>
 
             <button className="btn add btn-primary" type="submit">
               Submit
