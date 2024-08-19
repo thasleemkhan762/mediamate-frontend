@@ -210,3 +210,12 @@
     padding: 10px 15px;
     border-radius: 23px;
 }
+
+.chat-previws ul {
+    overflow: auto;
+    height: 453px;
+}
+
+.chat-previws ul::-webkit-scrollbar  {
+    display: none;
+}

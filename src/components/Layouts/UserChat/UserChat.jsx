@@ -42,11 +42,13 @@ function UserChat() {
     return () => {
       socket.off('receiveMessage');
     };
-  }, [dispatch]);useEffect(() => {
-      socket.on('receiveMessage', (message) => {
-          dispatch(addMessage(message));
-      });
   }, [dispatch]);
+  
+  // useEffect(() => {
+  //     socket.on('receiveMessage', (message) => {
+  //         dispatch(addMessage(message));
+  //     });
+  // }, [dispatch]);
 
   const handleUserClick = (user) => {
       dispatch(selectUser(user));
@@ -59,8 +61,8 @@ function UserChat() {
           content: data.message,
       };
 
-      dispatch(sendMessage(messageData));
-      socket.emit('sendMessage', { ...messageData, chatId: selectedUser._id });
+      // dispatch(sendMessage(messageData));
+      socket.emit('sendMessage', { ...messageData, chatId: selectedUser._id }); 
       reset();
       scrollToBottom(); 
   };
