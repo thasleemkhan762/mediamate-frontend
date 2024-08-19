@@ -8,9 +8,12 @@ export const fetchUsers = createAsyncThunk('chat/fetchUsers', async () => {
 });
 
 // fetching chat history
-export const fetchMessages  = createAsyncThunk('chat/fetchMessages ', async (userId) => {
-    const response = await axios.get(`http://localhost:5001/api/users/chat/${userId}`);
-    return response.data[0]?.messages || [];
+export const fetchMessages  = createAsyncThunk('chat/fetchMessages ', async ({ selectedUserId, userId }) => {
+    
+    const response = await axios.get(`http://localhost:5001/api/users/chat/${ selectedUserId}/${ userId }`);
+    console.log(response.data.messages[0]);
+    
+    return response.data.messages;
 });
 
 // sending a message
@@ -53,9 +56,13 @@ const chatSlice = createSlice({
         state.status = "loading";
     })
     .addCase(fetchMessages.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        console.log(action.payload);
+        
         state.messages = action.payload;
     })
     .addCase(fetchMessages.rejected, (state, action) => {
+        state.status = "failed";
         state.error = action.error.message;
     })
     // sending message
@@ -63,9 +70,11 @@ const chatSlice = createSlice({
         state.status = "loading";
     })
     .addCase(sendMessage.fulfilled, (state, action) => {
-        state.messages = action.payload;
+        state.status = "succeeded";
+        state.messages.push(action.payload);
     })
     .addCase(sendMessage.rejected, (state, action) => {
+        state.status = "failed";
         state.error = action.error.message;
     });
   }
