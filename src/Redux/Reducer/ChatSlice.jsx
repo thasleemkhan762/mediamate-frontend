@@ -11,7 +11,7 @@ export const fetchUsers = createAsyncThunk('chat/fetchUsers', async () => {
 export const fetchMessages  = createAsyncThunk('chat/fetchMessages ', async ({ selectedUserId, userId }) => {
     
     const response = await axios.get(`http://localhost:5001/api/users/chat/${ selectedUserId}/${ userId }`);
-    console.log(response.data.messages[0]);
+    // console.log(response.data.messages[0]);
     
     return response.data.messages;
 });
@@ -34,6 +34,7 @@ const chatSlice = createSlice({
   reducers: {
     selectUser: (state, action) => {
         state.selectedUser = action.payload;
+        state.messages = [];
     },
     addMessage: (state, action) => {
         state.messages.push(action.payload);
@@ -57,7 +58,6 @@ const chatSlice = createSlice({
     })
     .addCase(fetchMessages.fulfilled, (state, action) => {
         state.status = "succeeded";
-        console.log(action.payload);
         
         state.messages = action.payload;
     })

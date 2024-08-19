@@ -5,6 +5,7 @@ import socket from '../../../socket';
 import { fetchUsers, fetchMessages, sendMessage, selectUser, addMessage  } from '../../../Redux/Reducer/ChatSlice';
 import MainPagesHeader from '../../Common/MainPagesHeader/MainPagesHeader';
 import Pic from "./chat-dp.png"
+import "./UserChat.css";
 
 function UserChat() {
   const dispatch = useDispatch();
@@ -112,7 +113,7 @@ function UserChat() {
               </div>
               {/* search */}
               <div className="chat-search">
-                <input type="text" placeholder="Search chats" />
+                <input type="text" placeholder="" />
                 <span className="material-symbols-outlined search-icon">
                   search
                 </span>
@@ -126,7 +127,7 @@ function UserChat() {
                       onClick={() => handleUserClick(user)}
                       style={{ cursor: "pointer" }}
                     >
-                      <div className="single-chat-user row">
+                      <div className="single-chat-user ">
                         <div className="user-image">
                           <img src={Pic} alt="dp" />
                         </div>
@@ -135,12 +136,16 @@ function UserChat() {
                           <p>what was name of the song?</p>
                         </div>
                         <div className="user-infos">
-                          <p>3</p>
-                          <span className="online-indicator">0</span>
+                          <div className="indicator">
+                            <div className="count-indicator">
+                              <p>3</p>
+                            </div>
+                            <span className="online-indicator">0</span>
+                          </div>
                           <p>38m</p>
                         </div>
-                        <hr />
                       </div>
+                      <hr />
                     </li>
                   ))}
                 </ul>
@@ -149,7 +154,7 @@ function UserChat() {
           </div>
           <div className="col-md-8">
             {selectedUser ? (
-              <div className="user-chat-display">
+              <div className="user-chat-display-main">
                 <div className="user-chat-head">
                   <div className="user-chat-head-image">
                     <img src={Pic} alt="dp" />
@@ -161,8 +166,8 @@ function UserChat() {
                   <div className="user-chat-head-option">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
+                      width="20"
+                      height="20"
                       fill="currentColor"
                       className="bi bi-three-dots"
                       viewBox="0 0 16 16"
@@ -171,7 +176,7 @@ function UserChat() {
                     </svg>
                   </div>
                 </div>
-                <div className="chat-body">
+                <div className="chat-body-main">
                   <div className="chat-previws">
                     <ul>
                       {messages.map((msg, idx) => (
@@ -183,7 +188,9 @@ function UserChat() {
                               : "message-received"
                           }
                         >
+                          <div className="message-content">
                           {msg.content}
+                          </div>
                         </div>
                       ))}
                     </ul>
@@ -192,8 +199,8 @@ function UserChat() {
                     <div className="chat-attach-icon">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        width="16"
-                        height="16"
+                        width="25"
+                        height="25"
                         fill="currentColor"
                         className="bi bi-paperclip"
                         viewBox="0 0 16 16"
@@ -202,7 +209,7 @@ function UserChat() {
                       </svg>
                     </div>
                     <div className="chat-input">
-                      <form onSubmit={handleSubmit(onSubmit)}>
+                      <form className='msg-send-form' onSubmit={handleSubmit(onSubmit)}>
                         <input
                           {...register("message")}
                           autoComplete="off"
@@ -211,8 +218,8 @@ function UserChat() {
                         <button type="submit">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            width="16"
-                            height="16"
+                            width="25"
+                            height="25"
                             fill="currentColor"
                             className="bi bi-send-fill"
                             viewBox="0 0 16 16"
