@@ -10,7 +10,7 @@ function ProfilePost() {
   const dispatch = useDispatch();
   const { post, loading, error } = useSelector(state => state.post);
   const {userData} = useSelector((state) => state.data)
-  // console.log({post});
+  console.log({post});
 
   useEffect(() => {
     dispatch(getAllPosts());
@@ -27,12 +27,12 @@ function ProfilePost() {
             {/* pro pic image */}
             <div className='pro-post-head'>
             <div className="pro-post-pro-pic">
-              <img src={`http://localhost:5001/${userData.image}`} alt="proPic" />
+              <img src={`http://localhost:5001/${post.userDetails.image}`} alt="proPic" />
             </div>
           <div className="">
             {/* posted date */}
             <div className="pro-post-date">
-            <p className='home-post-username'>{post.username}</p>
+            <p className='home-post-username'>{post.userDetails.username}</p>
                <span className='date'><ReactTimeAgo date={new Date(post.createdAt)}  locale="en-US" /></span>
               <div className="pro-post-options">
               <svg

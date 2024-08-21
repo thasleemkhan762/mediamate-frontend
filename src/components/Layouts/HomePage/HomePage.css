@@ -298,7 +298,7 @@
 }
 
 .home-post-date{
-    padding-left: 42px;
+    padding-left: 20px;
 }
 
 .home-post-description-text{
@@ -312,7 +312,7 @@ p.home-post-date-text {
 }
 
 .home-post-pro-pic {
-    margin: 24px 0 0 25px
+    margin: 15px 0 0 14px;
 }
 
 .home-post-pro-pic img {
@@ -326,7 +326,8 @@ p.home-post-date-text {
 
 .home-post-description{
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
+    margin-left: 20px;
 }
 
 .home-post-options {

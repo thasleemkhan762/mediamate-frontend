@@ -72,9 +72,6 @@ export const getUserData = createAsyncThunk("getUserData", async (id) => {
 // edit user
 export const updateUser = createAsyncThunk("updateUser", async ({ id, data }) => {
   try {
-    console.log(id);
-    console.log(data);
-    
     const response = await axios.put(`http://localhost:5001/api/users/${id}`, data);
     return response.data;
   } catch (error) {
@@ -112,6 +109,10 @@ const getData = createSlice({
       localStorage.setItem('userId', action.payload.userId);
       localStorage.setItem('userToken', action.payload.userToken);
       localStorage.setItem('username', action.payload.username);
+  },
+  updateAndSetUser(state,action) {
+    state.username = action.payload.username;
+    localStorage.setItem('username', action.payload.username);
   },
   // setUserImage: (state, action) => {
   //   state.profileImage = action.payload;
@@ -196,9 +197,7 @@ const getData = createSlice({
       })
       .addCase(updateUser.fulfilled, (state,action) => {
         state.userData = action.payload;
-        console.log(state.userData);
-        console.log(action.payload);
-        
+        state.username = action.payload.username;
         state.loading = false;
         state.error = "";
       })
@@ -209,5 +208,5 @@ const getData = createSlice({
   },
 });
 
-export const { setUser, setUserImage } = getData.actions;
+export const { setUser, setUserImage, updateAndSetUser } = getData.actions;
 export default getData.reducer;

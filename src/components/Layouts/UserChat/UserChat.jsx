@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import socket from '../../../socket';
-import { fetchUsers, fetchMessages, sendMessage, selectUser, addMessage  } from '../../../Redux/Reducer/ChatSlice';
+import { fetchUsers, fetchMessages, /*sendMessage,*/ selectUser, addMessage  } from '../../../Redux/Reducer/ChatSlice';
 import MainPagesHeader from '../../Common/MainPagesHeader/MainPagesHeader';
 import Pic from "./chat-dp.png"
 import "./UserChat.css";
@@ -14,6 +14,8 @@ function UserChat() {
     
     const messages = useSelector(state => state.chat.messages);
     const selectedUser = useSelector(state => state.chat.selectedUser);
+    const chatId = useSelector((state) => state.chat.chatId);
+    
 
     const { register, handleSubmit, reset } = useForm();
 
@@ -28,14 +30,16 @@ function UserChat() {
         const selectedUserId = selectedUser._id;
         const userId = currentUserId;
           dispatch(fetchMessages({ selectedUserId, userId }));
-          socket.emit('joinChat', { chatId: selectedUser._id });
+          socket.emit('joinChat', { chatId: chatId});
       }
-  }, [selectedUser, dispatch, currentUserId]);
+  }, [selectedUser, dispatch, currentUserId, chatId]);
 
   useEffect(() => {
     socket.on('receiveMessage', (message) => {
+      console.log(message);
+      
       dispatch(addMessage(message));
-      scrollToBottom(); // Auto-scroll when a new message is received
+      // scrollToBottom();
     });
 
     // Cleanup the socket listener on component unmount
@@ -43,7 +47,11 @@ function UserChat() {
       socket.off('receiveMessage');
     };
   }, [dispatch]);
-  
+
+  useEffect(() => {
+    // Scroll to the bottom whenever the messages array changes
+    scrollToBottom();
+  }, [messages]);
   // useEffect(() => {
   //     socket.on('receiveMessage', (message) => {
   //         dispatch(addMessage(message));
@@ -62,7 +70,7 @@ function UserChat() {
       };
 
       // dispatch(sendMessage(messageData));
-      socket.emit('sendMessage', { ...messageData, chatId: selectedUser._id }); 
+      socket.emit('sendMessage', { ...messageData, chatId: chatId}); 
       reset();
       scrollToBottom(); 
   };
@@ -162,8 +170,8 @@ function UserChat() {
                     <img src={Pic} alt="dp" />
                   </div>
                   <div className="user-chat-head-texts">
-                    <h4>Christen Harper</h4>
-                    <span className="online-indicator">0</span>
+                    <h4>{selectedUser.username}</h4>
+                    <span className="online-indicator"></span>
                   </div>
                   <div className="user-chat-head-option">
                     <svg
@@ -180,7 +188,7 @@ function UserChat() {
                 </div>
                 <div className="chat-body-main">
                   <div className="chat-previws">
-                    <ul>
+                    <ul ref={chatBodyRef}>
                       {messages.map((msg, idx) => (
                         <div
                           key={idx}

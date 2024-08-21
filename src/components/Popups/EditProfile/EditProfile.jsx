@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form';
 import "./EditProfile.css"
 import { useDispatch, useSelector } from 'react-redux';
-import { updateUser, /*setUserImage*/ } from '../../../Redux/Reducer/UserSlice';
+import { updateAndSetUser, updateUser, /*setUserImage*/ } from '../../../Redux/Reducer/UserSlice';
 import { toast } from "react-toastify";
+
 
 function EditProfile({ closeModal }) {
   const dispatch = useDispatch();
@@ -76,8 +77,12 @@ function EditProfile({ closeModal }) {
   }
     try {
       
-      await dispatch(updateUser({ id: actionResult._id, data: formData }));
+     const respose = await dispatch(updateUser({ id: actionResult._id, data: formData }));
+      if (!respose.error) {
+        const username = respose.payload.username;
+      dispatch(updateAndSetUser({  username })); 
 
+      }
       closeModal();
       toast.success("User updated successfully!");
     } catch (error) {
@@ -125,7 +130,7 @@ function EditProfile({ closeModal }) {
                             onChange(file);
                           }}
                           {...register("image", {
-                            required: "Image is required",
+                            // required: "Image is required!",
                           })}
                           hidden
                         />

@@ -11,9 +11,9 @@ export const fetchUsers = createAsyncThunk('chat/fetchUsers', async () => {
 export const fetchMessages  = createAsyncThunk('chat/fetchMessages ', async ({ selectedUserId, userId }) => {
     
     const response = await axios.get(`http://localhost:5001/api/users/chat/${ selectedUserId}/${ userId }`);
-    // console.log(response.data.messages[0]);
+    console.log(response.data);
     
-    return response.data.messages;
+    return response.data;
 });
 
 // sending a message
@@ -27,6 +27,7 @@ const chatSlice = createSlice({
   initialState: {
     users: [],
     selectedUser: null,
+    chatId: null,
     messages: [],
     status: 'idle',
     error: null
@@ -38,6 +39,8 @@ const chatSlice = createSlice({
     },
     addMessage: (state, action) => {
         state.messages.push(action.payload);
+        console.log(action.payload);
+        
     },
   },
   extraReducers: (builder) => {
@@ -58,8 +61,11 @@ const chatSlice = createSlice({
     })
     .addCase(fetchMessages.fulfilled, (state, action) => {
         state.status = "succeeded";
+        state.messages = action.payload.messages;
+        state.chatId = action.payload._id;
+        console.log(action.payload.messages);
+        console.log(action.payload._id);
         
-        state.messages = action.payload;
     })
     .addCase(fetchMessages.rejected, (state, action) => {
         state.status = "failed";
