@@ -183,7 +183,7 @@
 .chat-body-main {
     display: flex;
     flex-direction: column;
-    min-height: 70vh;
+    /* min-height: 76vh; */
 }
 
 
@@ -205,15 +205,21 @@
     justify-content: flex-end;
 }
 
-.message-content {
+/* .message-content {
     border: 1px solid black;
     padding: 10px 15px;
     border-radius: 23px;
-}
+} */
 
 .chat-previws ul {
     overflow: auto;
-    height: 453px;
+    height: 493px;
+    scrollbar-width: thin;
+    scrollbar-color: auto;
+}
+
+.chat-previws::-webkit-scrollbar {
+    border-radius: 5px;
 }
 
 .chat-previws ul::-webkit-scrollbar  {
@@ -222,10 +228,8 @@
 
 
 
-/////////////////////////////////////
-
 /* Container Styles */
-.user-chat-display-main {
+/* .user-chat-display-main {
     width: 100%;
     max-width: 600px;
     margin: 0 auto;
@@ -233,7 +237,7 @@
     overflow: hidden;
     background-color: #fff;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  }
+  } */
   
   /* Header Styles */
   .user-chat-head {
@@ -264,10 +268,19 @@
     display: inline-block;
     width: 10px;
     height: 10px;
-    background-color: #00adb5;
+    background-color: #22ff00;
     border-radius: 50%;
     margin-left: 8px;
   }
+
+  span.online-indicator {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: #22ff00;
+    border-radius: 50%;
+    margin-left: 8px;
+}
   
   .user-chat-head-option svg {
     margin-left: auto;
@@ -284,13 +297,14 @@
   .chat-body-main {
     display: flex;
     flex-direction: column;
-    height: 500px;
+    /* height: 500px; */
     background-color: #f5f5f5;
+    border-radius: 0 0 10px 10px;
   }
   
   .chat-previws {
     flex-grow: 1;
-    padding: 20px;
+    /* padding: 20px; */
     overflow-y: auto;
     scrollbar-width: thin;
     scrollbar-color: #00adb5 #eeeeee;
@@ -300,6 +314,8 @@
     list-style: none;
     padding: 0;
     margin: 0;
+    padding-right: 5px;
+    padding-left: 10px;
   }
   
   .message-sent,
@@ -310,6 +326,7 @@
     border-radius: 20px;
     font-size: 14px;
     line-height: 1.5;
+    width: fit-content;
   }
   
   .message-sent {
@@ -321,7 +338,7 @@
   
   .message-received {
     margin-right: auto;
-    background-color: #eeeeee;
+    background-color: #cacaca;
     color: #222831;
     border-top-left-radius: 2px;
   }
@@ -332,6 +349,7 @@
     align-items: center;
     padding: 10px 15px;
     background-color: #222831;
+    border-radius: 0 0 10px 10px;
   }
   
   .chat-attach-icon svg {

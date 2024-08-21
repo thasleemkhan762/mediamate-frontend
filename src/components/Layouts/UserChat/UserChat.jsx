@@ -150,7 +150,7 @@ function UserChat() {
                             <div className="count-indicator">
                               <p>3</p>
                             </div>
-                            <span className="online-indicator">0</span>
+                            <span className="online-indicator"></span>
                           </div>
                           <p>38m</p>
                         </div>
