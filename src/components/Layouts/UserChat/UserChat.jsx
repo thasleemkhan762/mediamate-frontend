@@ -4,7 +4,6 @@ import { useForm } from 'react-hook-form';
 import socket from '../../../socket';
 import { fetchUsers, fetchMessages, /*sendMessage,*/ selectUser, addMessage  } from '../../../Redux/Reducer/ChatSlice';
 import MainPagesHeader from '../../Common/MainPagesHeader/MainPagesHeader';
-import Pic from "./chat-dp.png"
 import "./UserChat.css";
 
 function UserChat() {
@@ -13,6 +12,10 @@ function UserChat() {
     const currentUserId = useSelector(state => state.data.userId);
     
     const messages = useSelector(state => state.chat.messages);
+    const lastMessage = messages[messages.length-1].content;
+    console.log(lastMessage);
+    
+    
     const selectedUser = useSelector(state => state.chat.selectedUser);
     const chatId = useSelector((state) => state.chat.chatId);
     
@@ -143,7 +146,7 @@ function UserChat() {
                         </div>
                         <div className="user-texts">
                           <h5>{user.username}</h5>
-                          <p>what was name of the song?</p>
+                          <p>{lastMessage}</p>
                         </div>
                         <div className="user-infos">
                           <div className="indicator">
@@ -152,7 +155,7 @@ function UserChat() {
                             </div>
                             <span className="online-indicator"></span>
                           </div>
-                          <p>38m</p>
+                          <p>38 m</p>
                         </div>
                       </div>
                       <hr />

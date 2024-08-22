@@ -1,3 +1,8 @@
 .home-pro-menu ul li a {
     width: 100%;
 }
+
+.home-pro-menu .nav-item.menu-list.active {
+  background-color: var(--primary-color);
+  color: #FFF;
+}

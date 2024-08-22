@@ -1,47 +1,9 @@
-import React, { useEffect, useState } from "react";
-import MainPagesHeader from "../../Common/MainPagesHeader/MainPagesHeader";
-import MainSidebar from "../../Common/MainSidebar/MainSidebar";
-import Cover from "./cover.png";
-import "./UserProfile.css";
-import '../HomePage/HomePage.css';
-import HomePageFriendBox from "../HomePageFriendBox/HomePageFriendBox";
-import FriendSuggestion from "../FriendSuggestion/FriendSuggestion";
-import HomeSupport from "../HomeSupport/HomeSupport";
-import ProfilePost from "../../ProfilePost/ProfilePost";
-import EditProfile from "../../Popups/EditProfile/EditProfile";
-import ProfileCustomPopup from "../../Common/ProfileCustomPopup/ProfileCustomPopup";
-import { getUserData } from "../../../Redux/Reducer/UserSlice";
-import { useDispatch, useSelector } from "react-redux";
+import React from 'react'
 
-function UserProfile() {
-  const [modalOpen, setModalOpen] = useState(false);
-  const [customModalOpen, setCustomModalOpen] = useState(false);
-  const dispatch = useDispatch();
-  const userId = useSelector((state) => state.data.userId );
-  // console.log(userId);
-  
-
-  useEffect(() => {
-    dispatch(getUserData(userId));
-  }, [dispatch,userId]);
-
-  const  { userData }  = useSelector((state) => state.data);
-  // const  profileImage  = useSelector((state) => state.data.profileImage);
-  // console.log(userData);
-  // console.log(useSelector((state) => state.data));
-  
+function UserProfileComponent({closeProfileModal, openProfileModal }) {
   return (
-    <>
-      <div className="container-fluid home-layout-div">
-        <MainPagesHeader />
-
-        <div className="row home-contents">
-          <div className="col-md-3">
-            <MainSidebar  activeClass={"active"} />
-          </div>
-
-          <div className="col-md-6">
-            <div className="row user-profile-row">
+    <div className='UserProfileComponent'>
+       <div className="row user-profile-row">
               <div className="profile-image-cover-div">
                 <div className="profile-cover">
                   <img src={Cover} alt="p" />
@@ -165,18 +127,8 @@ function UserProfile() {
                 </div>
               </div>
             </div>
-          </div>
-          <div className="col-md-3">
-            <HomePageFriendBox />
-            <FriendSuggestion />
-            <HomeSupport />
-          </div>
-        </div>
-        {modalOpen && (<EditProfile closeModal={()=> setModalOpen(false)} />)}
-        {customModalOpen && (<ProfileCustomPopup closeModal={()=> setCustomModalOpen(false)} />)}
-      </div>
-    </>
-  );
+    </div>
+  )
 }
 
-export default UserProfile;
+export default UserProfileComponent
