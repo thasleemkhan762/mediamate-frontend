@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import "./HomePage.css";
 
 import CreatePostForm from "../CreatePostForm/CreatePostForm";
@@ -13,6 +13,17 @@ import HomeSupport from "../HomeSupport/HomeSupport";
 
 function HomePage() {
   const [modalOpen, setModalOpen] = useState(false);
+
+  // Memoize the sidebar and right components to prevent unnecessary re-renders
+  const MemoizedSidebar = useMemo(() => <MainSidebar />, []);
+  const MemoizedRightColumn = useMemo(() => (
+    <>
+      <HomePageFriendBox />
+      <FriendSuggestion />
+      <HomeSupport />
+    </>
+  ), []);
+
   return (
     <>
       <div className="container-fluid home-layout-div">
@@ -22,7 +33,7 @@ function HomePage() {
         <div className="row home-contents">
 
             <div className="col-md-3">
-            <MainSidebar />
+            {MemoizedSidebar}
             </div>
 
           <div className="col-md-6">
@@ -36,9 +47,7 @@ function HomePage() {
           </div>
           <div className="col-md-3">
 
-            <HomePageFriendBox />
-            <FriendSuggestion />
-            <HomeSupport />
+          {MemoizedRightColumn}
 
           </div>
         </div>

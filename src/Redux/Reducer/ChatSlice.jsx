@@ -4,6 +4,7 @@ import axios from 'axios';
 //  fetching users
 export const fetchUsers = createAsyncThunk('chat/fetchUsers', async () => {
     const response = await axios.get('http://localhost:5001/api/users/allUsers');
+    console.log(response.data); 
     return response.data;
 });
 
@@ -27,6 +28,7 @@ const chatSlice = createSlice({
   initialState: {
     users: [],
     selectedUser: null,
+    lastMessage:null,
     chatId: null,
     messages: [],
     status: 'idle',
@@ -50,7 +52,7 @@ const chatSlice = createSlice({
         state.status = 'loading';
     })
     .addCase(fetchUsers.fulfilled, (state, action) => {
-        state.users = action.payload;
+        state.users = action.payload;        
     })
     .addCase(fetchUsers.rejected, (state, action) => {
         state.error = action.error.message;

@@ -12,8 +12,7 @@ function UserChat() {
     const currentUserId = useSelector(state => state.data.userId);
     
     const messages = useSelector(state => state.chat.messages);
-    const lastMessage = messages[messages.length-1].content;
-    console.log(lastMessage);
+    // console.log(users);
     
     
     const selectedUser = useSelector(state => state.chat.selectedUser);
@@ -30,12 +29,15 @@ function UserChat() {
 
   useEffect(() => {
       if (selectedUser) {
-        const selectedUserId = selectedUser._id;
+        const selectedUserId = selectedUser.userId;
         const userId = currentUserId;
           dispatch(fetchMessages({ selectedUserId, userId }));
           socket.emit('joinChat', { chatId: chatId});
       }
   }, [selectedUser, dispatch, currentUserId, chatId]);
+
+  // const lastMessage = messages[messages.length-1].content;
+
 
   useEffect(() => {
     socket.on('receiveMessage', (message) => {
@@ -68,7 +70,7 @@ function UserChat() {
   const onSubmit = (data) => {
       const messageData = {
           senderId: currentUserId,  // Replace with actual current user ID
-          recipientId: selectedUser._id,
+          recipientId: selectedUser.userId,
           content: data.message,
       };
 
@@ -136,7 +138,7 @@ function UserChat() {
                 <ul>
                   {users.map((user) => (
                     <li
-                      key={user._id}
+                      key={user.userId}
                       onClick={() => handleUserClick(user)}
                       style={{ cursor: "pointer" }}
                     >
@@ -146,7 +148,7 @@ function UserChat() {
                         </div>
                         <div className="user-texts">
                           <h5>{user.username}</h5>
-                          <p>{lastMessage}</p>
+                          <p>{user.lastMessage}</p>
                         </div>
                         <div className="user-infos">
                           <div className="indicator">

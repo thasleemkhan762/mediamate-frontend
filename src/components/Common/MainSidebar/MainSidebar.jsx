@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import one from "../../../dummyImages/one.png";
+import dummy from "../../../dummyImages/dummy.png"
 import cover from "./home-pro-pic.png";
 import "./MainSideBar.css"
 import { useDispatch, useSelector } from 'react-redux';
@@ -36,7 +37,8 @@ function MainSidebar({activeClassProfile, activeClassFriends, activeClassSaved, 
           <div className="home-pic-div">
             <div className="home-pics">
               <img src={cover} className="home-cover-pic" alt="coverpic" />
-              <img src={/*profileImage ||*/ `http://localhost:5001/${userData.image}`} className="home-pro-pic" alt="pic" />
+              <img src={  dummy } className="home-pro-pic" alt="" />
+              <img src={  `http://localhost:5001/${userData.image}` } className="home-pro-pic2" alt="" />
             </div>
           </div>
           <div className="home-menu-div">
