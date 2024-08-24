@@ -11,7 +11,7 @@ function UserFriends() {
         <MainPagesHeader />
         <div className="row home-contents">
           <div className="col-md-3">
-            <MainSidebar />
+            <MainSidebar activeClassFriends={"active"} />
           </div>
           <div className="col-md-9">
             <div className="row">

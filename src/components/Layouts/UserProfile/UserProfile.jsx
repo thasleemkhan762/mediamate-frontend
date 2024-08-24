@@ -37,7 +37,7 @@ function UserProfile() {
 
         <div className="row home-contents">
           <div className="col-md-3">
-            <MainSidebar  activeClass={"active"} />
+            <MainSidebar  activeClassProfile={"active"} />
           </div>
 
           <div className="col-md-6">

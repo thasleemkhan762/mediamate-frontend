@@ -17,7 +17,7 @@ function HomePage() {
 
         <div className="row home-contents">
           <div className="col-md-3">
-            <MainSidebar />
+            <MainSidebar activeClassSaved={"active"} />
           </div>
 
           <div className="col-md-6">
@@ -43,7 +43,9 @@ function HomePage() {
                 </button>
               </div>
             </div>
+            <div className="saved-post-main row">
             <Posts />
+            </div>
           </div>
           <div className="col-md-3">
             <HomePageFriendBox />

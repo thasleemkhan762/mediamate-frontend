@@ -5,7 +5,7 @@ import "./MainSideBar.css"
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserData } from '../../../Redux/Reducer/UserSlice';
 
-function MainSidebar({activeClass}) {
+function MainSidebar({activeClassProfile, activeClassFriends, activeClassSaved, }) {
   const  username  = useSelector((state) => state.data.username);
   // console.log(username);
   const dispatch = useDispatch();
@@ -47,19 +47,19 @@ function MainSidebar({activeClass}) {
             <hr />
             <div className="home-pro-menu">
               <ul className="nav flex-column">
-                <li className={`nav-item menu-list ${activeClass}`}>
+                <li className={`nav-item menu-list ${activeClassProfile}`}>
                   <i className="bi bi-person-fill"></i>
                   <a className="nav-link active" href="/user/profile">
                     Profile
                   </a>
                 </li>
-                <li className="nav-item menu-list">
+                <li className={`nav-item menu-list ${activeClassFriends}`}>
                   <i className="bi bi-people-fill"></i>
                   <a className="nav-link" href="/user/friends">
                     Friends
                   </a>
                 </li>
-                <li className="nav-item menu-list">
+                <li className={`nav-item menu-list ${activeClassSaved}`}>
                   <i className="bi bi-stickies-fill"></i>
                   <a className="nav-link" href="/user/saved_posts">
                     Saved posts
