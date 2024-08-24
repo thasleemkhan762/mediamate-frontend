@@ -44,6 +44,14 @@ const chatSlice = createSlice({
         console.log(action.payload);
         
     },
+    updateLastMessage: (state, action) => {
+        const { userId, message } = action.payload;
+        const user = state.users.find((user) => user.userId === userId);
+        if (user) {
+          user.lastMessage = message.content;
+        //   user.lastMessageTimestamp = message.timestamp;
+        }
+      },
   },
   extraReducers: (builder) => {
     builder
@@ -88,6 +96,6 @@ const chatSlice = createSlice({
   }
 });
 
-export const { selectUser, addMessage } = chatSlice.actions;
+export const { selectUser, addMessage, updateLastMessage } = chatSlice.actions;
 
 export default chatSlice.reducer;

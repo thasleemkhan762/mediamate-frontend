@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import socket from '../../../socket';
-import { fetchUsers, fetchMessages, /*sendMessage,*/ selectUser, addMessage  } from '../../../Redux/Reducer/ChatSlice';
+import { fetchUsers, fetchMessages, /*sendMessage,*/ selectUser, addMessage, updateLastMessage  } from '../../../Redux/Reducer/ChatSlice';
 import MainPagesHeader from '../../Common/MainPagesHeader/MainPagesHeader';
 import "./UserChat.css";
 
@@ -74,7 +74,13 @@ function UserChat() {
           content: data.message,
       };
 
-      // dispatch(sendMessage(messageData));
+      dispatch(updateLastMessage({
+        userId: selectedUser.userId,
+        message: {
+          content: data.message,
+          // timestamp: result.timestamp,
+        },
+      }));
       socket.emit('sendMessage', { ...messageData, chatId: chatId}); 
       reset();
       scrollToBottom(); 
