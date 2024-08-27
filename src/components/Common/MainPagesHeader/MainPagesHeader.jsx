@@ -1,5 +1,6 @@
 import React from 'react'
 import "./MainPagesHeader.css"
+import { Link } from 'react-router-dom';
 
 function MainPagesHeader() {
   return (
@@ -8,10 +9,10 @@ function MainPagesHeader() {
         <header className="header-home">
           <nav className="navbar-home navbar-expand-lg navbar-dark">
             <div className="brandname_box">
-              <a className="header-link" href="/homepage">
+              <Link className="header-link" to="/homepage/hometry">
                 <h2 className="brand_name">Media</h2>
                 <h2 className="brand_name">MATE</h2>
-              </a>
+              </Link>
             </div>
             <div className="header-contents">
               <form id='search-box-header' className="form-inline mx-auto">
@@ -23,7 +24,7 @@ function MainPagesHeader() {
                   aria-label="Search"
                 />
               </form>
-              <a href="/user/chat">
+              <Link to="/user/chat">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="20"
@@ -34,7 +35,7 @@ function MainPagesHeader() {
                 >
                   <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z" />
                 </svg>
-              </a>
+              </Link>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="20"

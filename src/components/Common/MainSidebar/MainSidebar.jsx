@@ -5,6 +5,7 @@ import cover from "./home-pro-pic.png";
 import "./MainSideBar.css"
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserData } from '../../../Redux/Reducer/UserSlice';
+import { Link } from 'react-router-dom';
 
 function MainSidebar({activeClassProfile, activeClassFriends, activeClassSaved, }) {
   const  username  = useSelector((state) => state.data.username);
@@ -37,8 +38,12 @@ function MainSidebar({activeClassProfile, activeClassFriends, activeClassSaved, 
           <div className="home-pic-div">
             <div className="home-pics">
               <img src={cover} className="home-cover-pic" alt="coverpic" />
-              <img src={  dummy } className="home-pro-pic" alt="" />
-              <img src={  `http://localhost:5001/${userData.image}` } className="home-pro-pic2" alt="" />
+              <img src={dummy} className="home-pro-pic" alt="" />
+              <img
+                src={`http://localhost:5001/${userData.image}`}
+                className="home-pro-pic2"
+                alt=""
+              />
             </div>
           </div>
           <div className="home-menu-div">
@@ -51,21 +56,21 @@ function MainSidebar({activeClassProfile, activeClassFriends, activeClassSaved, 
               <ul className="nav flex-column">
                 <li className={`nav-item menu-list ${activeClassProfile}`}>
                   <i className="bi bi-person-fill"></i>
-                  <a className="nav-link active" href="/user/profile">
+                  <Link className="nav-link active" to="/homepage/profiletry">
                     Profile
-                  </a>
+                  </Link>
                 </li>
                 <li className={`nav-item menu-list ${activeClassFriends}`}>
                   <i className="bi bi-people-fill"></i>
-                  <a className="nav-link" href="/user/friends">
+                  <Link className="nav-link" to="/user/friends">
                     Friends
-                  </a>
+                  </Link>
                 </li>
                 <li className={`nav-item menu-list ${activeClassSaved}`}>
                   <i className="bi bi-stickies-fill"></i>
-                  <a className="nav-link" href="/user/saved_posts">
+                  <Link className="nav-link" to="/user/saved_posts">
                     Saved posts
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>

@@ -6,3 +6,7 @@
   background-color: var(--primary-color);
   color: #FFF;
 }
+
+.home-pro-menu ul {
+  gap: 5px;
+}

@@ -38,7 +38,7 @@ function LoginPage() {
         const userToken = response.payload.userToken;
         const username = response.payload.username;
         dispatch(setUser({ userId, username, userToken }));        
-        navigate('/homepage');
+        navigate('/homepage/hometry');
       }
       else{
         Cookies.remove('userToken');
