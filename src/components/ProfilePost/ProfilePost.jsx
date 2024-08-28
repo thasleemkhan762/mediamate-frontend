@@ -4,17 +4,24 @@ import "./ProfilePost.css";
 // import postImage from "./post-image.png";
 import ReactTimeAgo from 'react-time-ago';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllPosts } from '../../Redux/Reducer/PostSlice';
+import { getAllPosts, getSingleUserPosts } from '../../Redux/Reducer/PostSlice';
 
 function ProfilePost() {
   const dispatch = useDispatch();
   const { post, loading, error } = useSelector(state => state.post);
+  const userId = useSelector(state => state.data.userId);
+  
   // const {userData} = useSelector((state) => state.data)
   console.log({post});
 
   useEffect(() => {
     dispatch(getAllPosts());
   }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(getSingleUserPosts(userId));
+  }, [dispatch]);
+
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;

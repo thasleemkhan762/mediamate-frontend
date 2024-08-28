@@ -84,7 +84,7 @@ const postSlice = createSlice({
       .addCase(getSingleUserPosts.fulfilled, (state, action) => {
         state.loading = false;
         state.userPosts = action.payload;
-        // console.log(action.payload.posts);
+        console.log(action.payload);
       })
       .addCase(getSingleUserPosts.rejected, (state, action) => {
         state.loading = false;
