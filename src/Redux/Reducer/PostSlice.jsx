@@ -21,7 +21,7 @@ export const createPost = createAsyncThunk('createPost', async (data, { rejectWi
 export const getAllPosts = createAsyncThunk('getAllPosts', async (_, { rejectWithValue }) => {
   try {
     const response = await axios.get(`http://localhost:5001/api/users`);
-    console.log(response.data);
+    // console.log(response.data);
     
     return response.data;
   } catch (error) {
@@ -32,7 +32,7 @@ export const getAllPosts = createAsyncThunk('getAllPosts', async (_, { rejectWit
 export const getSingleUserPosts = createAsyncThunk("getSingleUserPosts", async (id) => {
   try {
     const response = await axios.get(`http://localhost:5001/api/users/getSingleUserPosts/${id}`);
-    console.log(response.data);
+    // console.log(response.data);
     
     return response.data;
   } catch (error) {
@@ -86,7 +86,7 @@ const postSlice = createSlice({
       .addCase(getSingleUserPosts.fulfilled, (state, action) => {
         state.loading = false;
         state.userPosts = action.payload;
-        console.log(action.payload);
+        // console.log(action.payload);
       })
       .addCase(getSingleUserPosts.rejected, (state, action) => {
         state.loading = false;

@@ -9,11 +9,11 @@ import { getAllPosts, getSingleUserPosts } from '../../Redux/Reducer/PostSlice';
 function ProfilePost() {
   const dispatch = useDispatch();
   const { post, loading, error } = useSelector(state => state.post);
-  const  { userPosts } = useSelector(state => state.post);
+  const  userPosts = useSelector(state => state.post.userPosts);
   const userId = useSelector(state => state.data.userId);
   
   // const {userData} = useSelector((state) => state.data)
-  console.log(userPosts);
+  // console.log(userPosts);
 
   useEffect(() => {
     dispatch(getAllPosts());
@@ -28,20 +28,20 @@ function ProfilePost() {
   if (error) return <div>Error: {error}</div>;
   return (
     <>
-      {Array.isArray(userPosts) && userPosts.map((post) => (
-        <div key={post._id} className="row">
+      {Array.isArray(userPosts) && userPosts.map((userPosts) => (
+        <div key={userPosts._id} className="row">
         <div className="col-sm-12 pro-post-div">
           <div className="">
             {/* pro pic image */}
             <div className='pro-post-head'>
             <div className="pro-post-pro-pic">
-              {/* <img src={`http://localhost:5001/${post.userDetails.image}`} alt="proPic" /> */}
+              <img src={`http://localhost:5001/${userPosts.userDetails.image}`} alt="proPic" />
             </div>
           <div className="">
             {/* posted date */}
             <div className="pro-post-date">
-            {/* <p className='home-post-username'>{post.userDetails.username}</p> */}
-               <span className='date'><ReactTimeAgo date={new Date(post.createdAt)}  locale="en-US" /></span>
+            <p className='home-post-username'>{userPosts.userDetails.username}</p>
+               <span className='date'><ReactTimeAgo date={new Date(userPosts.createdAt)}  locale="en-US" /></span>
               <div className="pro-post-options">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -59,7 +59,7 @@ function ProfilePost() {
             <div className="pro-post-description">
               <div className="pro-post-description-div">
                 <p className="pro-post-description-text">
-                {post.description}
+                {userPosts.description}
                 </p>
               </div>
             </div>
@@ -68,11 +68,11 @@ function ProfilePost() {
           </div>
             {/* posted media */}
             <div className="home-post-media">
-                {post.fileType === 'image' ? (
-                  <img src={`http://localhost:5001/${post.file}`} alt="Post Media" />
-                ) : post.fileType === 'video' ? (
+                {userPosts.fileType === 'image' ? (
+                  <img src={`http://localhost:5001/${userPosts.file}`} alt="Post Media" />
+                ) : userPosts.fileType === 'video' ? (
                   <video controls>
-                    <source src={`http://localhost:5001/${post.file}`} type="video/mp4" />
+                    <source src={`http://localhost:5001/${userPosts.file}`} type="video/mp4" />
                     Your browser does not support the video tag.
                   </video>
                 ) : (
