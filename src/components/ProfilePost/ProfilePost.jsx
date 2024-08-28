@@ -9,10 +9,11 @@ import { getAllPosts, getSingleUserPosts } from '../../Redux/Reducer/PostSlice';
 function ProfilePost() {
   const dispatch = useDispatch();
   const { post, loading, error } = useSelector(state => state.post);
+  const  { userPosts } = useSelector(state => state.post);
   const userId = useSelector(state => state.data.userId);
   
   // const {userData} = useSelector((state) => state.data)
-  console.log({post});
+  console.log(userPosts);
 
   useEffect(() => {
     dispatch(getAllPosts());
@@ -27,19 +28,19 @@ function ProfilePost() {
   if (error) return <div>Error: {error}</div>;
   return (
     <>
-      {Array.isArray(post) && post.map((post) => (
+      {Array.isArray(userPosts) && userPosts.map((post) => (
         <div key={post._id} className="row">
         <div className="col-sm-12 pro-post-div">
           <div className="">
             {/* pro pic image */}
             <div className='pro-post-head'>
             <div className="pro-post-pro-pic">
-              <img src={`http://localhost:5001/${post.userDetails.image}`} alt="proPic" />
+              {/* <img src={`http://localhost:5001/${post.userDetails.image}`} alt="proPic" /> */}
             </div>
           <div className="">
             {/* posted date */}
             <div className="pro-post-date">
-            <p className='home-post-username'>{post.userDetails.username}</p>
+            {/* <p className='home-post-username'>{post.userDetails.username}</p> */}
                <span className='date'><ReactTimeAgo date={new Date(post.createdAt)}  locale="en-US" /></span>
               <div className="pro-post-options">
               <svg
