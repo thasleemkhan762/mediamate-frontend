@@ -42,12 +42,14 @@ const postSlice = createSlice({
   name: "post",
   initialState: {
     post: [],
+    userPosts:[],
     error: "",
     loading: false,
   },
   reducers: {},
   extraReducers: (builder) => {
     builder
+    //create post
       .addCase(createPost.pending, (state) => {
         state.loading = true;
       })
@@ -62,6 +64,7 @@ const postSlice = createSlice({
         state.loading = false;
         state.error = action.payload || "Some error occurred";
       })
+      //get all posts
       .addCase(getAllPosts.pending, (state) => {
         state.loading = true;
       })
@@ -69,9 +72,21 @@ const postSlice = createSlice({
         state.loading = false;
         state.post = action.payload.posts;
         // console.log(action.payload.posts);
-        
       })
       .addCase(getAllPosts.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload || "Some error occurred";
+      })
+      //get single user posts
+      .addCase(getSingleUserPosts.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getSingleUserPosts.fulfilled, (state, action) => {
+        state.loading = false;
+        state.userPosts = action.payload;
+        // console.log(action.payload.posts);
+      })
+      .addCase(getSingleUserPosts.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload || "Some error occurred";
       });
