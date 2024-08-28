@@ -10,8 +10,8 @@ import MainSidebar from "../../Common/MainSidebar/MainSidebar";
 import HomePageFriendBox from "../HomePageFriendBox/HomePageFriendBox";
 import FriendSuggestion from "../FriendSuggestion/FriendSuggestion";
 import HomeSupport from "../HomeSupport/HomeSupport";
-import Profiletry from "../../trying/Profiletry";
-import Hometry from "../../trying/Hometry";
+// import Profiletry from "../../trying/Profiletry";
+// import Hometry from "../../trying/Hometry";
 
 function HomePage() {
   const [modalOpen, setModalOpen] = useState(false);

@@ -7,7 +7,7 @@ import Cookies from "js-cookie";
 import { userLogin } from '../../../Redux/Reducer/UserSlice'
 import { setUser } from '../../../Redux/Reducer/UserSlice'
 
-
+//google oauth
 async function auth() {
   const response = await fetch('http://localhost:5001/request', {
     method:'post'
