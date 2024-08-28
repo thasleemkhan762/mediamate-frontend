@@ -29,6 +29,15 @@ export const getAllPosts = createAsyncThunk('getAllPosts', async (_, { rejectWit
   }
 });
 
+export const getSingleUserPosts = createAsyncThunk("getSingleUserPosts", async (id) => {
+  try {
+    const response = await axios.get(`http://localhost:5001/api/users/getSingleUserPosts/${id}`);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+});
+
 const postSlice = createSlice({
   name: "post",
   initialState: {
