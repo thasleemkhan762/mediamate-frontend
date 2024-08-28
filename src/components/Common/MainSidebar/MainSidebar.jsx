@@ -38,12 +38,13 @@ function MainSidebar({activeClassProfile, activeClassFriends, activeClassSaved, 
           <div className="home-pic-div">
             <div className="home-pics">
               <img src={cover} className="home-cover-pic" alt="coverpic" />
-              <img src={dummy} className="home-pro-pic" alt="" />
-              <img
+              {userData.image ?<img
                 src={`http://localhost:5001/${userData.image}`}
                 className="home-pro-pic2"
                 alt=""
-              />
+              /> : <img src={dummy} className="home-pro-pic" alt="" /> }
+              
+              
             </div>
           </div>
           <div className="home-menu-div">
@@ -56,7 +57,7 @@ function MainSidebar({activeClassProfile, activeClassFriends, activeClassSaved, 
               <ul className="nav flex-column">
                 <li className={`nav-item menu-list ${activeClassProfile}`}>
                   <i className="bi bi-person-fill"></i>
-                  <Link className="nav-link active" to="/homepage/profiletry">
+                  <Link className="nav-link active" to="/user/profile">
                     Profile
                   </Link>
                 </li>

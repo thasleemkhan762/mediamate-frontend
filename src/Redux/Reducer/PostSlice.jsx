@@ -9,6 +9,8 @@ export const createPost = createAsyncThunk('createPost', async (data, { rejectWi
         'Content-Type': 'multipart/form-data',
       },
     });
+    console.log(response.data);
+    
     return response.data;
   } catch (error) {
     return rejectWithValue(error.response?.data || "Failed to create post");
@@ -19,7 +21,7 @@ export const createPost = createAsyncThunk('createPost', async (data, { rejectWi
 export const getAllPosts = createAsyncThunk('getAllPosts', async (_, { rejectWithValue }) => {
   try {
     const response = await axios.get(`http://localhost:5001/api/users`);
-    // console.log(response.data);
+    console.log(response.data);
     
     return response.data;
   } catch (error) {
@@ -44,7 +46,7 @@ const postSlice = createSlice({
         state.loading = false;
         // state.post.push(action.payload);
         state.post = [action.payload, ...state.post];
-        // console.log(state.post);
+        console.log(action.payload);
         
       })
       .addCase(createPost.rejected, (state, action) => {

@@ -9,7 +9,7 @@ function MainPagesHeader() {
         <header className="header-home">
           <nav className="navbar-home navbar-expand-lg navbar-dark">
             <div className="brandname_box">
-              <Link className="header-link" to="/homepage/hometry">
+              <Link className="header-link" to="/homepage">
                 <h2 className="brand_name">Media</h2>
                 <h2 className="brand_name">MATE</h2>
               </Link>

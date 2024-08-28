@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import MainPagesHeader from "../../Common/MainPagesHeader/MainPagesHeader";
 import MainSidebar from "../../Common/MainSidebar/MainSidebar";
 import Cover from "./cover.png";
+import dummy from "../../../dummyImages/dummy.png"
 import "./UserProfile.css";
 import '../HomePage/HomePage.css';
 import HomePageFriendBox from "../HomePageFriendBox/HomePageFriendBox";
@@ -47,7 +48,9 @@ function UserProfile() {
                   <img src={Cover} alt="p" />
                 </div>
                 <div className="profile-pic">
-                  <img src={/*profileImage || */ `http://localhost:5001/${userData.image}`} alt="c" />
+                  {userData.image ? <img src={/*profileImage || */ `http://localhost:5001/${userData.image}`} alt="c" />
+                  : <img src={dummy} alt="c" />}
+                  
                 </div>
                 <div className="profile-edit-cover-btn">
                   <button className="btn btn-outline-secondary pro-custom-btn">

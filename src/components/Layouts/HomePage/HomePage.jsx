@@ -1,12 +1,12 @@
 import React, { useMemo, useState } from "react";
 import "./HomePage.css";
-import {  Outlet } from 'react-router-dom';
+// import {  Outlet } from 'react-router-dom';
 import CreatePostForm from "../CreatePostForm/CreatePostForm";
 import MainPagesHeader from "../../Common/MainPagesHeader/MainPagesHeader";
 import MainSidebar from "../../Common/MainSidebar/MainSidebar";
-// import CreatePost from "../CreatePost/CreatePost";
-// import HomeExploreButtons from "../HomeExploreButtons/HomeExploreButtons";
-// import Posts from "../Posts/Posts";
+import CreatePost from "../CreatePost/CreatePost";
+import HomeExploreButtons from "../HomeExploreButtons/HomeExploreButtons";
+import Posts from "../Posts/Posts";
 import HomePageFriendBox from "../HomePageFriendBox/HomePageFriendBox";
 import FriendSuggestion from "../FriendSuggestion/FriendSuggestion";
 import HomeSupport from "../HomeSupport/HomeSupport";
@@ -35,12 +35,12 @@ function HomePage() {
           <div className="col-md-3">{MemoizedSidebar}</div>
 
           <div className="col-md-6">
-            {/* <CreatePost openModal={() => setModalOpen(true)} />
+            <CreatePost openModal={() => setModalOpen(true)} />
             <HomeExploreButtons />
             <div className="post-main row">
             <Posts />
-            </div> */}
-             <Outlet />
+            </div>
+             {/* <Outlet /> */}
           </div>
 
           <div className="col-md-3">{MemoizedRightColumn}</div>

@@ -4,7 +4,7 @@ import "./EditProfile.css"
 import { useDispatch, useSelector } from 'react-redux';
 import { updateAndSetUser, updateUser, /*setUserImage*/ } from '../../../Redux/Reducer/UserSlice';
 import { toast } from "react-toastify";
-
+import dummy from "../../../dummyImages/dummy.png"
 
 function EditProfile({ closeModal }) {
   const dispatch = useDispatch();
@@ -53,7 +53,8 @@ function EditProfile({ closeModal }) {
       reader.readAsDataURL(watchedImage[0]);
     } else if (actionResult && !watchedImage) {
       // Fallback to the initially set image preview if no new image is selected
-      setImagePreview(`http://localhost:5001/${actionResult.image}`);
+      {actionResult.image ? setImagePreview(`http://localhost:5001/${actionResult.image}`) : setImagePreview(dummy)}
+      
     }
   }, [watchedImage, actionResult]);
 

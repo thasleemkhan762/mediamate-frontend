@@ -17,8 +17,8 @@ import PrivacySettings from "../Layouts/SettingsPages/PrivacySettings/PrivacySet
 import SupportSettings from "../Layouts/SettingsPages/SupportSettings/SupportSettings";
 import UserChat from "../Layouts/UserChat/UserChat";
 import PremiumPlans from "../Layouts/PremiumPlans/PremiumPlans";
-import Profiletry from "../trying/Profiletry";
-import Hometry from "../trying/Hometry";
+// import Profiletry from "../trying/Profiletry";
+// import Hometry from "../trying/Hometry";
 
 function MainRouter() {
   return (
@@ -26,8 +26,8 @@ function MainRouter() {
       <Route path="/" element={<LandingPage />} />
 
       <Route path="/homepage" element={<HomePage />}>
-        <Route path="profiletry" element={<Profiletry />} />
-        <Route path="hometry" element={<Hometry />} />
+        {/* <Route path="profiletry" element={<Profiletry />} /> */}
+        {/* <Route path="hometry" element={<Hometry />} /> */}
       </Route>
 
       <Route path="/user/register" element={<RegisterPage />} />

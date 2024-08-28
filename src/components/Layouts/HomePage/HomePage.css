@@ -65,13 +65,14 @@
     border-radius: 50%;
 }
 
-.home-pro-pic2{
+.home-pro-pic2 {
     position: absolute;
     left: 31%;
     top: 51%;
     width: 110px;
-    border-radius: 50%;
-    height: 110px;
+    border-radius: 57%;
+    height: 111px;
+    border: 1px solid white;
 }
 
 .home-name-pro {
