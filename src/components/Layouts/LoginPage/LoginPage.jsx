@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import Cookies from "js-cookie";
 import { userLogin } from '../../../Redux/Reducer/UserSlice'
 import { setUser } from '../../../Redux/Reducer/UserSlice'
+import { useGoogleLogin } from '@react-oauth/google';
 
 //google oauth
 async function auth() {

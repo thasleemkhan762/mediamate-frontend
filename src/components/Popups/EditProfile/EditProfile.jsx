@@ -53,7 +53,7 @@ function EditProfile({ closeModal }) {
       reader.readAsDataURL(watchedImage[0]);
     } else if (actionResult && !watchedImage) {
       // Fallback to the initially set image preview if no new image is selected
-      {actionResult.image ? setImagePreview(`http://localhost:5001/${actionResult.image}`) : setImagePreview(dummy)}
+      actionResult.image ? setImagePreview(`http://localhost:5001/${actionResult.image}`) : setImagePreview(dummy)
       
     }
   }, [watchedImage, actionResult]);

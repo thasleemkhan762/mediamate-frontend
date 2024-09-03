@@ -17,6 +17,7 @@ import PrivacySettings from "../Layouts/SettingsPages/PrivacySettings/PrivacySet
 import SupportSettings from "../Layouts/SettingsPages/SupportSettings/SupportSettings";
 import UserChat from "../Layouts/UserChat/UserChat";
 import PremiumPlans from "../Layouts/PremiumPlans/PremiumPlans";
+import PageNotFound from "../Common/PageNotFound/PageNotFound";
 // import Profiletry from "../trying/Profiletry";
 // import Hometry from "../trying/Hometry";
 
@@ -45,6 +46,7 @@ function MainRouter() {
       <Route path="/user/support_settings" element={<SupportSettings />} />
       <Route path="/user/chat" element={<UserChat />} />
       <Route path="/user/premium" element={<PremiumPlans />} />
+      <Route path="*" element={<PageNotFound />} />
     </Routes>
   );
 }

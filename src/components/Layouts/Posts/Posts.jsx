@@ -5,6 +5,7 @@ import "./Posts.css"
 import ReactTimeAgo from 'react-time-ago';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllPosts } from '../../../Redux/Reducer/PostSlice';
+import PostSkeleton from './PostSkeleton';
 
 
 function Posts() {
@@ -19,7 +20,16 @@ function Posts() {
     dispatch(getAllPosts());
   }, [dispatch]);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) {
+    return (
+      <>
+        {/* Render multiple skeletons for a better effect */}
+        {Array.from({ length: 3 }).map((_, index) => (
+          <PostSkeleton key={index} />
+        ))}
+      </>
+    );
+  }
   if (error) return <div>Error: {error}</div>;
   return (
     <>

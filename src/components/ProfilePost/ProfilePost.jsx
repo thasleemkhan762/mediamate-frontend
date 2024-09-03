@@ -8,7 +8,7 @@ import { getAllPosts, getSingleUserPosts } from '../../Redux/Reducer/PostSlice';
 
 function ProfilePost() {
   const dispatch = useDispatch();
-  const { post, loading, error } = useSelector(state => state.post);
+  const {  loading, error } = useSelector(state => state.post);
   const  userPosts = useSelector(state => state.post.userPosts);
   const userId = useSelector(state => state.data.userId);
   
@@ -21,7 +21,7 @@ function ProfilePost() {
 
   useEffect(() => {
     dispatch(getSingleUserPosts(userId));
-  }, [dispatch]);
+  }, [dispatch,userId]);
 
 
   if (loading) return <div>Loading...</div>;
