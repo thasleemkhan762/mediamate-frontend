@@ -9,19 +9,33 @@ import { setUser } from '../../../Redux/Reducer/UserSlice'
 import { useGoogleLogin } from '@react-oauth/google';
 
 //google oauth
-async function auth() {
-  const response = await fetch('http://localhost:5001/request', {
-    method:'post'
-  });
-  const data = await response.json();
-  window.location.href = data.url;
-}
+// async function auth() {
+//   const response = await fetch('http://localhost:5001/request', {
+//     method:'post'
+//   });
+//   const data = await response.json();
+//   window.location.href = data.url;
+// }
 
 function LoginPage() {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const error = useSelector(state => state.error);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const responseGoogle = async (authResult) => {
+    try {
+      console.log(authResult);
+      
+    } catch (error) {
+      console.error('Error while requesting google code : ', error);
+    }
+  }
+  const googleLogin = useGoogleLogin({
+    onSuccess: responseGoogle,
+    onError: responseGoogle,
+    flow: 'auth-code'
+  });
 
   const onSubmit = async (data) => {
     // console.log("email and opassword:", data);
@@ -51,6 +65,10 @@ function LoginPage() {
     }
   };
 
+  const handleGoogleLoginClick = (event) => {
+    event.preventDefault(); // Prevent the form from submitting
+    googleLogin();
+  };
 
   
   return (
@@ -152,7 +170,7 @@ function LoginPage() {
                   {/* <img className='google-logo' src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png" alt="Google Logo"></img> */}
                   <button
                     className="gsi-material-button"
-                    onClick={() => auth()}
+                    onClick={handleGoogleLoginClick} 
                   >
                     <div className="gsi-material-button-state"></div>
                     <div className="gsi-material-button-content-wrapper">

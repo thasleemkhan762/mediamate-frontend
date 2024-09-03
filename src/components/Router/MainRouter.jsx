@@ -20,8 +20,18 @@ import PremiumPlans from "../Layouts/PremiumPlans/PremiumPlans";
 import PageNotFound from "../Common/PageNotFound/PageNotFound";
 // import Profiletry from "../trying/Profiletry";
 // import Hometry from "../trying/Hometry";
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
 function MainRouter() {
+
+  const GoogleAuthWrapper = () => {
+    return (
+      <GoogleOAuthProvider clientId="1077803592931-pgssfctnlancc652n38ma1d483jfep2b.apps.googleusercontent.com">
+        <LoginPage/>
+      </GoogleOAuthProvider>
+    )
+  }
+
   return (
     <Routes>
       <Route path="/" element={<LandingPage />} />
@@ -32,7 +42,7 @@ function MainRouter() {
       </Route>
 
       <Route path="/user/register" element={<RegisterPage />} />
-      <Route path="/user/login" element={<LoginPage />} />
+      <Route path="/user/login" element={<GoogleAuthWrapper />} />
       <Route path="/password_recovery" element={<PasswordRecovery />} />
       <Route path="/otp_verify" element={<OtpVerify />} />
       <Route path="/set_password" element={<SetPasswordPage />} />
