@@ -7,6 +7,7 @@ import Cookies from "js-cookie";
 import { userLogin } from '../../../Redux/Reducer/UserSlice'
 import { setUser } from '../../../Redux/Reducer/UserSlice'
 import { useGoogleLogin } from '@react-oauth/google';
+import { googleAuth } from './api'
 
 //google oauth
 // async function auth() {
@@ -25,7 +26,14 @@ function LoginPage() {
 
   const responseGoogle = async (authResult) => {
     try {
-      console.log(authResult);
+      if(authResult['code']){
+        const result = await googleAuth(authResult['code']);
+        const { email, name, image } = result.data.user;
+        const token = result.data.token;
+        console.log('result.data.user---',  result.data.user);
+        console.log(token);
+        
+      }
       
     } catch (error) {
       console.error('Error while requesting google code : ', error);
@@ -169,6 +177,7 @@ function LoginPage() {
                 <div className="google-box">
                   {/* <img className='google-logo' src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png" alt="Google Logo"></img> */}
                   <button
+                    type='button'
                     className="gsi-material-button"
                     onClick={handleGoogleLoginClick} 
                   >
