@@ -23,6 +23,7 @@
 
 span.date {
     flex: 1;
+    display: flex;
 }
 
 .pro-post-head{
@@ -86,6 +87,8 @@ p.home-post-date-text {
     overflow: auto;
     margin-top: 15px;
     padding: 0;
+    text-align: center;
+    align-content: center;
 }
 
 .profile-post-main::-webkit-scrollbar{
