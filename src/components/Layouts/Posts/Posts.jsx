@@ -11,7 +11,7 @@ import PostSkeleton from './PostSkeleton';
 function Posts() {
   const dispatch = useDispatch();
   const { post, loading, error } = useSelector(state => state.post);
-  console.log(post); 
+  // console.log(post); 
   
   // const {userData} = useSelector((state) => state.data);
   // console.log({post});
