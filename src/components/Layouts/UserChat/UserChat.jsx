@@ -5,6 +5,7 @@ import socket from '../../../socket';
 import { fetchUsers, fetchMessages, /*sendMessage,*/ selectUser, addMessage, updateLastMessage  } from '../../../Redux/Reducer/ChatSlice';
 import MainPagesHeader from '../../Common/MainPagesHeader/MainPagesHeader';
 import "./UserChat.css";
+import dummy from '../../../dummyImages/dummy.png'
 
 function UserChat() {
   const dispatch = useDispatch();
@@ -150,7 +151,8 @@ function UserChat() {
                     >
                       <div className="single-chat-user ">
                         <div className="user-image">
-                          <img src={`http://localhost:5001/${user.image}`} alt="dp" />
+                          {user.image ? 
+                          <img src={`http://localhost:5001/${user.image}`} alt="dp" /> : <img src={dummy} className="chat-user-pro-pic" alt="" /> }
                         </div>
                         <div className="user-texts">
                           <h5>{user.username}</h5>
@@ -178,7 +180,8 @@ function UserChat() {
               <div className="user-chat-display-main">
                 <div className="user-chat-head">
                   <div className="user-chat-head-image">
-                    <img src={`http://localhost:5001/${selectedUser.image}`} alt="dp" />
+                    {selectedUser.image ? 
+                    <img src={`http://localhost:5001/${selectedUser.image}`} alt="dp" /> : <img src={dummy} className="chat-pro-pic" alt="" />  }
                   </div>
                   <div className="user-chat-head-texts">
                     <h4>{selectedUser.username}</h4>

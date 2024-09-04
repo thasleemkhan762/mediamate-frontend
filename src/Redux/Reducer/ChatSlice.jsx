@@ -74,7 +74,7 @@ const chatSlice = createSlice({
         state.messages = action.payload.messages;
         state.chatId = action.payload._id;
         console.log(action.payload.messages);
-        console.log(action.payload._id);
+        // console.log(action.payload._id);
         
     })
     .addCase(fetchMessages.rejected, (state, action) => {
