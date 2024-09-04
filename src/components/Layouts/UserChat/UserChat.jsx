@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import { debounce } from 'lodash'
 import { useSelector, useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import socket from '../../../socket';
@@ -11,46 +12,57 @@ function UserChat() {
   const dispatch = useDispatch();
     const users = useSelector(state => state.chat.users);
     const currentUserId = useSelector(state => state.data.userId);
-    
     const messages = useSelector(state => state.chat.messages);
-    // console.log(users);
-    
-    
     const selectedUser = useSelector(state => state.chat.selectedUser);
     const chatId = useSelector((state) => state.chat.chatId);
-    
-
     const { register, handleSubmit, reset } = useForm();
-
     const chatBodyRef = useRef(null);
+    const previousChatIdRef = useRef(null);
+    const error = useSelector(state => state.chat.error);
 
     useEffect(() => {
-      dispatch(fetchUsers());
-  }, [dispatch]);
+      dispatch(fetchUsers(currentUserId));
+  }, [dispatch,currentUserId]);
 
   useEffect(() => {
-      if (selectedUser) {
-        const selectedUserId = selectedUser.userId;
-        const userId = currentUserId;
-          dispatch(fetchMessages({ selectedUserId, userId }));
-          socket.emit('joinChat', { chatId: chatId});
-      }
-  }, [selectedUser, dispatch, currentUserId, chatId]);
+    if (selectedUser) {
+      const selectedUserId = selectedUser.userId;
+      const userId = currentUserId;
+
+      // Fetch messages and handle socket join
+      dispatch(fetchMessages({ selectedUserId, userId }))
+        .unwrap()
+        .then((data) => {
+          // Handle chat room joining
+          if (previousChatIdRef.current) {
+            socket.emit('leaveChat', { chatId: previousChatIdRef.current });
+          }
+          socket.emit('joinChat', { chatId: data._id });
+          previousChatIdRef.current = data._id;
+        })
+        .catch((error) => {
+          console.error("Failed to fetch messages:", error);
+          // Optionally handle error (e.g., show notification)
+        });
+    }
+  }, [selectedUser, dispatch, currentUserId]);
 
   // const lastMessage = messages[messages.length-1].content;
 
 
   useEffect(() => {
-    socket.on('receiveMessage', (message) => {
-      console.log(message);
-      
+    // Handle receiving messages via socket
+    const handleReceiveMessage = (message) => {
+      console.log("Received message:", message);
       dispatch(addMessage(message));
-      // scrollToBottom();
-    });
+      scrollToBottom();
+    };
+
+    socket.on('receiveMessage', handleReceiveMessage);
 
     // Cleanup the socket listener on component unmount
     return () => {
-      socket.off('receiveMessage');
+      socket.off('receiveMessage', handleReceiveMessage);
     };
   }, [dispatch]);
 
@@ -58,17 +70,17 @@ function UserChat() {
     // Scroll to the bottom whenever the messages array changes
     scrollToBottom();
   }, [messages]);
-  // useEffect(() => {
-  //     socket.on('receiveMessage', (message) => {
-  //         dispatch(addMessage(message));
-  //     });
-  // }, [dispatch]);
 
-  const handleUserClick = (user) => {
+
+  const handleUserClick = debounce((user) => {
+    if (!selectedUser || selectedUser.userId !== user.userId) {
       dispatch(selectUser(user));
-  };
+    }
+  }, 0);
 
   const onSubmit = (data) => {
+    if (!selectedUser) return;
+
       const messageData = {
           senderId: currentUserId,  // Replace with actual current user ID
           recipientId: selectedUser.userId,
@@ -82,7 +94,9 @@ function UserChat() {
           // timestamp: result.timestamp,
         },
       }));
+
       socket.emit('sendMessage', { ...messageData, chatId: chatId}); 
+
       reset();
       scrollToBottom(); 
   };
@@ -203,9 +217,9 @@ function UserChat() {
                 <div className="chat-body-main">
                   <div className="chat-previws">
                     <ul ref={chatBodyRef}>
-                      {messages.map((msg, idx) => (
+                      {messages.map((msg) => (
                         <div
-                          key={idx}
+                          key={msg._id}
                           className={
                             msg.sender === currentUserId
                               ? "message-sent"
@@ -264,6 +278,7 @@ function UserChat() {
               </div>
             )}
           </div>
+          {error && <div className="error-message">{error}</div>}
         </div>
       </div>
     </>

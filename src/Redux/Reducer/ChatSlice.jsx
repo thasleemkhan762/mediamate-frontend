@@ -2,8 +2,8 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 //  fetching users
-export const fetchUsers = createAsyncThunk('chat/fetchUsers', async () => {
-    const response = await axios.get('http://localhost:5001/api/users/allUsers');
+export const fetchUsers = createAsyncThunk('chat/fetchUsers', async (currentUserId) => {
+    const response = await axios.get(`http://localhost:5001/api/users/allUsers/${currentUserId}`);
     console.log(response.data); 
     return response.data;
 });
@@ -24,76 +24,79 @@ export const sendMessage = createAsyncThunk('chat/sendMessage', async (messageDa
 });
 
 const chatSlice = createSlice({
-  name: 'chat',
+  name: "chat",
   initialState: {
     users: [],
     selectedUser: null,
-    lastMessage:null,
+    lastMessage: null,
     chatId: null,
     messages: [],
-    status: 'idle',
-    error: null
+    status: "idle",
+    error: null,
   },
   reducers: {
     selectUser: (state, action) => {
+      if (
+        !state.selectedUser ||
+        state.selectedUser.userId !== action.payload.userId
+      ) {
         state.selectedUser = action.payload;
         state.messages = [];
+      }
     },
     addMessage: (state, action) => {
-        state.messages.push(action.payload);
-        console.log(action.payload);
-        
+      state.messages.push(action.payload);
+      console.log(action.payload);
     },
     updateLastMessage: (state, action) => {
-        const { userId, message } = action.payload;
-        const user = state.users.find((user) => user.userId === userId);
-        if (user) {
-          user.lastMessage = message.content;
+      const { userId, message } = action.payload;
+      const user = state.users.find((user) => user.userId === userId);
+      if (user) {
+        user.lastMessage = message.content;
         //   user.lastMessageTimestamp = message.timestamp;
-        }
-      },
+      }
+    },
   },
   extraReducers: (builder) => {
     builder
-    //fetch users
-    .addCase(fetchUsers.pending, (state) => {
-        state.status = 'loading';
-    })
-    .addCase(fetchUsers.fulfilled, (state, action) => {
-        state.users = action.payload;        
-    })
-    .addCase(fetchUsers.rejected, (state, action) => {
-        state.error = action.error.message;
-    })
-    //fetch chat history
-    .addCase(fetchMessages.pending, (state) => {
+      //fetch users
+      .addCase(fetchUsers.pending, (state) => {
         state.status = "loading";
-    })
-    .addCase(fetchMessages.fulfilled, (state, action) => {
+      })
+      .addCase(fetchUsers.fulfilled, (state, action) => {
+        state.users = action.payload;
+      })
+      .addCase(fetchUsers.rejected, (state, action) => {
+        state.error = action.error.message;
+      })
+      //fetch chat history
+      .addCase(fetchMessages.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(fetchMessages.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.messages = action.payload.messages;
         state.chatId = action.payload._id;
         console.log(action.payload.messages);
         // console.log(action.payload._id);
-        
-    })
-    .addCase(fetchMessages.rejected, (state, action) => {
+      })
+      .addCase(fetchMessages.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
-    })
-    // sending message
-    .addCase(sendMessage.pending, (state) => {
+      })
+      // sending message
+      .addCase(sendMessage.pending, (state) => {
         state.status = "loading";
-    })
-    .addCase(sendMessage.fulfilled, (state, action) => {
+      })
+      .addCase(sendMessage.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.messages.push(action.payload);
-    })
-    .addCase(sendMessage.rejected, (state, action) => {
+      })
+      .addCase(sendMessage.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
-    });
-  }
+      });
+  },
 });
 
 export const { selectUser, addMessage, updateLastMessage } = chatSlice.actions;
