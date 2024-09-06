@@ -7,7 +7,7 @@ import Cookies from "js-cookie";
 import { userLogin } from '../../../Redux/Reducer/UserSlice'
 import { setUser } from '../../../Redux/Reducer/UserSlice'
 import { useGoogleLogin } from '@react-oauth/google';
-import { googleAuth } from './api'
+import { googleLoginAuth } from './api'
 
 //google oauth
 // async function auth() {
@@ -27,10 +27,10 @@ function LoginPage() {
   const responseGoogle = async (authResult) => {
     try {
       if(authResult['code']){
-        const result = await googleAuth(authResult['code']);
-        const { email, name, image } = result.data.user;
-        const token = result.data.token;
-        console.log('result.data.user---',  result.data.user);
+        const result = await googleLoginAuth(authResult['code']);
+        const { email, username, image } = result.user;
+        const token = result.token;
+        console.log('result.user---',  result.user);
         console.log(token);
         
       }

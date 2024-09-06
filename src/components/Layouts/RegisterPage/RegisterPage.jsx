@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { userRegister } from "../../../Redux/Reducer/UserSlice";
 import { toast } from "react-toastify";
 import { useGoogleLogin } from '@react-oauth/google';
-import { googleAuth } from '../LoginPage/api'
+import { googleSignupAuth } from '../LoginPage/api'
 
 function RegisterPage() {
   const { register, handleSubmit, formState: { errors } } = useForm();
@@ -18,10 +18,12 @@ function RegisterPage() {
   const responseGoogle = async (authResult) => {
     try {
       if(authResult['code']){
-        const result = await googleAuth(authResult['code']);
-        const { email, name, image } = result.data.user;
-        const token = result.data.token;
-        console.log('result.data.user---',  result.data.user);
+        const result = await googleSignupAuth(authResult['code']);
+        // console.log(result);
+        
+        const { email, username, image } = result.user;
+        const token = result.token;
+        console.log('result.data.user---',  result.user);
         console.log(token);
         
       }
