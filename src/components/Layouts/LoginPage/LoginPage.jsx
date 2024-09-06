@@ -65,6 +65,7 @@ function LoginPage() {
       }
       else{
         Cookies.remove('userToken');
+        Cookies.remove('userId');
         navigate('/user/login');
       }
 

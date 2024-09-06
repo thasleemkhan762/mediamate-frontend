@@ -1,6 +1,19 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { clearUser } from '../../../Redux/Reducer/UserSlice'
+import Cookies from "js-cookie";
 
 function SettingsSidebar() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const logout = () => {
+    dispatch(clearUser());
+    Cookies.remove('userToken');
+    Cookies.remove('userId');
+    navigate('/user/login');
+  }
   return (
     <>
       <div className="setting-options">
@@ -59,8 +72,8 @@ function SettingsSidebar() {
                     Support
                   </a>
                 </li>
-                <li>
-                  <a href="/user/logout">
+                <li onClick={logout}>
+                  
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="16"
@@ -79,7 +92,7 @@ function SettingsSidebar() {
                       />
                     </svg>
                     Logout
-                  </a>
+                  
                 </li>
               </ul>
             </div>

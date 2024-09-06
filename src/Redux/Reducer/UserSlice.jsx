@@ -103,13 +103,19 @@ const getData = createSlice({
       state.userToken = action.payload.userToken;
       state.username = action.payload.username;
       // console.log(action.payload);
-      
-
       // Save user data to localStorage
       localStorage.setItem('userId', action.payload.userId);
       localStorage.setItem('userToken', action.payload.userToken);
       localStorage.setItem('username', action.payload.username);
   },
+  clearUser(state) {
+    state.userId = null;
+    state.userToken = null;
+    state.username = null;
+    localStorage.removeItem('userId');
+    localStorage.removeItem('userToken');
+    localStorage.removeItem('username');
+ },
   updateAndSetUser(state,action) {
     state.username = action.payload.username;
     localStorage.setItem('username', action.payload.username);
@@ -208,5 +214,5 @@ const getData = createSlice({
   },
 });
 
-export const { setUser, setUserImage, updateAndSetUser } = getData.actions;
+export const { setUser, clearUser, setUserImage, updateAndSetUser } = getData.actions;
 export default getData.reducer;
