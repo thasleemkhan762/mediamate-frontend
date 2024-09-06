@@ -31,6 +31,13 @@ function MainRouter() {
       </GoogleOAuthProvider>
     )
   }
+  const GoogleAuthWrapperforRegister = () => {
+    return (
+      <GoogleOAuthProvider clientId="1077803592931-pgssfctnlancc652n38ma1d483jfep2b.apps.googleusercontent.com">
+        <RegisterPage/>
+      </GoogleOAuthProvider>
+    )
+  }
 
   return (
     <Routes>
@@ -41,7 +48,7 @@ function MainRouter() {
         {/* <Route path="hometry" element={<Hometry />} /> */}
       </Route>
 
-      <Route path="/user/register" element={<RegisterPage />} />
+      <Route path="/user/register" element={<GoogleAuthWrapperforRegister />} />
       <Route path="/user/login" element={<GoogleAuthWrapper />} />
       <Route path="/password_recovery" element={<PasswordRecovery />} />
       <Route path="/otp_verify" element={<OtpVerify />} />
