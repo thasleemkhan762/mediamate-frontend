@@ -80,9 +80,10 @@ export const updateUser = createAsyncThunk("updateUser", async ({ id, data }) =>
 });
 
 const userId = localStorage.getItem('userId') || null;
-const userToken = localStorage.getItem('userToken') || null;
+// const userToken = localStorage.getItem('userToken') || null;
 const username = localStorage.getItem('username') || null;
-// const profileImage = localStorage.getItem('profileImage') || null;
+const profileImage = localStorage.getItem('profileImage') || null;
+const googleImage = localStorage.getItem('googleImage') || null;
 
 const getData = createSlice({
   name: "data",
@@ -90,9 +91,10 @@ const getData = createSlice({
     data: [],
     userData:[],
     userId: userId,
-    userToken: userToken,
+    // userToken: userToken,
     username: username,
-    // profileImage: profileImage,
+    profileImage: profileImage,
+    googleImage: googleImage,
     email: null,
     error: "",
     loading: false,
@@ -100,21 +102,31 @@ const getData = createSlice({
   reducers: {
     setUser(state, action) {
       state.userId = action.payload.userId;
-      state.userToken = action.payload.userToken;
+      // state.userToken = action.payload.userToken;
       state.username = action.payload.username;
-      // console.log(action.payload);
+      state.googleImage = action.payload.googleImage;
+      console.log(action.payload);
       // Save user data to localStorage
+      const googleImage = action.payload.googleImage;
+
       localStorage.setItem('userId', action.payload.userId);
       localStorage.setItem('userToken', action.payload.userToken);
       localStorage.setItem('username', action.payload.username);
+      if(googleImage) {
+        localStorage.setItem('googleImage', googleImage);
+      }
   },
   clearUser(state) {
     state.userId = null;
-    state.userToken = null;
+    // state.userToken = null;
     state.username = null;
+    state.profileImage = null;
+    state.googleImage = null;
     localStorage.removeItem('userId');
     localStorage.removeItem('userToken');
     localStorage.removeItem('username');
+    localStorage.removeItem('profileImage');
+    localStorage.removeItem('googleImage');
  },
   updateAndSetUser(state,action) {
     state.username = action.payload.username;

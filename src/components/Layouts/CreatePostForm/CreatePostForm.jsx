@@ -150,23 +150,7 @@ useEffect(() => {
                 </div>
               )}
             />
-            {/* <div className="desc-box">
-              <div className="create-description-div">
-                <label htmlFor="description">
-                  <h4>Description</h4>
-                </label>
-                <input
-                  type="text"
-                  id="description"
-                  className="inputBox"
-                  placeholder="Enter Description"
-                  {...register("description", {
-                    required: "description is required",
-                  })}
-                />
-                <p className="error">{errors.description?.message}</p>
-              </div>
-            </div> */}
+           
             <div className="desc-box">
               <div className="create-description-div">
                 <label htmlFor="description">

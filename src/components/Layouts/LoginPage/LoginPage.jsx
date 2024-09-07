@@ -28,11 +28,15 @@ function LoginPage() {
     try {
       if(authResult['code']){
         const result = await googleLoginAuth(authResult['code']);
-        const { email, username, image } = result.user;
-        const token = result.token;
+        const { username, googleImage } = result.user;
+        const userToken = result.token;
+        const userId = result.user._id;
         console.log('result.user---',  result.user);
-        console.log(token);
-        
+        console.log(userToken);
+
+        dispatch(setUser({ userId, username, userToken, googleImage }));        
+        navigate('/homepage');
+
       }
       
     } catch (error) {

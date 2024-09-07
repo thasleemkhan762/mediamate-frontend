@@ -11,7 +11,7 @@ function SupportSettings() {
     <>
       <div className="container-fluid home-layout-div">
         <MainPagesHeader />
-        <div className="row">
+        <div className="row row-head">
           <div className="col-md-3">
             <SettingsSidebar />
           </div>

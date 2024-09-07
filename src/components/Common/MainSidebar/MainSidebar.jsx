@@ -12,6 +12,7 @@ function MainSidebar({activeClassProfile, activeClassFriends, activeClassSaved, 
   // console.log(username);
   const dispatch = useDispatch();
   const userId = useSelector((state) => state.data.userId );
+  const googleImage = useSelector((state) => state.data.googleImage );
   // console.log(userId);
   
 
@@ -38,13 +39,24 @@ function MainSidebar({activeClassProfile, activeClassFriends, activeClassSaved, 
           <div className="home-pic-div">
             <div className="home-pics">
               <img src={cover} className="home-cover-pic" alt="coverpic" />
-              {userData.image ?<img
-                src={`http://localhost:5001/${userData.image}`}
-                className="home-pro-pic2"
-                alt=""
-              /> : <img src={dummy} className="home-pro-pic" alt="" /> }
-              
-              
+              {/* image from database */}
+              {userData.image ? (
+                <img
+                  src={`http://localhost:5001/${userData.image}`}
+                  className="home-pro-pic2"
+                  alt=""
+                />
+                // image from google
+              ) : googleImage ? (
+                <img
+                  src={googleImage}
+                  className="home-pro-pic"
+                  alt={"google"}
+                />
+                // dummy image
+              ) : (
+                <img src={dummy} className="home-pro-pic" alt="" />
+              )}
             </div>
           </div>
           <div className="home-menu-div">

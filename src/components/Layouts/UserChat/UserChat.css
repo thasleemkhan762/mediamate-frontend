@@ -67,9 +67,9 @@
 }
 
 .chat-search span {
-    position: absolute;
+    /* position: absolute; */
     /* top: 87px; */
-    left: 448px;
+    /* left: 448px; */
     font-size: 27px;
 }
 
@@ -562,4 +562,9 @@ hr {
   border: none;
   border-top: 1px solid #212327;
   margin: 20px 0 10px;
+}
+
+.no-users {
+  position: relative;
+  top: 120px;
 }

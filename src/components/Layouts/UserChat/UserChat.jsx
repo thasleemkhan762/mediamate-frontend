@@ -156,36 +156,55 @@ function UserChat() {
               </div>
               {/* users chats */}
               <div className="chat-users">
-                <ul>
-                  {users.map((user) => (
-                    <li
-                      key={user.userId}
-                      onClick={() => handleUserClick(user)}
-                      style={{ cursor: "pointer" }}
-                    >
-                      <div className="single-chat-user ">
-                        <div className="user-image">
-                          {user.image ? 
-                          <img src={`http://localhost:5001/${user.image}`} alt="dp" /> : <img src={dummy} className="chat-user-pro-pic" alt="" /> }
-                        </div>
-                        <div className="user-texts">
-                          <h5>{user.username}</h5>
-                          <p>{user.lastMessage}</p>
-                        </div>
-                        <div className="user-infos">
-                          <div className="indicator">
-                            <div className="count-indicator">
-                              <p>3</p>
-                            </div>
-                            <span className="online-indicator"></span>
+                {users.length > 0 ? (
+                  <ul>
+                    {users.map((user) => (
+                      <li
+                        key={user.userId}
+                        onClick={() => handleUserClick(user)}
+                        style={{ cursor: "pointer" }}
+                      >
+                        <div className="single-chat-user">
+                          <div className="user-image">
+                            {user.image ? (
+                              <img
+                                src={`http://localhost:5001/${user.image}`}
+                                alt="dp"
+                              />
+                            ) : (
+                              <img
+                                src={dummy}
+                                className="chat-user-pro-pic"
+                                alt="default"
+                              />
+                            )}
                           </div>
-                          <p>38 m</p>
+                          <div className="user-texts">
+                            <h5>{user.username}</h5>
+                            <p>{user.lastMessage}</p>
+                          </div>
+                          <div className="user-infos">
+                            <div className="indicator">
+                              <div className="count-indicator">
+                                <p>3</p>
+                              </div>
+                              <span className="online-indicator"></span>
+                            </div>
+                            <p>38 m</p>
+                          </div>
                         </div>
-                      </div>
-                      <hr />
-                    </li>
-                  ))}
-                </ul>
+                        <hr />
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <div className="no-users">
+                    <p>
+                      No users available. Start a conversation or search for a
+                      user to chat with!
+                    </p>
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -194,8 +213,14 @@ function UserChat() {
               <div className="user-chat-display-main">
                 <div className="user-chat-head">
                   <div className="user-chat-head-image">
-                    {selectedUser.image ? 
-                    <img src={`http://localhost:5001/${selectedUser.image}`} alt="dp" /> : <img src={dummy} className="chat-pro-pic" alt="" />  }
+                    {selectedUser.image ? (
+                      <img
+                        src={`http://localhost:5001/${selectedUser.image}`}
+                        alt="dp"
+                      />
+                    ) : (
+                      <img src={dummy} className="chat-pro-pic" alt="" />
+                    )}
                   </div>
                   <div className="user-chat-head-texts">
                     <h4>{selectedUser.username}</h4>
@@ -226,9 +251,7 @@ function UserChat() {
                               : "message-received"
                           }
                         >
-                          <div className="message-content">
-                          {msg.content}
-                          </div>
+                          <div className="message-content">{msg.content}</div>
                         </div>
                       ))}
                     </ul>
@@ -247,7 +270,10 @@ function UserChat() {
                       </svg>
                     </div>
                     <div className="chat-input">
-                      <form className='msg-send-form' onSubmit={handleSubmit(onSubmit)}>
+                      <form
+                        className="msg-send-form"
+                        onSubmit={handleSubmit(onSubmit)}
+                      >
                         <input
                           {...register("message")}
                           autoComplete="off"

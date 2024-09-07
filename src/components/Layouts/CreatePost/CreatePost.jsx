@@ -5,6 +5,7 @@ import dummy from "../../../dummyImages/dummy.png"
 
 function CreatePost(  { openModal } ) {
   const userData = useSelector((state) => state.data.userData);
+  const googleImage = useSelector((state) => state.data.googleImage);
   // blob image mode
   // const  profileImage  = useSelector((state) => state.data.profileImage);
   
@@ -22,6 +23,13 @@ function CreatePost(  { openModal } ) {
                   className="home-create-pic"
                   alt="pic"
                 />
+              ) : googleImage ? (
+                <img
+                  src={googleImage}
+                  className="home-create-pic"
+                  alt={"google"}
+                />
+                // dummy image
               ) : (
                 <img className="home-create-pic" src={dummy} alt="dummy" />
               )}

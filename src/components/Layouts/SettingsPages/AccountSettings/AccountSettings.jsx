@@ -2,13 +2,14 @@ import React from 'react'
 import MainPagesHeader from '../../../Common/MainPagesHeader/MainPagesHeader';
 import Pic from "../../UserProfile/profile-pic.png"
 import SettingsSidebar from '../../../Common/SettingsSidebar/SettingsSidebar';
+import "../Settings.css";
 
 function AccountSettings() {
   return (
     <>
       <div className="container-fluid home-layout-div">
         <MainPagesHeader />
-        <div className="row">
+        <div className="row row-head">
           <div className="col-md-3">
             <SettingsSidebar />
           </div>

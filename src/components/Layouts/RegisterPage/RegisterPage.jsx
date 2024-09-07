@@ -4,7 +4,7 @@ import './RegisterPage.css'
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from 'react-router-dom';
-import { userRegister } from "../../../Redux/Reducer/UserSlice";
+import { setUser, userRegister } from "../../../Redux/Reducer/UserSlice";
 import { toast } from "react-toastify";
 import { useGoogleLogin } from '@react-oauth/google';
 import { googleSignupAuth } from '../LoginPage/api'
@@ -21,14 +21,19 @@ function RegisterPage() {
         const result = await googleSignupAuth(authResult['code']);
         // console.log(result);
         
-        const { email, username, image } = result.user;
-        const token = result.token;
+        const { username, googleImage } = result.user;
+        const userToken = result.token;
+        const userId = result.user._id;
         console.log('result.data.user---',  result.user);
-        console.log(token);
+        console.log(userToken);
+
+        dispatch(setUser({ userId, username, userToken, googleImage }));        
+        navigate('/homepage');
         
       }
       
     } catch (error) {
+      toast.error("Account alreday exists. Try login")
       console.error('Error while requesting google code : ', error);
     }
   }
