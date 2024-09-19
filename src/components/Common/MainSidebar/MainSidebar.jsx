@@ -140,9 +140,9 @@ function MainSidebar({activeClassProfile, activeClassFriends, activeClassSaved, 
         <div className="col-sm-12 home-chat-box">
           <div className="profile_chat_premium_box">
             <p className="home-pre-text">Try Premium...</p>
-            <a className="home-pre-click" href="/user/premium">
+            <Link className="home-pre-click" to="/user/premium">
               click here
-            </a>
+            </Link>
           </div>
         </div>
       </div>

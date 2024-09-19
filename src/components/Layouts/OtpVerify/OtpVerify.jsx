@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import './OtpVerify.css'
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { verifyOtp } from '../../../Redux/Reducer/UserSlice';
 
 
@@ -92,9 +92,9 @@ function OtpVerify() {
 
               </div>
               <div className="formSubmit verify-btn-box">
-                <a href="/set_password">
+                <Link to="/set_password">
                   <button type='submit' className='btn btn-primary verify-btn'>Verify Otp</button>
-                </a>
+                </Link>
               </div>
               
              

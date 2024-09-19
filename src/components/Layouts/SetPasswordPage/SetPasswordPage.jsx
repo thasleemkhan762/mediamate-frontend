@@ -1,5 +1,6 @@
 import React from 'react'
 import './SetPasswordPage.css'
+import { Link } from 'react-router-dom';
 
 function SetPasswordPage() {
   return (
@@ -8,12 +9,12 @@ function SetPasswordPage() {
         <div>
           <header className="header">
             <nav className="navbar navbar-expand-lg navbar-dark">
-              <a className='header-link' href="/">
+              <Link className='header-link' to="/">
                 <div className="brandname_box">
                   <h2 className="brand_name_1">Media</h2>
                   <h2 className="brand_name_2">MATE</h2>
                 </div>
-              </a>
+              </Link>
             </nav>
           </header>
         </div>

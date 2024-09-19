@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function HomeSupport() {
   return (
@@ -20,9 +21,9 @@ function HomeSupport() {
                     </svg>
                   </div>
                   <p className="home-pre-text">Need Support...</p>
-                  <a className="home-pre-click" href="/premium">
+                  <Link className="home-pre-click" to="/userpremium">
                     click here
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>

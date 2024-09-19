@@ -1,5 +1,6 @@
 import React from 'react'
 import './PasswordRecovery.css'
+import { Link } from 'react-router-dom';
 
 function Passwordrecovery() {
 
@@ -54,10 +55,10 @@ function Passwordrecovery() {
 
               </div>
               <div className="formSubmit">
-                <a href="/otp_verify">
+                <Link to="/otp_verify">
                 <button onClick={noSubmit} className="btn pass-btn btn-primary">Get Otp
                   {/* {contactId ? "Save Changes" : "Submit"} */}
-                </button></a>
+                </button></Link>
               </div>
       
           

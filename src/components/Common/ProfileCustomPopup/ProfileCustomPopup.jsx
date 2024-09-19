@@ -1,6 +1,7 @@
 import React from 'react'
 import custom from "./custom.png"
 import "./pr.cs.pp.css"
+import { Link } from 'react-router-dom';
 
 function ProfileCustomPopup({closeModal}) {
   return (
@@ -22,8 +23,8 @@ function ProfileCustomPopup({closeModal}) {
         <img src={custom} alt="custome" />
         <div className="custome-popup-contents">
           <h5>Want to customize your pages. Buy premium today!</h5>
-          <a href="/user/premium">
-          <button className="btn btn-primary">Buy Premium</button></a>
+          <Link to="/user/premium">
+          <button className="btn btn-primary">Buy Premium</button></Link>
         </div>
       </div>
       <div onClick={closeModal} className="edit-overlay"></div>
