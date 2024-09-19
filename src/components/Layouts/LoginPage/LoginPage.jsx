@@ -2,7 +2,7 @@ import React from 'react'
 import './LoginPage.css'
 import { useForm } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Cookies from "js-cookie";
 import { userLogin } from '../../../Redux/Reducer/UserSlice'
 import { setUser } from '../../../Redux/Reducer/UserSlice'
@@ -114,9 +114,9 @@ function LoginPage() {
                   <div>
                     <h4 className="sub-text">
                       Don't you have an account ?{" "}
-                      <a className="login-redirect" href="/user/register">
+                      <Link className="login-redirect" to="/user/register">
                         Register
-                      </a>{" "}
+                      </Link>{" "}
                     </h4>
                   </div>
 
@@ -163,9 +163,9 @@ function LoginPage() {
                 </div>
                 <div className="forget-link">
                   <h4 className="sub-text">
-                    <a className="login-redirect" href="/password_recovery">
+                    <Link className="login-redirect" to="/password_recovery">
                       Forgot Password
-                    </a>
+                    </Link>
                   </h4>
                 </div>
                 <div className="formSubmit">

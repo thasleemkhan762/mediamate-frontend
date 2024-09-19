@@ -3,7 +3,7 @@ import './RegisterPage.css'
 // import axios from 'axios'
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { setUser, userRegister } from "../../../Redux/Reducer/UserSlice";
 import { toast } from "react-toastify";
 import { useGoogleLogin } from '@react-oauth/google';
@@ -102,9 +102,9 @@ function RegisterPage() {
                   <div>
                     <h4 className="sub-text">
                       Already have an account ?{" "}
-                      <a className="login-redirect" href="/user/login">
+                      <Link className="login-redirect" to="/user/login">
                         Login
-                      </a>{" "}
+                      </Link>{" "}
                     </h4>
                   </div>
                   <div className="name_box">

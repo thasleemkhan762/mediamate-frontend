@@ -1,6 +1,7 @@
 import React from "react";
 import "./LandingPage.css";
 import fullimage from './fullimage.png'
+import { Link } from "react-router-dom";
 
 
 
@@ -18,14 +19,14 @@ function LandingPage() {
                 <h2 className="brand_name_2">MATE</h2>
               </div>
               <div className="header_btns">
-                <a href="/user/login">
+                <Link to="/user/login">
                   <button className="btn btn-outline-primary mr-2 login">
                     Login
                   </button>
-                </a>
-                <a href="/user/register">
+                </Link>
+                <Link to="/user/register">
                   <button className="btn btn-primary register">Register</button>
-                </a>
+                </Link>
               </div>
             </nav>
           </header>
@@ -48,11 +49,11 @@ function LandingPage() {
               <p className="paragraph">conversation and stay connected! </p>
             </div>
             <div className="btn-box">
-              <a href="/register">
+              <Link to="/user/register">
                 <button className="btn btn-primary register-alt">
                   Get Started
                 </button>
-              </a>
+              </Link>
             </div>
           </div>
           <div className="col-lg-6">
