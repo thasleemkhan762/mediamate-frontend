@@ -56,7 +56,7 @@ function Passwordrecovery() {
               </div>
               <div className="formSubmit">
                 <Link to="/otp_verify">
-                <button onClick={noSubmit} className="btn pass-btn btn-primary">Get Otp
+                <button className="btn pass-btn btn-primary">Get Otp
                   {/* {contactId ? "Save Changes" : "Submit"} */}
                 </button></Link>
               </div>
