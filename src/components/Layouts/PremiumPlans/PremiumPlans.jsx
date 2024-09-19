@@ -1,8 +1,31 @@
 import React from 'react'
 import './PremiumPlan.css'
 import MainPagesHeader from '../../Common/MainPagesHeader/MainPagesHeader'
+import { useDispatch, useSelector } from 'react-redux'
+import { paymentRequest } from '../../../Redux/Reducer/PaymentSlice'
+// import { redirect, useNavigate } from 'react-router-dom'
 
 function PremiumPlans() {
+
+  // const paymentUrl = useSelector((state) => state.payments.paymentUrl);
+  // const navigate = useNavigate();
+
+
+
+  const dispatch = useDispatch();
+
+  const handlePayment = (plan) => {
+    try {
+
+      dispatch(paymentRequest(plan));
+
+    } catch (error) {
+
+      console.log(error)
+
+    }
+  }
+
   return (
     <>
       <div className="container-fluid home-layout-div">
@@ -16,6 +39,7 @@ function PremiumPlans() {
           <div className="premium-body">
             <div className="premium-plan-segment">
               <div className="segment-head">
+                {/* starter plan */}
                 <h3>Starter Plan</h3>
                 <div className="premium-rate">
                   <h2>79</h2>
@@ -68,7 +92,7 @@ function PremiumPlans() {
                 </div>
               </div>
               <div className="segment-footer">
-                <button className="btn btn-primary">Current plan</button>
+                <button onClick={() => handlePayment('starter')} className="btn btn-primary">Choose Plan</button>
               </div>
             </div>
             <div className="premium-plan-segment">
@@ -125,7 +149,7 @@ function PremiumPlans() {
                 </div>
               </div>
               <div className="segment-footer">
-                <button className="btn btn-primary">Upgrade plan</button>
+                <button onClick={() => handlePayment('lite')} className="btn btn-primary">Choose Plan</button>
               </div>
             </div>
             <div className="premium-plan-segment">
@@ -182,7 +206,7 @@ function PremiumPlans() {
                 </div>
               </div>
               <div className="segment-footer">
-                <button className="btn btn-primary">Upgrade plan</button>
+                <button className="btn btn-primary">Choose Plan</button>
               </div>
             </div>
           </div>

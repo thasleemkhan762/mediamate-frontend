@@ -15,14 +15,14 @@ function CreatePost(  { openModal } ) {
         <div className="col-sm-12 home-create-post-div" onClick={openModal}>
           <div className="col-sm-2">
             <div className="home-pics">
-              {userData.image ? (
+
+             {userData.image ? (
                 <img
-                  src={
-                     `http://localhost:5001/${userData.image}`
-                  }
+                  src={`http://localhost:5001/${userData.image}`}
                   className="home-create-pic"
-                  alt="pic"
+                  alt=""
                 />
+                // image from google
               ) : googleImage ? (
                 <img
                   src={googleImage}
@@ -31,8 +31,11 @@ function CreatePost(  { openModal } ) {
                 />
                 // dummy image
               ) : (
-                <img className="home-create-pic" src={dummy} alt="dummy" />
+                <img src={dummy} className="home-create-pic" alt="" />
               )}
+                
+             
+              
             </div>
           </div>
           <div className="col-sm-8">

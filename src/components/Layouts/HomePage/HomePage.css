@@ -73,6 +73,8 @@
     border-radius: 57%;
     height: 111px;
     border: 1px solid white;
+    height: 110px;
+    object-fit: cover;
 }
 
 .home-name-pro {
@@ -198,6 +200,8 @@
 .home-create-pic{
     width: 80px;
     border-radius: 50%;
+    height: 80px;
+    object-fit: cover;
 }
 
 .home-create-post-btn-div{

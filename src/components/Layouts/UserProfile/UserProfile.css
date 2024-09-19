@@ -56,8 +56,9 @@
 .profile-pic img {
     width: 110px;
     border-radius: 50%;
+    height: 110px;
+    object-fit: cover;
 }
-
 .customize-btns {
   display: flex;
   gap: 10px;

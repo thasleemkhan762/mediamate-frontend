@@ -216,6 +216,8 @@ const getData = createSlice({
       .addCase(updateUser.fulfilled, (state,action) => {
         state.userData = action.payload;
         state.username = action.payload.username;
+        state.googleImage = null,
+        localStorage.removeItem('googleImage');
         state.loading = false;
         state.error = "";
       })
