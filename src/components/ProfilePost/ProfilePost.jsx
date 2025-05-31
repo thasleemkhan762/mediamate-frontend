@@ -40,7 +40,7 @@ function ProfilePost() {
                 <div className="pro-post-head">
                   <div className="pro-post-pro-pic">
                     <img
-                      src={`http://localhost:5001/${userPosts.userDetails.image}`}
+                      src={`https://mediamate-backend.onrender.com/${userPosts.userDetails.image}`}
                       alt="proPic"
                     />
                   </div>
@@ -83,13 +83,13 @@ function ProfilePost() {
                 <div className="home-post-media">
                   {userPosts.fileType === "image" ? (
                     <img
-                      src={`http://localhost:5001/${userPosts.file}`}
+                      src={`https://mediamate-backend.onrender.com/${userPosts.file}`}
                       alt="Post Media"
                     />
                   ) : userPosts.fileType === "video" ? (
                     <video controls>
                       <source
-                        src={`http://localhost:5001/${userPosts.file}`}
+                        src={`https://mediamate-backend.onrender.com/${userPosts.file}`}
                         type="video/mp4"
                       />
                       Your browser does not support the video tag.

@@ -11,7 +11,7 @@ function UserFriends() {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await axios.get(`http://localhost:5001/api/users/suggestions/${currentUser}`);
+        const response = await axios.get(`https://mediamate-backend.onrender.com/api/users/suggestions/${currentUser}`);
         setUsers(response.data);
         console.log("users",response.data);
       } catch (error) {
@@ -51,7 +51,7 @@ function UserFriends() {
                       <div key={user._id} className="friend-suggestion-contents">
                         <div className="content-img">
                           <img 
-                            src={`http://localhost:5001/${user.image}` || One} 
+                            src={`https://mediamate-backend.onrender.com/${user.image}` || One} 
                             alt={user.username} 
                           />
                         </div>

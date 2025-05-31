@@ -17,7 +17,7 @@
 //                   <img src={Cover} alt="p" />
 //                 </div>
 //                 <div className="profile-pic">
-//                   <img src={/*profileImage || */ `http://localhost:5001/${userData.image}`} alt="c" />
+//                   <img src={/*profileImage || */ `https://mediamate-backend.onrender.com/${userData.image}`} alt="c" />
 //                 </div>
 //                 <div className="profile-edit-cover-btn">
 //                   <button className="btn btn-outline-secondary pro-custom-btn">

@@ -35,7 +35,7 @@ function EditProfile({ closeModal }) {
           setValue("dateOfBirth", formattedDob || "");
           setValue("place", userData.place || "");
           setValue("phone", userData.phone || "");
-          setImagePreview(`http://localhost:5001/${userData.image}`);
+          setImagePreview(`https://mediamate-backend.onrender.com/${userData.image}`);
         }
       } catch (error) {
         console.error("Error fetching user data:", error);
@@ -53,7 +53,7 @@ function EditProfile({ closeModal }) {
       reader.readAsDataURL(watchedImage[0]);
     } else if (actionResult && !watchedImage) {
       // Fallback to the initially set image preview if no new image is selected
-      actionResult.image ? setImagePreview(`http://localhost:5001/${actionResult.image}`) : setImagePreview(dummy)
+      actionResult.image ? setImagePreview(`https://mediamate-backend.onrender.com/${actionResult.image}`) : setImagePreview(dummy)
       
     }
   }, [watchedImage, actionResult]);
@@ -142,7 +142,7 @@ function EditProfile({ closeModal }) {
                             className="imagePreview"
                           />
                         )}
-                        {/* <img className='imagePreview' src={`http://localhost:5001/${actionResult.image}`} alt="imagePreview" /> */}
+                        {/* <img className='imagePreview' src={`https://mediamate-backend.onrender.com/${actionResult.image}`} alt="imagePreview" /> */}
                         <label
                           htmlFor="image"
                           className="btn btn-outline-secondary edit-addImage"

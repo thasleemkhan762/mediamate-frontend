@@ -11,7 +11,7 @@ import { googleLoginAuth } from './api'
 
 //google oauth
 // async function auth() {
-//   const response = await fetch('http://localhost:5001/request', {
+//   const response = await fetch('https://mediamate-backend.onrender.com/request', {
 //     method:'post'
 //   });
 //   const data = await response.json();

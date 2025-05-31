@@ -18,7 +18,7 @@ function CreatePost(  { openModal } ) {
 
              {userData.image ? (
                 <img
-                  src={`http://localhost:5001/${userData.image}`}
+                  src={`https://mediamate-backend.onrender.com/${userData.image}`}
                   className="home-create-pic"
                   alt=""
                 />

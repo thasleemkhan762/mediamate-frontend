@@ -4,7 +4,7 @@ import axios from 'axios';
 //  fetching users
 export const fetchUsers = createAsyncThunk('chat/fetchUsers', async (currentUserId) => {
     try {
-        const response = await axios.get(`http://localhost:5001/api/users/allUsers/${currentUserId}`);
+        const response = await axios.get(`https://mediamate-backend.onrender.com/api/users/allUsers/${currentUserId}`);
         return response.data;
     } catch (error) {
         console.error('Error fetching users:', error);
@@ -15,7 +15,7 @@ export const fetchUsers = createAsyncThunk('chat/fetchUsers', async (currentUser
 // fetching chat history
 export const fetchMessages  = createAsyncThunk('chat/fetchMessages ', async ({ selectedUserId, userId }) => {
     
-    const response = await axios.get(`http://localhost:5001/api/users/chat/${ selectedUserId}/${ userId }`);
+    const response = await axios.get(`https://mediamate-backend.onrender.com/api/users/chat/${ selectedUserId}/${ userId }`);
     console.log(response.data);
     
     return response.data;
@@ -23,7 +23,7 @@ export const fetchMessages  = createAsyncThunk('chat/fetchMessages ', async ({ s
 
 // sending a message
 export const sendMessage = createAsyncThunk('chat/sendMessage', async (messageData) => {
-    const response = await axios.post('http://localhost:5001/api/users/chat/messages', messageData);
+    const response = await axios.post('https://mediamate-backend.onrender.com/api/users/chat/messages', messageData);
     return response.data.messages;
 });
 

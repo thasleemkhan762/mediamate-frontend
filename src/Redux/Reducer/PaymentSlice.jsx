@@ -3,7 +3,7 @@ import axios from 'axios';
 
 //  payment request
 export const paymentRequest = createAsyncThunk('paymentRequest', async (plan) => {
-    const response = await axios.get(`http://localhost:5001/api/users/payments/subscribe?plan=${plan}`);
+    const response = await axios.get(`https://mediamate-backend.onrender.com/api/users/payments/subscribe?plan=${plan}`);
     console.log(response.data); 
     window.location.href = response.data.url;
     return response.data;

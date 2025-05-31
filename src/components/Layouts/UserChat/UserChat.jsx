@@ -168,7 +168,7 @@ function UserChat() {
                           <div className="user-image">
                             {user.image ? (
                               <img
-                                src={`http://localhost:5001/${user.image}`}
+                                src={`https://mediamate-backend.onrender.com/${user.image}`}
                                 alt="dp"
                               />
                             ) : (
@@ -215,7 +215,7 @@ function UserChat() {
                   <div className="user-chat-head-image">
                     {selectedUser.image ? (
                       <img
-                        src={`http://localhost:5001/${selectedUser.image}`}
+                        src={`https://mediamate-backend.onrender.com/${selectedUser.image}`}
                         alt="dp"
                       />
                     ) : (

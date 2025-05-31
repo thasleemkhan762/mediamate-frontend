@@ -42,7 +42,7 @@ function MainSidebar({activeClassProfile, activeClassFriends, activeClassSaved, 
               {/* image from database */}
               {userData.image ? (
                 <img
-                  src={`http://localhost:5001/${userData.image}`}
+                  src={`https://mediamate-backend.onrender.com/${userData.image}`}
                   className="home-pro-pic2"
                   alt=""
                 />

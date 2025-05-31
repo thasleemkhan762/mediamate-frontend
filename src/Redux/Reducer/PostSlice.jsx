@@ -4,7 +4,7 @@ import axios from "axios";
 // Create post
 export const createPost = createAsyncThunk('createPost', async (data, { rejectWithValue }) => {
   try {
-    const response = await axios.post(`http://localhost:5001/api/users`, data, {
+    const response = await axios.post(`https://mediamate-backend.onrender.com/api/users`, data, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
@@ -20,7 +20,7 @@ export const createPost = createAsyncThunk('createPost', async (data, { rejectWi
 // Get all posts
 export const getAllPosts = createAsyncThunk('getAllPosts', async (_, { rejectWithValue }) => {
   try {
-    const response = await axios.get(`http://localhost:5001/api/users`);
+    const response = await axios.get(`https://mediamate-backend.onrender.com/api/users`);
     // console.log(response.data);
     
     return response.data;
@@ -31,7 +31,7 @@ export const getAllPosts = createAsyncThunk('getAllPosts', async (_, { rejectWit
 
 export const getSingleUserPosts = createAsyncThunk("getSingleUserPosts", async (id) => {
   try {
-    const response = await axios.get(`http://localhost:5001/api/users/getSingleUserPosts/${id}`);
+    const response = await axios.get(`https://mediamate-backend.onrender.com/api/users/getSingleUserPosts/${id}`);
     // console.log(response.data);
     
     return response.data;

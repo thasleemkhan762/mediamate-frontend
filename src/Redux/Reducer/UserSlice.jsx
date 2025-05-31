@@ -6,7 +6,7 @@ import Cookies from "js-cookie";
 export const userRegister = createAsyncThunk("userRegister", async (userData, {rejectWithValue}) => {
   try {
     const response = await axios.post(
-      "http://localhost:5001/api/users/register",
+      "https://mediamate-backend.onrender.com/api/users/register",
       userData
     );
     return response.data;
@@ -25,7 +25,7 @@ export const userRegister = createAsyncThunk("userRegister", async (userData, {r
 export const verifyOtp = createAsyncThunk('verifyOtp', async (otpData, {rejectWithValue}) => {
   try {
     const response = await axios.post(
-      "http://localhost:5001/api/users/otp_verify",
+      "https://mediamate-backend.onrender.com/api/users/otp_verify",
       otpData
     );
     return response.data;
@@ -45,7 +45,7 @@ export const userLogin = createAsyncThunk('userLogin', async (data, { rejectWith
   try {
     // console.log(data);
     
-      const response = await axios.post(`http://localhost:5001/api/users/login`, data, { withCredentials: true });
+      const response = await axios.post(`https://mediamate-backend.onrender.com/api/users/login`, data, { withCredentials: true });
       Cookies.set('userId', response.data.userId);
       return response.data;
   } catch (error) {
@@ -62,7 +62,7 @@ export const userLogin = createAsyncThunk('userLogin', async (data, { rejectWith
 // id fetch
 export const getUserData = createAsyncThunk("getUserData", async (id) => {
   try {
-    const response = await axios.get(`http://localhost:5001/api/users/${id}`);
+    const response = await axios.get(`https://mediamate-backend.onrender.com/api/users/${id}`);
     return response.data;
   } catch (error) {
     throw error;
@@ -72,7 +72,7 @@ export const getUserData = createAsyncThunk("getUserData", async (id) => {
 // edit user
 export const updateUser = createAsyncThunk("updateUser", async ({ id, data }) => {
   try {
-    const response = await axios.put(`http://localhost:5001/api/users/${id}`, data);
+    const response = await axios.put(`https://mediamate-backend.onrender.com/api/users/${id}`, data);
     return response.data;
   } catch (error) {
     throw error;

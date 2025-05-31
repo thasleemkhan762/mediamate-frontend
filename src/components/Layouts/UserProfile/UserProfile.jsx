@@ -48,7 +48,7 @@ function UserProfile() {
                   <img src={Cover} alt="p" />
                 </div>
                 <div className="profile-pic">
-                  {userData.image ? <img src={/*profileImage || */ `http://localhost:5001/${userData.image}`} alt="c" />
+                  {userData.image ? <img src={/*profileImage || */ `https://mediamate-backend.onrender.com/${userData.image}`} alt="c" />
                   : <img src={dummy} alt="c" />}
                   
                 </div>
