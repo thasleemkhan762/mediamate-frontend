@@ -1,0 +1,82 @@
+.setting-options {
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 25px;
+  width: 100%;
+  height: 97%;
+  position: sticky;
+  top: 80px;
+}
+
+.setting-options ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  height: 100%;
+}
+
+.setting-options li {
+  padding: 12px 15px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.setting-options li:hover {
+  background-color: #f5f7fa;
+}
+
+.setting-options li a {
+  text-decoration: none;
+  color: #393e46;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1.2rem;
+  font-weight: 500;
+  width: 100%;
+}
+
+.setting-options li svg,
+.setting-options li span {
+  width: 24px !important;
+  height: 24px !important;
+  color: #0054F9;
+  flex-shrink: 0;
+  margin-right: 10px;
+}
+
+.setting-options li:last-child {
+  margin-top: auto;
+  border-top: 1px solid #eee;
+  padding-top: 20px;
+  color: #e74040;
+}
+
+.setting-options li:last-child svg {
+  color: #e74040;
+}
+
+.setting-options li.active {
+  background-color: #0054F9;
+}
+
+.setting-options li.active a {
+  color: #ffffff;
+}
+
+.setting-options li.active svg,
+.setting-options li.active span {
+  color: #ffffff;
+}
+
+/* Add hover effect for logout */
+.setting-options li:last-child:hover {
+  background-color: #fff1f1;
+} 

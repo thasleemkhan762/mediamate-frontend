@@ -1,10 +1,35 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 import "./UserFriends.css"
 import MainPagesHeader from "../../Common/MainPagesHeader/MainPagesHeader";
 import MainSidebar from "../../Common/MainSidebar/MainSidebar";
+import axios from 'axios';
 import One from "../../../dummyImages/one.png"
-
 function UserFriends() {
+  const [users, setUsers] = useState([]);
+  const currentUser = localStorage.getItem('userId');
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const response = await axios.get(`http://localhost:5001/api/users/suggestions/${currentUser}`);
+        setUsers(response.data);
+        console.log("users",response.data);
+      } catch (error) {
+        console.error('Error fetching users:', error);
+      }
+    };
+    fetchUsers();
+  }, [currentUser._id]);
+
+  const handleSendRequest = async (userId) => {
+    try {
+      // Implement friend request logic here
+      console.log('Send friend request to:', userId);
+    } catch (error) {
+      console.error('Error sending friend request:', error);
+    }
+  };
+
   return (
     <>
       <div className="container-fluid home-layout-div">
@@ -15,155 +40,45 @@ function UserFriends() {
           </div>
           <div className="col-md-9">
             <div className="row">
-              <div className="friend-sgst-div">
-                <div className="friend-sgst-head">
-                  <h4>Friend Suggestions</h4>
-                  <p>See all</p>
-                </div>
-                <div className="friend-suggestion-body col-md-12">
-                  <div className="friend-suggestion-contents">
-                    <div className="content-img">
-                      <img src={One} alt="hhh" />
-                    </div>
-                    <div className="content-name">
-                      <h6>Victoria</h6>
-                    </div>
-                    <div className="content-btn">
-                      <button className="btn btn-primary">
-                        Send request{" "}
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          fill="currentColor"
-                          class="bi bi-person-fill-add"
-                          viewBox="0 0 16 16"
-                        >
-                          <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0m-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
-                          <path d="M2 13c0 1 1 1 1 1h5.256A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1 1.544-3.393Q8.844 9.002 8 9c-5 0-6 3-6 4" />
-                        </svg>
-                      </button>
-                    </div>
+              <div className="col-12">
+                <div className="friend-sgst-div">
+                  <div className="friend-sgst-head">
+                    <h4>Friend Suggestions ({users.length})</h4>
+                    <p>See all</p>
                   </div>
-                  <div className="friend-suggestion-contents">
-                    <div className="content-img">
-                      <img src={One} alt="hhh" />
-                    </div>
-                    <div className="content-name">
-                      <h6>Victoria</h6>
-                    </div>
-                    <div className="content-btn">
-                      <button className="btn btn-primary">
-                        Send request{" "}
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          fill="currentColor"
-                          class="bi bi-person-fill-add"
-                          viewBox="0 0 16 16"
-                        >
-                          <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0m-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
-                          <path d="M2 13c0 1 1 1 1 1h5.256A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1 1.544-3.393Q8.844 9.002 8 9c-5 0-6 3-6 4" />
-                        </svg>
-                      </button>
-                    </div>
-                  </div>
-                  <div className="friend-suggestion-contents">
-                    <div className="content-img">
-                      <img src={One} alt="hhh" />
-                    </div>
-                    <div className="content-name">
-                      <h6>Victoria</h6>
-                    </div>
-                    <div className="content-btn">
-                      <button className="btn btn-primary">
-                        Send request{" "}
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          fill="currentColor"
-                          class="bi bi-person-fill-add"
-                          viewBox="0 0 16 16"
-                        >
-                          <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0m-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
-                          <path d="M2 13c0 1 1 1 1 1h5.256A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1 1.544-3.393Q8.844 9.002 8 9c-5 0-6 3-6 4" />
-                        </svg>
-                      </button>
-                    </div>
-                  </div>
-                  <div className="friend-suggestion-contents">
-                    <div className="content-img">
-                      <img src={One} alt="hhh" />
-                    </div>
-                    <div className="content-name">
-                      <h6>Victoria</h6>
-                    </div>
-                    <div className="content-btn">
-                      <button className="btn btn-primary">
-                        Send request{" "}
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          fill="currentColor"
-                          class="bi bi-person-fill-add"
-                          viewBox="0 0 16 16"
-                        >
-                          <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0m-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
-                          <path d="M2 13c0 1 1 1 1 1h5.256A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1 1.544-3.393Q8.844 9.002 8 9c-5 0-6 3-6 4" />
-                        </svg>
-                      </button>
-                    </div>
-                  </div>
-                  <div className="friend-suggestion-contents">
-                    <div className="content-img">
-                      <img src={One} alt="hhh" />
-                    </div>
-                    <div className="content-name">
-                      <h6>Victoria</h6>
-                    </div>
-                    <div className="content-btn">
-                      <button className="btn btn-primary">
-                        Send request{" "}
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          fill="currentColor"
-                          class="bi bi-person-fill-add"
-                          viewBox="0 0 16 16"
-                        >
-                          <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0m-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
-                          <path d="M2 13c0 1 1 1 1 1h5.256A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1 1.544-3.393Q8.844 9.002 8 9c-5 0-6 3-6 4" />
-                        </svg>
-                      </button>
-                    </div>
-                  </div>
-                  <div className="friend-suggestion-contents">
-                    <div className="content-img">
-                      <img src={One} alt="hhh" />
-                    </div>
-                    <div className="content-name">
-                      <h6>Victoria</h6>
-                    </div>
-                    <div className="content-btn">
-                      <button className="btn btn-primary">
-                        Send request{" "}
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          fill="currentColor"
-                          class="bi bi-person-fill-add"
-                          viewBox="0 0 16 16"
-                        >
-                          <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0m-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
-                          <path d="M2 13c0 1 1 1 1 1h5.256A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1 1.544-3.393Q8.844 9.002 8 9c-5 0-6 3-6 4" />
-                        </svg>
-                      </button>
-                    </div>
+                  <div className="friend-suggestion-body">
+                    {users.map((user) => (
+                      <div key={user._id} className="friend-suggestion-contents">
+                        <div className="content-img">
+                          <img 
+                            src={`http://localhost:5001/${user.image}` || One} 
+                            alt={user.username} 
+                          />
+                        </div>
+                        <div className="content-name">
+                          <h6>{user.username}</h6>
+                        </div>
+                        <div className="content-btn">
+                          <button 
+                            className="btn btn-primary"
+                            onClick={() => handleSendRequest(user._id)}
+                          >
+                            Send request
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="16"
+                              height="16"
+                              fill="currentColor"
+                              className="bi bi-person-fill-add"
+                              viewBox="0 0 16 16"
+                            >
+                              <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0m-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                              <path d="M2 13c0 1 1 1 1 1h5.256A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1 1.544-3.393Q8.844 9.002 8 9c-5 0-6 3-6 4" />
+                            </svg>
+                          </button>
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>

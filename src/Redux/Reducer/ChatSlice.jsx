@@ -3,9 +3,13 @@ import axios from 'axios';
 
 //  fetching users
 export const fetchUsers = createAsyncThunk('chat/fetchUsers', async (currentUserId) => {
-    const response = await axios.get(`http://localhost:5001/api/users/allUsers/${currentUserId}`);
-    console.log(response.data); 
-    return response.data;
+    try {
+        const response = await axios.get(`http://localhost:5001/api/users/allUsers/${currentUserId}`);
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching users:', error);
+        throw error;
+    }
 });
 
 // fetching chat history

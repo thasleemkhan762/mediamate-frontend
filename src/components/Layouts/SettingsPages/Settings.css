@@ -1,3 +1,409 @@
-.row-head{
-    margin-top: 70px;
+/* Common Settings Layout Styles */
+.row-head {
+  margin-top: 70px;
+  padding: 0 20px;
+  gap: 0;
+}
+
+/* Common Content Container */
+.settings-contents-div {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
+  padding: 25px;
+  border-radius: 10px;
+  margin: 0;
+  background: #fff;
+  height: calc(100vh - 100px);
+}
+
+/* Common Header Style */
+.settings-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 30px;
+  color: var(--primary-color);
+  border-bottom: 1px solid #eee;
+  padding-bottom: 15px;
+}
+
+.settings-head p {
+  margin-bottom: 0;
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.settings-head h3 {
+  margin-bottom: 0;
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* Common Content Area */
+.settings-contents {
+  height: calc(100% - 60px);
+  overflow-y: auto;
+  padding: 20px 0;
+}
+
+.settings-contents::-webkit-scrollbar {
+  display: none;
+}
+
+/* Common Content Group */
+.settings-contents-group {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Common Single Content Item */
+.settings-contents-single {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 25px;
+  border-radius: 12px;
+  background: #f8f9fa;
+  transition: all 0.3s ease;
+}
+
+.settings-contents-single:hover {
+  background: #f0f2f5;
+}
+
+/* Common Text Styles */
+.settings-text p:first-child {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.settings-text p:last-child {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 0;
+  line-height: 1.4;
+}
+
+.account-settings-contents-div {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
+  padding: 25px;
+  border-radius: 10px;
+  margin: 10px 20px;
+  background: #fff;
+}
+
+.profile-image {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.profile-image img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--primary-color);
+  padding: 3px;
+}
+
+.acoount-settings-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.acoount-settings-inputs label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 14px;
+  color: #666;
+  position: relative;
+}
+
+.acoount-settings-inputs input {
+  padding: 6px 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.acoount-settings-inputs input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(0, 84, 249, 0.1);
+}
+
+.acoount-settings-inputs svg {
+  position: absolute;
+  right: 15px;
+  top: 38px;
+  cursor: pointer;
+  color: #666;
+  transition: color 0.3s ease;
+}
+
+.acoount-settings-inputs svg:hover {
+  color: var(--primary-color);
+}
+
+.account-settings-submit-btn {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.account-settings-submit-btn button {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 12px 40px;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.account-settings-submit-btn button:hover {
+  background-color: #0043c7;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 84, 249, 0.2);
+}
+
+.account-settings-submit-btn button:active {
+  transform: translateY(0);
+}
+
+.settings-container {
+  display: flex;
+  gap: 20px;
+  padding: 0 20px;
+  margin-top: 70px;
+}
+
+.settings-content {
+  flex: 1;
+}
+
+/* Notification Settings Styles */
+.notification-settings-contents-div {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
+  padding: 25px;
+  border-radius: 10px;
+  margin: 10px 20px;
+  background: #fff;
+}
+
+.notification-settings-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 30px;
+  color: var(--primary-color);
+}
+
+.notification-settings-head p {
+  margin-bottom: 0;
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.notification-settings-head h3 {
+  margin-bottom: 0;
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.notification-settings-contents-group {
+  max-width: 600px;
+  margin: 40px 0 0 80px;
+}
+
+.notification-settings-contents-single {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.notifi-set-text p:first-child {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.notifi-set-text p:last-child {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 0;
+}
+
+.notifi-set-input input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+/* Privacy Settings Styles */
+.privacy-settings-contents-div {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
+  padding: 25px;
+  border-radius: 10px;
+  margin: 10px 20px;
+  background: #fff;
+}
+
+.privacy-settings-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 30px;
+  color: var(--primary-color);
+}
+
+.privacy-settings-head p {
+  margin-bottom: 0;
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.privacy-settings-head h3 {
+  margin-bottom: 0;
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.privacy-settings-contents-group {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.privacy-settings-contents-single {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.privacy-set-text p:first-child {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.privacy-set-text p:last-child {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 0;
+}
+
+.privacy-set-select select {
+  padding: 8px 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  min-width: 150px;
+  cursor: pointer;
+}
+
+.privacy-blocked-div {
+  cursor: pointer;
+  color: var(--primary-color);
+}
+
+.privacy-set-btn button {
+  padding: 8px 20px;
+  font-size: 14px;
+}
+
+/* Support Settings Styles */
+.support-settings-contents-div {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
+  padding: 25px;
+  border-radius: 10px;
+  margin: 10px 20px;
+  background: #fff;
+}
+
+.support-settings-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 30px;
+  color: var(--primary-color);
+}
+
+.support-settings-head p {
+  margin-bottom: 0;
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.support-settings-head h3 {
+  margin-bottom: 0;
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.support-settings-contents-group {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.support-set-text p {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.support-set-textarea textarea {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  resize: vertical;
+  min-height: 150px;
+}
+
+.support-set-textarea textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(0, 84, 249, 0.1);
+}
+
+.support-attach-file-btn {
+  margin: 20px 0;
+}
+
+.support-attach-file-btn label {
+  cursor: pointer;
+  padding: 8px 20px;
+  font-size: 14px;
+}
+
+.support-submit-btn {
+  text-align: center;
+}
+
+.support-submit-btn button {
+  padding: 10px 40px;
+  font-size: 14px;
+  font-weight: 500;
 }

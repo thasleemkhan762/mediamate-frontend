@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { clearUser } from '../../../Redux/Reducer/UserSlice'
 import Cookies from "js-cookie";
+import './SettingsSidebar.css'
 
 function SettingsSidebar() {
   const dispatch = useDispatch();
